@@ -1,0 +1,17 @@
+{
+  "name": "blogs",
+  "version": "0.0.1",
+  "description": "OUDUIDUI's blogs",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:OUDUIDUI/blogs.git",
+  "author": "oushihao <oushihao97@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.27",
+    "vuepress-vite": "^2.0.0-beta.27"
+  }
+}
