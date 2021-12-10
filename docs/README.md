@@ -1,1 +1,3 @@
-# Hello VuePress
+```javascript
+console.log('HelloWorld')
+```
