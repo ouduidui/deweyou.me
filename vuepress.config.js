@@ -53,5 +53,8 @@ module.exports = {
                 },
             },
         ],
+        [
+            '@vuepress/plugin-shiki'
+        ],
     ],
 }
