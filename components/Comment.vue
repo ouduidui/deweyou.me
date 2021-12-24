@@ -5,20 +5,17 @@
 </template>
 
 <script>
-import config from "../config";
-
 export default {
   name: "Comment",
   mounted() {
-    console.log('config', config);
     let body = document.querySelector('.gitalk-container');
     let script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js';
     body.appendChild(script);
     script.onload = () => {
       const commentConfig = {
-        clientID: config.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET,
+        clientID: "1daa9f4e8f56a41ad290",
+        clientSecret: "4911e29768e3e738681806015a84ef96525b38e1",
         repo: 'blogs',
         owner: 'OUDUIDUI',
         admin: ['OUDUIDUI'],

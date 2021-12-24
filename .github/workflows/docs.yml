@@ -13,12 +13,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create config
-        run: echo "export default {CLIENT_ID:'${{env.CLIENT_ID}}', CLIENT_SECRET:'${{env.CLIENT_SECRET}}'}" > ../config.js
-        env:
-          CLIENT_ID: ${{ secrets.GIT_TALK_CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.GIT_TALK_CLIENT_SECRET }}
-
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
