@@ -4,7 +4,7 @@
   "description": "OUDUIDUI's blogs",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "node ./scripts/comments/add.js && vuepress build docs && node ./scripts/comments/remove.js"
   },
   "main": "index.js",
   "repository": "git@github.com:OUDUIDUI/blogs.git",
