@@ -1,3 +1,5 @@
+const { path } = require('@vuepress/utils')
+
 const BASE_PATH = '/blogs/';
 
 const generatePath = (path) => {
@@ -55,6 +57,12 @@ module.exports = {
         ],
         [
             '@vuepress/plugin-shiki'
+        ],
+        [
+            '@vuepress/register-components',
+            {
+                componentsDir: path.resolve(__dirname, './components')
+            },
         ],
     ],
 }

@@ -1,3 +1,1 @@
-```javascript
-console.log('HelloWorld')
-```
+<Comment></Comment>
