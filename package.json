@@ -4,7 +4,9 @@
   "description": "OUDUIDUI's blogs",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "node ./scripts/comments/add.js && vuepress build docs && node ./scripts/comments/remove.js"
+    "docs:build": "yarn component:add && vuepress build docs && yarn component:romove",
+    "component:add": "node ./scripts/comments/add.js",
+    "component:romove": "node ./scripts/comments/remove.js"
   },
   "main": "index.js",
   "repository": "git@github.com:OUDUIDUI/blogs.git",

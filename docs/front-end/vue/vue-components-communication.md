@@ -368,7 +368,7 @@ export default {
 
 #### 效果
 
-![EventBus事件总线.gif](/images/docs/vue-components-communication/EventBus事件总线.gif)
+![EventBus事件总线.gif](/images/docs/vue-components-communication/4.gif)
 
 ### 注意
 
@@ -531,7 +531,7 @@ export default {
 
 #### 效果
 
-![$parent与$children.gif](/images/docs/vue-components-communication/$parent与$children.gif)
+![$parent与$children.gif](/images/docs/vue-components-communication/5.gif)
 
 ### 注意
 
@@ -801,3 +801,6 @@ export default {
 ### 注意
 
 `$attrs` 包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。因此当 `text1` 已被子组件prop获取后，在孙组件是获取不到 `text1` 的。
+ 
+ <Comment /> 
+ 

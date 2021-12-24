@@ -1096,3 +1096,6 @@ export default {
 ```
 
 这时候，我们的`Vue3`版本表单组件就实现了。
+ 
+ <Comment /> 
+ 

@@ -15,17 +15,15 @@ const findMarkdown = (dir, cb) => {
 const filesHandle = (dir, files, cb) => {
     files.forEach(fileName => {
         let innerDir = `${dir}/${fileName}`;
-        if(fileName.includes('.')) {
-            fs.stat(innerDir, (err, stat) => {
-                if(err) throw err;
+        fs.stat(innerDir, (err, stat) => {
+            if(err) throw err;
 
-                if(stat.isDirectory()) {
-                    findMarkdown(innerDir, cb);
-                }else if (/\.md$/.test(fileName)) {
-                    cb(innerDir);
-                }
-            })
-        }
+            if(stat.isDirectory()) {
+                findMarkdown(innerDir, cb);
+            }else if (/\.md$/.test(fileName)) {
+                cb(innerDir);
+            }
+        })
     })
 }
 
