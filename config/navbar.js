@@ -6,9 +6,30 @@
     text: '前端',
     children: [
       {
-        text: 'Vue',
-        link: '/front-end/vue/vue2-and-vue3-component-communication.md'
+        text: 'CSS',
+        link: '/front-end/css/clipping-and-masking.md'
       },
+      {
+        text: 'JavaScript',
+        link: '/front-end/javascript/event-loop.md'
+      },
+      {
+        text: 'Vue',
+        link: '/front-end/vue/vue-diff.md'
+      },
+      {
+        text: '工程化',
+        link: '/front-end/engineering/webpack-study.md'
+      },
+    ],
+  },
+  {
+    text: '编程工具',
+    children: [
+      {
+        text: 'Git',
+        link: '/tools/git/git.md'
+      }
     ],
   },
 ];

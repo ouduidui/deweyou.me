@@ -26,7 +26,10 @@ module.exports = {
     sidebar,
     repo: 'OUDUIDUI/blogs',
     editLinkText: '在 GitHub 上编辑此页',
+    docsRepo: 'https://github.com/OUDUIDUI/blogs',
     docsBranch: 'master',
+    docsDir: 'docs',
+    editLinkPattern: ':repo/edit/:branch/:path',
     lastUpdatedText: '上次更新',
     contributorsText: '贡献者'
   },

@@ -684,7 +684,3 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly)
 
 ![diff10](/images/docs/vue-diff/diff10.gif)
 
-
- 
- <Comment /> 
- 

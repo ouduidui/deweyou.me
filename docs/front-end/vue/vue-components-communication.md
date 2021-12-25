@@ -801,6 +801,3 @@ export default {
 ### 注意
 
 `$attrs` 包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。因此当 `text1` 已被子组件prop获取后，在孙组件是获取不到 `text1` 的。
- 
- <Comment /> 
- 
