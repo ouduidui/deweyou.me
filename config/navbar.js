@@ -7,7 +7,7 @@
     children: [
       {
         text: 'CSS',
-        link: '/front-end/css/clipping-and-masking.md'
+        link: '/front-end/css/clip-and-mask.md'
       },
       {
         text: 'JavaScript',
