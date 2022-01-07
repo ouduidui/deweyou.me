@@ -32,6 +32,10 @@
       }
     ],
   },
+  {
+    text: '推荐网站',
+    link: '/website/README.md'
+  },
 ];
 
 module.exports = navbar;

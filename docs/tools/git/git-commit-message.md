@@ -101,32 +101,28 @@ To migrate follow the example below:
 
 Before:
 
-​```js
+```js
 angular.module('myApp', [])
-	.component('myComponent', {
-			bindings: {value: '<'},
-			controller: function() {
-			this.doubleValue = this.value * 2;
-		}
+.component('myComponent', {
+  bindings: {value: '<'},
+  controller: function() {
+    this.doubleValue = this.value * 2;
+  }
 });
-​```
+```
 
 After:
-​```js
+```js
 angular.module('myApp', [])
-	.component('myComponent', {
-			bindings: {value: '<'},
-			controller: function() {
-					this.$onInit = function() {
-						this.doubleValue = this.value * 2;
-					};
-				}
-		});
-		this.doubleValue = this.value * 2;
-		};
-	}
+  .component('myComponent', {
+    bindings: {value: '<'},
+    controller: function() {
+      this.$onInit = function() {
+        this.doubleValue = this.value * 2;
+      };
+    }
 });
-​```
+```
 
 Don't do this if you're writing a library, though, as you shouldn't change global configuration then.
 ```
@@ -237,10 +233,10 @@ npm i -D @commitlint/config-conventional @commitlint/cli
 
 ```javascript
 module.exports = {
-  	extends: [
-    		"@commitlint/config-conventional"
-  	],
-  	rules: {}
+  extends: [
+    "@commitlint/config-conventional"
+  ],
+  rules: {}
 };
 ```
 
@@ -262,7 +258,7 @@ npm i -S standard-version
 
 ```json
 "scirpt": {
-    "release": "standard-version"
+  "release": "standard-version"
 }
 ```
 
