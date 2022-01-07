@@ -173,3 +173,15 @@ html.dark .DocSearch {
   --search-item-text-color: var(--c-text-lighter);
   --search-item-focus-bg-color: var(--c-bg-light);
 }
+
+.copyright {
+  font-size: 12px;
+  opacity: .5;
+  margin: 0;
+}
+
+.record {
+  font-size: 12px;
+  opacity: .5;
+  color: inherit;
+}

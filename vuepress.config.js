@@ -2,7 +2,7 @@ const navbar = require('./config/navbar');
 const sidebar = require('./config/sidebar');
 const {path} = require('@vuepress/utils');
 
-const BASE_PATH = '/blogs/';
+const BASE_PATH = '/';
 
 const generatePath = (path) => {
   if (path[0] === '/') path = path.slice(1);
@@ -24,9 +24,9 @@ module.exports = {
     logoDark: '/images/logo/logo_dark.png',
     navbar,
     sidebar,
-    repo: 'OUDUIDUI/blogs',
+    repo: 'OUDUIDUI',
     editLinkText: '在 GitHub 上编辑此页',
-    docsRepo: 'https://github.com/OUDUIDUI/blogs',
+    docsRepo: 'https://github.com/OUDUIDUI',
     docsBranch: 'master',
     docsDir: 'docs',
     editLinkPattern: ':repo/edit/:branch/:path',

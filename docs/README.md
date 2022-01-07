@@ -1,17 +1,9 @@
-```javascript
-const me = {
-  nickName: '欧怼怼',
-  email: 'oushihao97@163.com',
-  github: 'https://github.com/OUDUIDUI',
-  juejin: 'https://juejin.cn/user/4309700183594366',
-  workPlace: '广州',
-  technologyStack: ['JavaScript', 'Vue']
-}
+---
+home: true
+heroText: null
+tagline: null
+footer: <p class="copyright">Copyright © 2020-2022 OUDUIDUI</p><a class="record" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">粤ICP备19153295号</a>
+footerHtml: true
+---
 
-setInterval(() => {
-  eat();
-  code();
-  relax();
-  sleep();
-}, 1000 * 60 * 60 * 24)
-```
+<Home />

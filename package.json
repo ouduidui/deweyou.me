@@ -4,9 +4,10 @@
   "description": "OUDUIDUI's blogs",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "yarn component:add && vuepress build docs && yarn component:romove",
+    "docs:build": "yarn component:add && vuepress build docs && yarn create-cname && yarn component:romove",
     "component:add": "node ./scripts/comments/add.js",
-    "component:romove": "node ./scripts/comments/remove.js"
+    "component:romove": "node ./scripts/comments/remove.js",
+    "create-cname": "cd dist/ && echo 'ouduidui.cn' > CNAME"
   },
   "main": "index.js",
   "repository": "git@github.com:OUDUIDUI/blogs.git",
