@@ -261,7 +261,7 @@ description: CSS - 水平居中和垂直居中
 
 #### margin-top
 
-该方案适用于已知容器高度，然后通过`margin-top`向左移动一半宽度实现。
+该方案适用于已知容器高度，然后通过`margin-top`向上移动一半高度实现。
 
 ```html
 <div class="center"></div>
