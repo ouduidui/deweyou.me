@@ -7,6 +7,7 @@ const sidebar = {
       text: 'CSS',
       children: [
         '/front-end/css/center.md',
+        '/front-end/css/stacking-context.md',
         '/front-end/css/clip-and-mask.md'
       ]
     },
