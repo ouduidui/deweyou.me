@@ -47,6 +47,17 @@ const sidebar = {
         '/tools/git/git-flow.md'
       ]
     }
+  ],
+  '/design-patterns-and-algorithm/': [
+    {
+      text: '设计模式',
+      children: [
+        '/design-patterns-and-algorithm/design-patterns/design-principles.md',
+        '/design-patterns-and-algorithm/design-patterns/singleton.md',
+        '/design-patterns-and-algorithm/design-patterns/factory.md',
+        '/design-patterns-and-algorithm/design-patterns/abstract-factory.md',
+      ]
+    }
   ]
 };
 

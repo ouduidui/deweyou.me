@@ -24,7 +24,20 @@
     ],
   },
   {
-    text: '编程工具',
+    text: '设计模式与算法',
+    children: [
+      {
+        text: '设计模式',
+        link: '/design-patterns-and-algorithm/design-patterns/design-principles.md'
+      },
+      {
+        text: '算法',
+        link: 'https://github.com/OUDUIDUI/leet-code'
+      }
+    ],
+  },
+  {
+    text: '其他',
     children: [
       {
         text: 'Git',
