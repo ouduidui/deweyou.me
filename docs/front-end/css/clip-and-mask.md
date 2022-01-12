@@ -6,7 +6,7 @@ description: CSS中的剪切和遮罩
 
 # CSS中的剪切和遮罩
 
-> [Github](https://github.com/OUDUIDUI/fe-study/tree/master/package/css/clipping_and_masking_in_css)
+> [Github](https://github.com/OUDUIDUI/fe-study/tree/master/package/css/clipping-and-masking)
 
 ## 剪切和遮罩的区别
 
