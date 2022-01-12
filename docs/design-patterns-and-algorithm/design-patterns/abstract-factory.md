@@ -208,6 +208,8 @@ class Chips extends AbstractDish {
 
 - **AbstractProduct** ：产品抽象类，由具体产品实现，制定产品实例的结构；
 
+![abstract-factory.png](/images/docs/design-patterns/abstract-factory.png)
+
 下面为通用实现：
 
 ```javascript

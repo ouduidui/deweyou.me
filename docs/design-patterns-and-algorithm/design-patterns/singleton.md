@@ -113,6 +113,8 @@ class ManageGame {
 2. **自行实例化**，无论是一开始加载的时候就创建好，还是在第一次被访问时；
 3. 一般还会提供一个 **`getInstance`** 方法用来获取它的实例；
 
+![singleton.png](/images/docs/design-patterns/singleton.png)
+
 ### IIFE方式
 
 我们可以使用立即调用函数 `IIFE` 将不希望公开的单例实例 `instance` 隐藏。
