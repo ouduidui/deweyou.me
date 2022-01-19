@@ -15,11 +15,15 @@
       },
       {
         text: 'Vue',
-        link: '/front-end/vue/vue-diff.md'
+        link: '/front-end/vue/vue-component.md'
       },
       {
         text: '工程化',
         link: '/front-end/engineering/webpack-study.md'
+      },
+      {
+        text: '源码',
+        link: '/front-end/source-code/vue-diff.md'
       },
     ],
   },

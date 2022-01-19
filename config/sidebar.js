@@ -22,12 +22,8 @@ const sidebar = {
     {
       text: 'Vue',
       children: [
-        '/front-end/vue/vue-diff.md',
         '/front-end/vue/vue-component.md',
-        '/front-end/vue/vue2-component.md',
-        '/front-end/vue/simple-vue2.md',
-        '/front-end/vue/simple-vue-router.md',
-        '/front-end/vue/simple-vuex.md',
+        '/front-end/vue/vue2-component.md'
       ]
     },
     {
@@ -35,6 +31,16 @@ const sidebar = {
       children: [
         '/front-end/engineering/webpack-study.md',
         '/front-end/engineering/publish-npm.md'
+      ]
+    },
+    {
+      text: '源码',
+      children: [
+        '/front-end/source-code/vue-diff.md',
+        '/front-end/source-code/simple-vue2.md',
+        '/front-end/source-code/simple-vue-router.md',
+        '/front-end/source-code/simple-vuex.md',
+        '/front-end/source-code/mini-axios.md',
       ]
     },
   ],
