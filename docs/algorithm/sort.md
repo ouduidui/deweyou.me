@@ -6,6 +6,8 @@ description:  十大经典排序算法
 
 # 十大经典排序算法
 
+> [github](https://github.com/ouduidui/fe-study/blob/master/package/javascript/wheels/src/others/sort-algorithm/index.js)
+
 | 排序算法 | 时间复杂度（平均） | 时间复杂度（最好） | 时间复杂度（最坏） | 空间复杂度    | 稳定性 | 排序方式      | 排序类型  |
 |:----:|:---------:|:---------:|:---------:|:--------:|:---:|:---------:|:-----:|
 | 冒泡排序 | O(N²)     | O(N)      | O(N²)     | O(1)     | 稳定  | In-place  | 比较排序  |
