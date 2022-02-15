@@ -7,23 +7,23 @@
     children: [
       {
         text: 'CSS',
-        link: '/front-end/css/center.md'
+        link: '/css/center.md'
       },
       {
         text: 'JavaScript',
-        link: '/front-end/javascript/event-loop.md'
+        link: '/javascript/event-loop.md'
       },
       {
         text: 'Vue',
-        link: '/front-end/vue/vue-component.md'
+        link: '/vue/vue-component.md'
       },
       {
         text: '工程化',
-        link: '/front-end/engineering/webpack-study.md'
+        link: '/engineering/webpack-study.md'
       },
       {
         text: '源码',
-        link: '/front-end/source-code/vue-diff.md'
+        link: '/source-code/vue-diff.md'
       },
     ],
   },

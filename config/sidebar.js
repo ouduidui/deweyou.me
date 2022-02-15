@@ -2,47 +2,55 @@
  * 侧边栏 https://v2.vuepress.vuejs.org/zh/reference/default-theme/config.html#sidebar
  */
 const sidebar = {
-  '/front-end/': [
+  '/css/': [
     {
       text: 'CSS',
       children: [
-        '/front-end/css/center.md',
-        '/front-end/css/stacking-context.md',
-        '/front-end/css/clip-and-mask.md'
+        '/css/center.md',
+        '/css/stacking-context.md',
+        '/css/clip-and-mask.md'
       ]
-    },
+    }
+  ],
+  '/javascript/': [
     {
       text: 'JavaScript',
       children: [
-        '/front-end/javascript/event-loop.md',
-        '/front-end/javascript/hw-promise.md',
-        '/front-end/javascript/js-module.md'
+        '/javascript/event-loop.md',
+        '/javascript/hw-promise.md',
+        '/javascript/js-module.md'
       ]
-    },
+    }
+  ],
+  '/vue/': [
     {
       text: 'Vue',
       children: [
-        '/front-end/vue/vue-component.md',
-        '/front-end/vue/vue2-component.md'
+        '/vue/vue-component.md',
+        '/vue/vue2-component.md'
       ]
-    },
+    }
+  ],
+  '/engineering/': [
     {
       text: '前端工程化',
       children: [
-        '/front-end/engineering/webpack-study.md',
-        '/front-end/engineering/publish-npm.md'
+        '/engineering/webpack-study.md',
+        '/engineering/publish-npm.md'
       ]
-    },
+    }
+  ],
+  '/source-code/': [
     {
       text: '源码',
       children: [
-        '/front-end/source-code/vue-diff.md',
-        '/front-end/source-code/simple-vue2.md',
-        '/front-end/source-code/simple-vue-router.md',
-        '/front-end/source-code/simple-vuex.md',
-        '/front-end/source-code/mini-axios.md',
+        '/source-code/vue-diff.md',
+        '/source-code/simple-vue2.md',
+        '/source-code/simple-vue-router.md',
+        '/source-code/simple-vuex.md',
+        '/source-code/mini-axios.md',
       ]
-    },
+    }
   ],
   '/tools/': [
     {
