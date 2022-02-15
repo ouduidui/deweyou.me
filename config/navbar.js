@@ -32,10 +32,14 @@
     children: [
       {
         text: '设计模式',
-        link: '/design-patterns-and-algorithm/design-patterns/design-principles.md'
+        link: '/design-patterns/design-principles.md'
       },
       {
-        text: '算法',
+        text: '算法学习',
+        link: '/algorithm/sort.md'
+      },
+      {
+        text: '算法题',
         link: 'https://github.com/OUDUIDUI/leet-code'
       }
     ],

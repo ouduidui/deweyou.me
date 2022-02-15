@@ -54,14 +54,22 @@ const sidebar = {
       ]
     }
   ],
-  '/design-patterns-and-algorithm/': [
+  '/design-patterns/': [
     {
       text: '设计模式',
       children: [
-        '/design-patterns-and-algorithm/design-patterns/design-principles.md',
-        '/design-patterns-and-algorithm/design-patterns/singleton.md',
-        '/design-patterns-and-algorithm/design-patterns/factory.md',
-        '/design-patterns-and-algorithm/design-patterns/abstract-factory.md',
+        '/design-patterns/design-principles.md',
+        '/design-patterns/singleton.md',
+        '/design-patterns/factory.md',
+        '/design-patterns/abstract-factory.md',
+      ]
+    }
+  ],
+  '/algorithm/': [
+    {
+      text: '算法学习',
+      children: [
+        '/algorithm/sort.md'
       ]
     }
   ]
