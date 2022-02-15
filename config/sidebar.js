@@ -17,6 +17,7 @@ const sidebar = {
       text: 'JavaScript',
       children: [
         '/javascript/event-loop.md',
+        '/javascript/wheels.md',
         '/javascript/hw-promise.md',
         '/javascript/js-module.md'
       ]
