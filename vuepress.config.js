@@ -16,6 +16,7 @@ module.exports = {
   title: 'OUDUIDUI',
   description: "OUDUIDUI's Blog | 分享我的编程学习笔记",
   head: [
+    ['link', { rel: 'manifest', href: generatePath('/manifest.webmanifest') }],
     ['link', {rel: 'icon', href: generatePath('/images/logo/favicon.ico')}]
   ],
 
@@ -35,6 +36,12 @@ module.exports = {
   },
   bundler: '@vuepress/vite',
   plugins: [
+    [
+      '@vuepress/pwa',
+      {
+        skipWaiting: true,
+      },
+    ],
     [
       '@vuepress/plugin-google-analytics',
       {
