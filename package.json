@@ -4,7 +4,7 @@
   "description": "OUDUIDUI's blogs",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "pnpm component:add && vuepress build docs && pnpm create-cname && pnpm component:romove",
+    "docs:build": "yarn component:add && vuepress build docs && yarn create-cname && yarn component:romove",
     "component:add": "node ./scripts/comments/add.js",
     "component:romove": "node ./scripts/comments/remove.js",
     "create-cname": "cd docs/.vuepress/dist && echo 'ouduidui.cn' > CNAME"

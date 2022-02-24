@@ -1,0 +1,1 @@
+import{r as n,o as r,c,d as e,F as m}from"./app.6199ae92.js";import{_ as a}from"./plugin-vue_export-helper.21dcd24c.js";const s={};function _(l,p){const t=n("Home"),o=n("Comment");return r(),c(m,null,[e(t),e(o),e(o)],64)}var i=a(s,[["render",_]]);export{i as default};
