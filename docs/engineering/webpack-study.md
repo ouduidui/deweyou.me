@@ -4,7 +4,7 @@ title: 万字长文，带你从零学习Webpack
 description: 万字长文，带你从零学习Webpack
 ---
 
-# 万字长文，带你从零学习Webpack
+# 万字长文，带你从零学习 Webpack
 
 一直以为，我的`Webpack`就是复制粘贴的水平，而对`Webpack`的知识真的很模糊，甚至是纯小白。所以前段时间开始对`Webpack`进行比较系统的学习。
 
@@ -12,7 +12,7 @@ description: 万字长文，带你从零学习Webpack
 
 当然，读完本文，你会发现`Webpack`还有更多更深的东西值得我们去学习，因此这只是一个开始，从零开始。
 
-## module、chunk和bundle
+## module、chunk 和 bundle
 
 在学习`webpack`之前，我们需要先来捋一捋三个术语——`module`、`chunk`和`bundle`。
 
@@ -22,7 +22,7 @@ description: 万字长文，带你从零学习Webpack
 
 先看看`webpack`官方对`module`的解读：
 
->  `Module`是离散功能块，相比于完整程序提供了更小的接触面。精心编写的模块提供了可靠的抽象和封装界限，使得应用程序中每个模块都具有条理清楚的设计和明确的目的。
+> `Module`是离散功能块，相比于完整程序提供了更小的接触面。精心编写的模块提供了可靠的抽象和封装界限，使得应用程序中每个模块都具有条理清楚的设计和明确的目的。
 
 其实简单来说，`module`模块就是我们编写的代码文件，比如`JavaScript`文件、`CSS`文件、`Image`文件、`Font`文件等等，它们都是属于`module`模块。而`module`模块的一个特点，就是可以被引入使用。
 
@@ -74,14 +74,11 @@ src/
 
 ![module-chunk-bundle.png](/images/docs/webpack-study/module-chunk-bundle.png)
 
-
 最后，我们可以总结一下三者之间的关系：**一个`budnle`对应着一个`chunk`，一个`chunk`对应着一个或多个`module`**。
 
-## 初始化Webpack项目
+## 初始化 Webpack 项目
 
 接下来，我们通过一步步实践，来慢慢学习`webpack`，这篇文章使用的是`webpack5`。
-
-
 
 首先，新建一个项目文件夹，然后初始化项目。
 
@@ -101,7 +98,7 @@ yarn add webpack webpack-cli -D
 然后再项目中新建`src`路径，再新建一个`index.js`：
 
 ```javascript
-console.log("Hello OUDUIDUI");
+console.log('Hello OUDUIDUI')
 ```
 
 然后执行`npx webpack`，则执行`webpack`打包。这时你的项目就会多一个`dist`文件夹，并且在`dist`文件夹中会看到一个`main.js`，里面的代码跟`index.js`一样。
@@ -118,14 +115,14 @@ console.log("Hello OUDUIDUI");
 
 然后执行`yarn dev`，也可以成功打包。
 
-## Webpack配置文件
+## Webpack 配置文件
 
 如果使用过`webpack`的朋友应该知道，`webpack`其实有一个配置文件——`webpack.config.js`。
 
 但为什么前面的初始化测试时，我们没有编辑配置文件却可以成功打包？这是因为`webpack`会有一个默认配置，当它检测到我们没有配置文件的时候，它默认会使用自己的默认配置。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -133,12 +130,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
-};
+}
 ```
 
 首先，我们简单来过一下这些默认配置叭。
 
-### entry和output
+### entry 和 output
 
 `entry`选项是用来配置入口文件的，它可以是字符串、数组或者对象类型。`webpack`默认只支持`js`和`json`文件作为入口文件，因此如果引入其他类型文件会保存。
 
@@ -162,7 +159,7 @@ entry: './src/index.js'
 entry: ['./src/index_1.js', './src/index_2.js']
 ```
 
-> **注意：此时其实只有一个chunk**
+> **注意：此时其实只有一个 chunk**
 
 #### 多入口多输出
 
@@ -204,7 +201,7 @@ Set 'mode' option to 'development' or 'production' to enable defaults for each e
 
 这是因为`webpack`需要我们配置`mode`选项。
 
-webpack给我们提供了三个选项，即`none`、`development`和`production`，而默认就是`production`。
+webpack 给我们提供了三个选项，即`none`、`development`和`production`，而默认就是`production`。
 
 三者的区别呢，在于`webpack`自带的代码压缩和优化插件使用。
 
@@ -218,7 +215,7 @@ webpack给我们提供了三个选项，即`none`、`development`和`production`
 因此我们可以在配置文件上文件上配置`mode`：
 
 ```javascript
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -227,8 +224,8 @@ module.exports = {
     filename: '[name].js',
   },
   // 设置mode
-  mode: "development"
-};
+  mode: 'development',
+}
 ```
 
 `webpack`也给我们提供了另一种方式，就是在命令行中配置，也就是加上`--mode`：
@@ -246,7 +243,7 @@ module.exports = {
 聊完`mode`后，说到开发调试，不难想起的就是`sourceMap`。而我们可以在配置文件中，使用`devtool`开启它。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -255,8 +252,8 @@ module.exports = {
     filename: '[name].js',
   },
   // 开启source-map
-  devtool: "source-map"
-};
+  devtool: 'source-map',
+}
 ```
 
 打包后，你的`dist`中就会多了一个`main.js.map`文件。
@@ -285,9 +282,9 @@ module.exports = {
 module: {
   rules: [
     {
-      test: /\.css$/,  // 识别css文件
-      use: ['style-loader', 'css-loader']  // 对css文件使用的三个loader
-    }
+      test: /\.css$/, // 识别css文件
+      use: ['style-loader', 'css-loader'], // 对css文件使用的三个loader
+    },
   ]
 }
 ```
@@ -328,19 +325,14 @@ module: {
 `plugins`选项是一个数组，里面可以放入多个`plugin`插件。
 
 ```javascript
-plugins: [
-  new htmlWebpackPlugin(),
-  new CleanWebpackPlugin(),
-  new miniCssExtractPlugin(),
-  new TxtWebpackPlugin()
-]
+plugins: [new htmlWebpackPlugin(), new CleanWebpackPlugin(), new miniCssExtractPlugin(), new TxtWebpackPlugin()]
 ```
 
 而对于`plugins`数组对排序位置是没有要求，因为在`plugin`的实现中，`webpack`会通过打包过程的生命周期钩子，因此在插件逻辑中就已经设置好需要在哪个生命周期执行哪些任务。
 
 ## 实现一下常见的应用场景
 
-### HTML模板
+### HTML 模板
 
 当我们是`Web`项目的时候，我们必然会存在`html`文件去实现页面。
 
@@ -360,13 +352,13 @@ yarn add html-webpack-plugin -D
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Webpack Demo</title>
-</head>
-<body>
-  <div>Hello World</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Webpack Demo</title>
+  </head>
+  <body>
+    <div>Hello World</div>
+  </body>
 </html>
 ```
 
@@ -377,9 +369,9 @@ yarn add html-webpack-plugin -D
 对于`htmlWebpackPlugin`插件，我们需要传入一些配置：`html`模板地址`template`和打包出来的文件名`filename`。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 // 引入htmlWebpackPlugin
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -393,10 +385,10 @@ module.exports = {
       // 指定html模板
       template: './src/index.html',
       // 自定义打包的文件名
-      filename: 'index.html'
-    })
-  ]
-};
+      filename: 'index.html',
+    }),
+  ],
+}
 ```
 
 接下来执行一下打包，就会发现`dist`文件下会生成一个`index.html`。打开会发现，`webpack`会自动将`bundle`文件引入：
@@ -404,27 +396,28 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Webpack Demo</title>
-<script defer src="main.js"></script></head>
-<body>
-  <div>Hello World</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Webpack Demo</title>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div>Hello World</div>
+  </body>
 </html>
 ```
 
 如果我们有多个`chunk`的时候，我们可以指定该`html`要引入哪些`chunk`。在`htmlWebpackPlugin`配置中有一个`chunks`选项，是一个数组，你只需要加入你想引入的`chunkName`即可。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 // 引入htmlWebpackPlugin
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
     index: './src/index.js',
-    main: './src/main.js'
+    main: './src/main.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -434,10 +427,10 @@ module.exports = {
     new htmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      chunks: ["index"]  // 只引入index chunk
-    })
-  ]
-};
+      chunks: ['index'], // 只引入index chunk
+    }),
+  ],
+}
 ```
 
 打包完成后，`dist`文件下会出现`index.html`、`index.js`和`main.js`，但是`index.html`只会引入`index.js`。
@@ -445,21 +438,22 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-<script defer src="index.js"></script></head>
-<body>
-   HelloWorld！
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="index.js"></script>
+  </head>
+  <body>
+    HelloWorld！
+  </body>
 </html>
 ```
 
 如果我们需要实现多页面的话，只需要再`new`一个`htmlWebpackPlugin`实例即可，这里就不再多说。
 
-###  清理打包路径
+### 清理打包路径
 
 在每次打包前，我们其实都需要去清空一下打包路径的文件。
 
@@ -474,22 +468,22 @@ yarn add clean-webpack-plugin -D
 然后只需引入到配置文件且在`plugins`配置就可以使用了。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 // 引入CleanWebpackPlugin
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js',
-    publicPath: ''
+    publicPath: '',
   },
   plugins: [
     // 使用CleanWebpackPlugin
     new CleanWebpackPlugin(),
-  ]
-};
+  ],
+}
 ```
 
 有些情况下，我们不需要完全清空打包路径，这时候我们可以使用到一个选项，叫`cleanOnceBeforeBuildPatterns`，它是一个数组，默认是`[**/*]`，也就是清理`output.path`路径下所有东西。而你可以在里面输入只想删除的文件，同时我们可以输入不想删除的文件，只需要在前面加上一个`!`。
@@ -497,29 +491,29 @@ module.exports = {
 > 需要注意的是，`cleanOnceBeforeBuildPatterns`这个选项是可以删除打包路径下之外的文件，只需要你配上绝对路径的话。因此`CleanWebpackPlugin`还提供了一个选项供测试——`dry`，默认是为`false`，当你设置为`true`后，它就不会真正的执行删除，而是只会在命令行打印出被删除的文件，这样子更好的避免测试过程中误删。
 
 ```javascript
-const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js',
-    publicPath: ''
+    publicPath: '',
   },
   plugins: [
     new CleanWebpackPlugin({
       // dry: true   // 打开可测试，不会真正执行删除动作
       cleanOnceBeforeBuildPatterns: [
-        '**/*',  // 删除dist路径下所有文件
-        `!package.json`,  // 不删除dist/package.json文件
+        '**/*', // 删除dist路径下所有文件
+        `!package.json`, // 不删除dist/package.json文件
       ],
     }),
-  ]
-};
+  ],
+}
 ```
 
-### Webpack本地服务
+### Webpack 本地服务
 
 当我们使用`webpack`的时候，不仅仅只是用于打包文件，大部分我们还会依赖`webpack`来搭建本地服务，同时利用其热更新的功能，让我们更好的开发和调试代码。
 
@@ -536,7 +530,7 @@ yarn add webpack-dev-server -D
 npx webpack serve
 ```
 
-或者在package.json配置一下：
+或者在 package.json 配置一下：
 
 ```json
 "scripts": {
@@ -546,29 +540,29 @@ npx webpack serve
 
 然后通过`yarn serve`运行。
 
-这时，webpack会默认开启`http://localhost:8080/`服务（具体看你们运行返回的代码），而该服务指向的是`dist/index.html`。
+这时，webpack 会默认开启`http://localhost:8080/`服务（具体看你们运行返回的代码），而该服务指向的是`dist/index.html`。
 
 但你会发现，你的`dist`中其实是没有任何文件的，这是因为`webpack`将实时编译后的文件都保存到了内存当中。
 
-#### webpack-dev-server的好处
+#### webpack-dev-server 的好处
 
 其实`webpack`自带提供了`--watch`命令，可以实现动态监听文件的改变并实时打包，输出新的打包文件。
 
-但这种方案存在着几个缺点，一就是每次你一修改代码，webpack就会全部文件进行重新打包，这时候每次更新打包的速度就会慢了很多；其次，这样的监听方式做不到热更新，即每次你修改代码后，webpack重新编译打包后，你就得手动刷新浏览器，才能看到最新的页面结果。
+但这种方案存在着几个缺点，一就是每次你一修改代码，webpack 就会全部文件进行重新打包，这时候每次更新打包的速度就会慢了很多；其次，这样的监听方式做不到热更新，即每次你修改代码后，webpack 重新编译打包后，你就得手动刷新浏览器，才能看到最新的页面结果。
 
 而`webpack-dev-server`，却有效了弥补这两个问题。它的实现，是使用了`express`启动了一个`http`服务器，来伺候资源文件。然后这个`http`服务器和客户端使用了`websocket`通讯协议，当原始文件作出改动后，`webpack-dev-server`就会实时编译，然后将最后编译文件实时渲染到页面上。
 
-#### webpack-dev-server配置
+#### webpack-dev-server 配置
 
 在`webpack.config.js`中，有一个`devServer`选项是用来配置`webpack-dev-server`，这里简单讲几个比较常用的配置。
 
 ##### port
 
-我们可以通过port来设置服务器端口号。
+我们可以通过 port 来设置服务器端口号。
 
 ```javascript
 module.exports = {
-  
+
   ...
 
   // 配置webpack-dev-server
@@ -584,7 +578,7 @@ module.exports = {
 
 ```javascript
 module.exports = {
-  
+
   ...
 
   // 配置webpack-dev-server
@@ -602,7 +596,7 @@ module.exports = {
 
 ```javascript
 module.exports = {
-  
+
   ...
 
   devServer: {
@@ -620,9 +614,9 @@ module.exports = {
 
 ```javascript
 module.exports = {
-  
+
   ...
-    
+
   devServer: {
     // 跨域代理
     proxy: {
@@ -637,12 +631,12 @@ module.exports = {
 
 这时候，当你请求`/api/users`的时候，就会代理到`http://localhost:3000/users`。
 
-在proxy中的选项，还有两个比较常用的，一个就是`changeOrigin`，默认情况下，代理时会保留主机头的来源，当我们将其设置为`true`可以覆盖这种行为；还有一个是`secure`选项，当你的接口使用了`https`的时候，需要将其设置为`false`。
+在 proxy 中的选项，还有两个比较常用的，一个就是`changeOrigin`，默认情况下，代理时会保留主机头的来源，当我们将其设置为`true`可以覆盖这种行为；还有一个是`secure`选项，当你的接口使用了`https`的时候，需要将其设置为`false`。
 
 ```javascript
 module.exports = {
   ...
-    
+
   devServer: {
     // 跨域代理
     proxy: {
@@ -657,11 +651,11 @@ module.exports = {
 };
 ```
 
-### CSS处理
+### CSS 处理
 
 接下来讲讲关于`webpack`对`css`的解析处理叭。
 
-#### 解析CSS文件
+#### 解析 CSS 文件
 
 在前面的例子也能看到，我们解析`css`需要用到的`loader`有`css-loader`和`style-loader`。`css-loader`主要用来解析`css`文件，而`style-loader`是将`css`渲染到`DOM`节点上。
 
@@ -685,7 +679,7 @@ body {
 然后在`index.js`引入一下：
 
 ```javascript
-import "./style.css";
+import './style.css'
 ```
 
 紧接着我们配置一下`webpack`：
@@ -693,7 +687,7 @@ import "./style.css";
 ```javascript
 module.exports = {
    ...
-  
+
   module: {
     rules: [
       {
@@ -702,19 +696,18 @@ module.exports = {
       }
     ]
   },
-  
+
    ...
 };
 ```
 
 这时候我们打包一下，会发现`dist`路径下只有`main.js`和`index.html`。但打开一下`index.html`会发现`css`是生效的。
 
-
 ![demo1.png](/images/docs/webpack-study/demo1.png)
 
 这是因为`style-loader`是将`css`代码插入到了`main.js`当中去了。
 
-#### 打包css文件
+#### 打包 css 文件
 
 如果我们不想将`css`代码放进`js`中，而是直接导出一份`css`文件的话，就得使用另一个插件——`mini-css-extract-plugin`。
 
@@ -730,7 +723,7 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   ...
-  
+
   plugins: [
     // 使用miniCssExtractPlugin插件
     new miniCssExtractPlugin({
@@ -747,7 +740,7 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -759,7 +752,7 @@ module.exports = {
   },
   plugins: [
     new miniCssExtractPlugin({
-        filename: "[name].css" 
+        filename: "[name].css"
     })
   ]
 };
@@ -770,19 +763,21 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
-<body>
-  HelloWorld！
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="main.js"></script>
+    <link href="main.css" rel="stylesheet" />
+  </head>
+  <body>
+    HelloWorld！
+  </body>
 </html>
 ```
 
-#### css添加浏览器前缀
+#### css 添加浏览器前缀
 
 当我们使用一下`css`新特性的时候，可能需要考虑到浏览器兼容的问题，这时候可能需要对一些`css`属性添加浏览器前缀。而这类工作，其实可以交给`webpack`去实现。准确来说，是交给`postcss`去实现。
 
@@ -802,8 +797,8 @@ rules: [
   {
     test: /\.css$/,
     // 引入postcss-loader
-    use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-  }
+    use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+  },
 ]
 ```
 
@@ -811,7 +806,7 @@ rules: [
 
 ```javascript
 module.exports = {
-  plugins: []
+  plugins: [],
 }
 ```
 
@@ -834,9 +829,9 @@ module.exports = {
       // 覆盖浏览器版本
       // last 2 versions: 兼容各个浏览器最新的两个版本
       // > 1%: 浏览器全球使用占有率大于1%
-      overrideBrowserslist: ['last 2 versions', '> 1%']
-    })
-  ]
+      overrideBrowserslist: ['last 2 versions', '> 1%'],
+    }),
+  ],
 }
 ```
 
@@ -879,7 +874,7 @@ body {
 }
 ```
 
-#### 压缩css代码
+#### 压缩 css 代码
 
 当我们需要压缩`css`代码的时候，可以使用`postcss`另一个插件——`cssnano`。
 
@@ -902,10 +897,14 @@ module.exports = {
 打包一下，看看`main.css`。
 
 ```css
-body{display:-webkit-box;display:-ms-flexbox;display:flex}
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 ```
 
-#### 解析CSS预处理器
+#### 解析 CSS 预处理器
 
 在现在我们实际开发中，我们会更多使用`Sass`、`Less`或者`stylus`这类`css`预处理器。而其实`html`是无法直接解析这类文件的，因此我们需要使用对应的`loader`将其转换成`css`。
 
@@ -922,12 +921,10 @@ yarn add sass sass-loader -D
 
 ```javascript
 rules: [
-  ...
-  
-  {
+  ...{
     test: /\.(scss|sass)$/,
-    use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
-  }
+    use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+  },
 ]
 ```
 
@@ -949,15 +946,24 @@ body {
 然后在`index.js`引入。
 
 ```javascript
-import "./style.css";
-import "./style.scss";
+import './style.css'
+import './style.scss'
 ```
 
 然后执行打包，再看看打包出来的`main.css`，`scss`文件内容被解析到里面，同时如果我们引入多个`css`或`css`预处理器文件的话，`miniCssExtractPlugin`也会将其打包成一个`bundle`文件里面。
 
 ```css
-body{display:-webkit-box;display:-ms-flexbox;display:flex}
-body{background:#222}body div{color:#fff}
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+body {
+  background: #222;
+}
+body div {
+  color: #fff;
+}
 ```
 
 ### 其他静态资源处理
@@ -972,11 +978,11 @@ yarn add url-loader file-loader -D
 首先我们在项目中引入一张图片，然后在引入到`index.js`中。
 
 ```javascript
-import pic from "./image.png";
+import pic from './image.png'
 
-const img = new Image();
-img.src= pic;
-document.querySelector('body').append(img);
+const img = new Image()
+img.src = pic
+document.querySelector('body').append(img)
 ```
 
 然后我先使用`url-loader`。
@@ -984,7 +990,7 @@ document.querySelector('body').append(img);
 ```javascript
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -1000,7 +1006,6 @@ module.exports = {
 
 你会发现，`dist`路径下没有图片文件，但是你打开页面是可以看到图片的，且通过调试工具，我们可以看到其实`url-loader`默认会将静态资源转成`base64`。
 
-
 ![demo2.png](/images/docs/webpack-study/demo2.png)
 
 当然，`url-loader`选项有提供一个属性，叫`limit`，就是我们可以设置一个文件大小阈值，当文件大小超过这个值的时候，`url-loader`就不会转成`base64`，而是直接打包成文件。
@@ -1008,7 +1013,7 @@ module.exports = {
 ```javascript
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -1033,7 +1038,7 @@ module.exports = {
 ```javascript
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -1050,7 +1055,7 @@ module.exports = {
 ```javascript
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -1120,15 +1125,15 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <img src="./image.png">
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img src="./image.png" />
+  </body>
 </html>
 ```
 
@@ -1193,7 +1198,7 @@ yarn add html-withimg-loader -D
 - **`asset/resource`：** 发送一个单独的文件并导出 URL。之前通过使用 `file-loader` 实现。
 - **`asset/inline` ：** 导出一个资源的 data URI。之前通过使用 `url-loader` 实现。
 - **`asset/source ` ：**导出资源的源代码。之前通过使用 `raw-loader` 实现。
-- **`asset`：**  在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用 `url-loader`，并且配置资源体积限制实现。
+- **`asset`：** 在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用 `url-loader`，并且配置资源体积限制实现。
 
 同时，我们可以在`output`设置输出`bundle`静态文件的名称：
 
@@ -1206,7 +1211,7 @@ output: {
 }
 ```
 
-### JavaScript转义
+### JavaScript 转义
 
 不仅仅`css`需要转义，`JavaScript`也要为了兼容多浏览器进行转义，因此我们需要用到`babel`。
 
@@ -1227,7 +1232,7 @@ yarn add @babel/preset-env @babel/core core-js -D
 ```javascript
 {
   test: /\.js$/,
-  use: ['babel-loader'] 
+  use: ['babel-loader']
 }
 ```
 
@@ -1241,12 +1246,12 @@ yarn add @babel/preset-env @babel/core core-js -D
     [
       "@babel/preset-env",
       {
-      	// 浏览器版本
+        // 浏览器版本
         "targets": {
           "edge": "17",
           "chrome": "67"
         },
-         // 配置corejs版本，但需要额外安装corejs
+        // 配置corejs版本，但需要额外安装corejs
         "corejs": 3,
         // 加载情况
         // entry: 需要在入口文件进入@babel/polyfill，然后babel根据使用情况按需载入
@@ -1262,10 +1267,10 @@ yarn add @babel/preset-env @babel/core core-js -D
 接下来，我们来测试一下，先修改一下`index.js`。
 
 ```javascript
-new Promise(resolve => {
-    resolve('HelloWorld')
-}).then(res => {
-    console.log(res);
+new Promise((resolve) => {
+  resolve('HelloWorld')
+}).then((res) => {
+  console.log(res)
 })
 ```
 
@@ -1274,7 +1279,14 @@ new Promise(resolve => {
 在使用`babel`之前，打包出来的`main.js`如下。
 
 ```javascript
-!function(){"use strict";new Promise((o=>{o("HelloWorld")})).then((o=>{console.log(o)}))}();
+!(function () {
+  'use strict'
+  new Promise((o) => {
+    o('HelloWorld')
+  }).then((o) => {
+    console.log(o)
+  })
+})()
 ```
 
 上面打包代码是直接使用了`Promise`，而没有考虑到低版本浏览器的兼容。然后我们打开`babel`后，执行一下打包命令，会发现代码多出了很多。
@@ -1327,13 +1339,13 @@ new Promise(resolve => {
 
 ```css
 @font-face {
-  font-family: "test-font";
-  src: url("../static/Alata-Regular.ttf") format('truetype')
+  font-family: 'test-font';
+  src: url('../static/Alata-Regular.ttf') format('truetype');
 }
 
 body {
   display: flex;
-  font-family: "test-font";
+  font-family: 'test-font';
 }
 ```
 
@@ -1350,10 +1362,9 @@ output: {
 
 ```javascript
 plugins: [
-  ...
-  new miniCssExtractPlugin({
-    filename: "assets/[name].css"
-  })
+  ...new miniCssExtractPlugin({
+    filename: 'assets/[name].css',
+  }),
 ]
 ```
 
@@ -1401,9 +1412,7 @@ entry: {
 },
 ```
 
-
-
-#### hash策略
+#### hash 策略
 
 `hash`策略，是以项目为单位的，也就是说，只要项目一个文件发生改动，首先打包后该文件对应的`bundle`文件名会改变，其次所有`js`文件和`css`文件的文件名也会改变。
 
@@ -1479,7 +1488,7 @@ module.exports = {
 - 如果修改项目文件的话，所有的`js`、`css`打包文件的文件名都会发生变化，尽管来自多个`chunk`。
 - 如果修改静态文件的话，该静态文件的打包文件文件名会发生变化，并且所有的`js`、`css`打包文件的文件名也都会发生变化。
 
-#### chunkhash策略
+#### chunkhash 策略
 
 而`chunkhash`策略的话，是以`chunk`为单位的，如果一个文件发生变化，只有那条`chunk`相关的文件的打包文件文件名才会发生变化。
 
@@ -1553,7 +1562,7 @@ module.exports = {
 - 如果修改项目文件的话，该项目文件对应的`chunk`的`js`、`css`打包文件的文件名都会发生变化。
 - 如果修改静态文件的话，该静态文件的打包文件文件名会发生变化，并且引入该静态文件对应的`chunk`的`js`、`css`打包文件的文件名也都会发生变化。
 
-#### contenthash策略
+#### contenthash 策略
 
 最后一个就是`contenthash`策略， 它是以自身内容为单位的，因此当一个文件发生变化的时候，首先它本身的打包文件的名称会发生变化，其次，引入它的文件的打包文件也会发生变化。
 
@@ -1638,7 +1647,7 @@ module.exports = {
 
 但如果开发环境和生产环境的`webpack`配置差异不仅仅只有`mode`选项的话，我们可能需要考虑多份打包配置了。
 
-#### 多个webpack配置文件
+#### 多个 webpack 配置文件
 
 我们默认的`webpack`配置文件名为`webpack.config.js`，而`webpack`执行的时候，也默认会找该配置文件。
 
@@ -1677,7 +1686,7 @@ module.exports = (env, argv) => {
 };
 ```
 
-## 优化一下Webpack配置
+## 优化一下 Webpack 配置
 
 ### 合理的配置`mode`选项和`devtool`选项
 
@@ -1685,7 +1694,7 @@ module.exports = (env, argv) => {
 
 ### 缩小文件搜索范围
 
-#### alias选项
+#### alias 选项
 
 在配置文件中，其实有一个`resovle.alias`选项，它可以创建`import`和`reuquire`别名，来确保模块引入变得更简单，同时`webpack`在打包的时候也能更快的找到引入文件。
 
@@ -1695,7 +1704,7 @@ const path = require('path');
 
 module.exports = {
   ...
-  
+
   resolve: {
     alias: {
       // 配置style路径的别名
@@ -1707,11 +1716,11 @@ module.exports = {
 
 ```javascript
 // 使用
-import "style/style.scss";
-import "style/style.css";
+import 'style/style.scss'
+import 'style/style.css'
 ```
 
-#### include、exclude选项
+#### include、exclude 选项
 
 当我们使用`loader`的时候，我们可以配置`include`来指定只解析该路径下的对应文件，同时我们可以配置`exclude`来指定不解析该路径下的对应文件。
 
@@ -1720,7 +1729,7 @@ const path = require('path');
 
 module.exports = {
   ...
-  
+
   module: {
     rules: [
       {
@@ -1738,7 +1747,7 @@ module.exports = {
 };
 ```
 
-#### noParse选项
+#### noParse 选项
 
 我们可以在`module.noParse`选项中，只配置不需要解析的文件。通常我们会忽略一些大型插件从而来提高构建性能。
 
@@ -1751,7 +1760,7 @@ module.exports = {
 };
 ```
 
-### 使用HappyPack开启多进程Loader
+### 使用 HappyPack 开启多进程 Loader
 
 在`webpack`构建过程中，其实大部分消耗时间都是用到`loader`解析上面，一方面是因为转换文件数据量很大，另一方面是因为`JavaScript`单线程特性的原因，因此需要一个个去处理，而不能并发操作。
 
@@ -1795,7 +1804,7 @@ module.exports = {
 };
 ```
 
-### 使用webpack-parallel-uglify-plugin 增强代码压缩
+### 使用 webpack-parallel-uglify-plugin 增强代码压缩
 
 起码有聊到，当`mode`为`production`的时候，`webpack`打包会开启代码压缩插件，同时`webpack`也有提供一个`optimization`选项，让我们可以使用自己喜欢的插件去覆盖原生插件。
 
@@ -1814,12 +1823,12 @@ const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin")
 
 module.exports = {
   ...
-  
+
   optimization: {
     minimizer: [
       new ParallelUglifyPlugin({
         // 缓存路径
-        cacheDir: '.cache/',  
+        cacheDir: '.cache/',
         // 压缩配置
         uglifyJS: {
           output: {
@@ -1850,8 +1859,8 @@ module.exports = {
 // 开发环境
 module.exports = {
   cache: {
-    type: 'memory'  // 默认配置
-  }
+    type: 'memory', // 默认配置
+  },
 }
 
 // 生产环境
@@ -1859,9 +1868,9 @@ module.exports = {
   cache: {
     type: 'filesystem',
     buildDependencies: {
-      config: [__filename]
-    }
-  }
+      config: [__filename],
+    },
+  },
 }
 ```
 
@@ -1891,7 +1900,6 @@ module.exports = {
 
 然后我们打包后，`webpack`会自动打开一个页面，显示我们打包文件的情况，通过打包报告可以很直观的知道哪些依赖包大，则可以做做针对性的修改。
 
-
 ![demo3.png](/images/docs/webpack-study/demo3.png)
 
 如果不想每次运行都打开网页的话，我们可以先将数据保存起来，然后要看的时候再执行新的命令去查看。
@@ -1899,9 +1907,9 @@ module.exports = {
 ```javascript
 // webpack.config.js
 new BundleAnalyzerPlugin({
-   analyzerMode: 'disabled',
-   generateStatsFile: true
- })
+  analyzerMode: 'disabled',
+  generateStatsFile: true,
+})
 ```
 
 ```json
@@ -1913,7 +1921,7 @@ new BundleAnalyzerPlugin({
 
 ## 手写一下
 
-### 手写Loader
+### 手写 Loader
 
 > https://webpack.js.org/contribute/writing-a-loader/#common-code
 
@@ -1924,8 +1932,6 @@ new BundleAnalyzerPlugin({
 - **统一原则：**遵循`webpack`定制的设计规则和结构，输入和输入均为字符串，每个`loader`完全独立，即插即用。
 
 同时`webpack`还给我们提供了[`loader API`](https://webpack.docschina.org/api/loaders/)，因此我们可以使用`this`去获取需要用到的`API`，但也是因为如此，我们`loader`的实现就**不能使用箭头函数**了。
-
-
 
 今天，我们来简单手写一下`sass-loader`、`css-loader`和`style-loader`，而它们也有各自的单一功能：
 
@@ -1968,8 +1974,8 @@ module.exports = {
 
 ```javascript
 // ou-sass-loader.js
-module.exports = function(source) {
-  console.log(source);
+module.exports = function (source) {
+  console.log(source)
 }
 ```
 
@@ -1979,13 +1985,13 @@ module.exports = function(source) {
 
 ```javascript
 // ou-sass-loader.js
-const sass = require('sass');
+const sass = require('sass')
 
-module.exports = function(source) {
+module.exports = function (source) {
   // 使用render函数进行解析scss代码
-  sass.render({data: source},  (err, result) => {
-    console.log(result);
-  });
+  sass.render({ data: source }, (err, result) => {
+    console.log(result)
+  })
 }
 ```
 
@@ -2011,16 +2017,16 @@ module.exports = function(source) {
 
 ```javascript
 // ou-sass-loader.js
-const sass = require('sass');
+const sass = require('sass')
 
-module.exports = function(source) {
+module.exports = function (source) {
   // 获取callback函数
-  const callback = this.async();
-  sass.render({data: source},  (err, result) => {
+  const callback = this.async()
+  sass.render({ data: source }, (err, result) => {
     // 将结果返回
-    if (err) return callback(err);
-    callback(null, result.css);
-  });
+    if (err) return callback(err)
+    callback(null, result.css)
+  })
 }
 ```
 
@@ -2030,7 +2036,7 @@ module.exports = function(source) {
 
 ```javascript
 // ou-css-loader.js
-module.exports = function(source) {
+module.exports = function (source) {
   return JSON.stringify(source)
 }
 ```
@@ -2050,7 +2056,7 @@ module.exports = function (sources) {
 
 这时我们简易版的`sass-loader`、`css-laoder`和`style-laoder`就实现了，我们可以执行一下打包命令，检验页面是不是有对应的样式效果。
 
-### 手写Plugin
+### 手写 Plugin
 
 > https://webpack.js.org/contribute/writing-a-plugin/
 
@@ -2060,7 +2066,7 @@ module.exports = function (sources) {
 
 ```javascript
 module.exports = class MyPlugin {
-  apply (compiler) {}
+  apply(compiler) {}
 }
 ```
 
@@ -2074,8 +2080,8 @@ compiler.hooks.someHook.tap(...)
 
 ```javascript
 module.exports = class MyPlugin {
-  apply (compiler) {
-    compiler.hooks.compile.tap("MyPlugin", (compilation) => {
+  apply(compiler) {
+    compiler.hooks.compile.tap('MyPlugin', (compilation) => {
       console.log(compilation)
     })
   }
@@ -2092,7 +2098,7 @@ module.exports = class MyPlugin {
 module.exports = class MyPlugin {
   apply(compiler) {
     // 生成资源到 output 目录之前
-    compiler.hooks.emit.tap("MyPlugin", (compilation) => {
+    compiler.hooks.emit.tap('MyPlugin', (compilation) => {
       let str = ''
       for (let filename in compilation.assets) {
         // 获取文件名称和文件大小
@@ -2104,7 +2110,7 @@ module.exports = class MyPlugin {
         // 内容
         source: function () {
           return str
-        }
+        },
       }
     })
   }
@@ -2135,9 +2141,9 @@ assets/index-41f0e2.css -> 0.177KB
 assets/index-acc2f5.js -> 1.298KB
 ```
 
-### 手写Webpack
+### 手写 Webpack
 
-> 代码：https://github.com/OUDUIDUI/mini/tree/master/packages/mini-webpack
+> 代码：https://github.com/ouduidui/mini-webpack
 >
 > 喜欢的朋友可以点个`Star`哦~
 
@@ -2149,20 +2155,17 @@ assets/index-acc2f5.js -> 1.298KB
 
 ```javascript
 // index.js
-import {msg} from "./a.js";
+import { msg } from './a.js'
 
-console.log(msg);
-
-
+console.log(msg)
 
 // a.js
-import {something} from "./b.js";
+import { something } from './b.js'
 
-export const msg = `Hello ${something}`;
-
+export const msg = `Hello ${something}`
 
 // b.js
-export const something = 'World';
+export const something = 'World'
 ```
 
 然后我们可以先安装`webpack`，然后测试一下打包出来的`bundle`文件有什么特点。
@@ -2184,7 +2187,7 @@ var __webpack_modules__ = ({
 其次，我们能看到一个函数，叫`__webpack_require__`，它接收一个`moduleId`的参数。然而我们可以在最后看到了这个函数的调用，就会发现其实`moduleId`就是`__webpack_modules__`的`key`值，也就是`module`的路径。
 
 ```javascript
-var __webpack_exports__ = __webpack_require__("./src/index.js");
+var __webpack_exports__ = __webpack_require__('./src/index.js')
 ```
 
 到这里，我们就可以大概捋清楚`webpack`打包的一个逻辑了。
@@ -2198,14 +2201,14 @@ var __webpack_exports__ = __webpack_require__("./src/index.js");
 首先我们可以先初始化`webpack`配置文件——`webpack.config.js`。
 
 ```javascript
-const path = require("path");
+const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: 'index.js'
-  }
+    path: path.resolve(__dirname, './dist'),
+    filename: 'index.js',
+  },
 }
 ```
 
@@ -2216,14 +2219,14 @@ module.exports = {
 ```javascript
 module.exports = class Webpack {
   /**
-  *  构造函数，获取webpack配置
-  *  @param {*} options
-  */
+   *  构造函数，获取webpack配置
+   *  @param {*} options
+   */
   constructor(options) {}
 
   /**
-  *  webpack运行函数
-  */
+   *  webpack运行函数
+   */
   run() {
     console.log('开始执行Webpack!')
   }
@@ -2233,10 +2236,10 @@ module.exports = class Webpack {
 然后我们需要一个执行文件，即在根路径创建一个`debugger.js`。
 
 ```javascript
-const webpack = require('./lib/webpack');
-const options = require('./webpack.config');
+const webpack = require('./lib/webpack')
+const options = require('./webpack.config')
 
-new webpack(options).run();
+new webpack(options).run()
 ```
 
 紧接着我们执行一下该文件。
@@ -2349,7 +2352,7 @@ yarn add @babel/traverse -D
 ```
 
 ```javascript
-const traverse = require("@babel/traverse").default;
+const traverse = require('@babel/traverse').default
 ```
 
 `traverse`接受两个参数，第一个是`ast`语法树，第二个是一个对象，在对象中我们可以设置观察者函数，并且可以针对语法树中的特定节点类型。
@@ -2374,7 +2377,7 @@ module.exports = class Webpack {
       const ast = parser.parse(body, {
         sourceType: 'module'  // 表示我们解析的是ES模块
       })
-      
+
       traverse(ast, {
         // visitor函数
         ImportDeclaration({node}) {
@@ -2391,16 +2394,16 @@ module.exports = class Webpack {
 
 ```javascript
 // 依赖收集
-const deps = {};
+const deps = {}
 traverse(ast, {
   // visitor函数
-  ImportDeclaration({node}) {
+  ImportDeclaration({ node }) {
     // 入口文件路径
-    const dirname = path.dirname(file);
+    const dirname = path.dirname(file)
     // 引入文件路径
-    const absPath = "./" + path.join(dirname, node.source.value);
-    deps[node.source.value] = absPath;
-  }
+    const absPath = './' + path.join(dirname, node.source.value)
+    deps[node.source.value] = absPath
+  },
 })
 ```
 
@@ -2431,7 +2434,7 @@ module.exports = class Webpack {
       const ast = parser.parse(body, {
         sourceType: 'module'  // 表示我们解析的是ES模块
       })
-      
+
       // 依赖收集
       const deps = {};
       traverse(ast, {
@@ -2456,11 +2459,11 @@ module.exports = class Webpack {
 这时候我们可以打印一下`code`，会发现它不再是`ESModule`的引入方式了，而是使用了`CommonJS`引入方式。
 
 ```javascript
-"use strict";
+'use strict'
 
-var _a = require("./a.js");
+var _a = require('./a.js')
 
-console.log(_a.msg);
+console.log(_a.msg)
 ```
 
 最终，`getModuleInfo`会返回一个对象，对象里面包含着解析文件的路径，该文件的依赖对象以及文件代码。
@@ -2629,7 +2632,7 @@ console.log('Hello World')
   function __webpack_require__(moduleId) {
     ...
   }
-  __webpack_require__(this.entry)  
+  __webpack_require__(this.entry)
 })(this.depsGraph)
 ```
 
@@ -2640,18 +2643,18 @@ console.log('Hello World')
 同时，我们还需要新建一个`exports`对象，这样子模块导出的内容就可以保存到里面去了，最后也需要将其返回出去。
 
 ```javascript
-(function(__webpack_modules__){
+;(function (__webpack_modules__) {
   function __webpack_require__(moduleId) {
     // 实现require方法
     function require(relPath) {
       return __webpack_require__(__webpack_modules__[moduleId].deps[relPath])
     }
     // 保存导出模块
-    var exports = {};
-    
+    var exports = {}
+
     return exports
   }
-  __webpack_require__(this.entry)  
+  __webpack_require__(this.entry)
 })(this.depsGraph)
 ```
 
@@ -2660,23 +2663,23 @@ console.log('Hello World')
 这里还是使用一个匿名函数并自调用。
 
 ```javascript
-(function(__webpack_modules__){
+;(function (__webpack_modules__) {
   function __webpack_require__(moduleId) {
     // 实现require方法
     function require(relPath) {
       return __webpack_require__(__webpack_modules__[moduleId].deps[relPath])
     }
     // 保存导出模块
-    var exports = {};
-    
+    var exports = {}
+
     // 调用函数
-    (function (require,exports,code) {
+    ;(function (require, exports, code) {
       eval(code)
-    })(require,exports,__webpack_modules__[moduleId].code)
-    
+    })(require, exports, __webpack_modules__[moduleId].code)
+
     return exports
   }
-  __webpack_require__(this.entry)  
+  __webpack_require__(this.entry)
 })(this.depsGraph)
 ```
 
@@ -2710,20 +2713,29 @@ bundle() {
 然后执行打包，就可以看到完整的打包内容了。
 
 ```javascript
-(function (__webpack_modules__) {
+;(function (__webpack_modules__) {
   function __webpack_require__(moduleId) {
-      function require(relPath) {
-          return __webpack_require__(__webpack_modules__[moduleId].deps[relPath])
-      }
-      var exports = {};
-      (function (require,exports,code) {
-          eval(code)
-      })(require,exports,__webpack_modules__[moduleId].code)
-      return exports
+    function require(relPath) {
+      return __webpack_require__(__webpack_modules__[moduleId].deps[relPath])
+    }
+    var exports = {}
+    ;(function (require, exports, code) {
+      eval(code)
+    })(require, exports, __webpack_modules__[moduleId].code)
+    return exports
   }
   __webpack_require__('./src/index.js')
-})({"./src/index.js":{"deps":{"./a.js":"./src/a.js"},"code":"\"use strict\";\n\nvar _a = require(\"./a.js\");\n\nconsole.log(_a.msg);"},"./src/a.js":{"deps":{"./b.js":"./src/b.js"},"code":"\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.msg = void 0;\n\nvar _b = require(\"./b.js\");\n\nvar msg = \"Hello \".concat(_b.something);\nexports.msg = msg;"},"./src/b.js":{"deps":{},"code":"\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.something = void 0;\nvar something = 'World';\nexports.something = something;"}})
-
+})({
+  './src/index.js': { deps: { './a.js': './src/a.js' }, code: '"use strict";\n\nvar _a = require("./a.js");\n\nconsole.log(_a.msg);' },
+  './src/a.js': {
+    deps: { './b.js': './src/b.js' },
+    code: '"use strict";\n\nObject.defineProperty(exports, "__esModule", {\n  value: true\n});\nexports.msg = void 0;\n\nvar _b = require("./b.js");\n\nvar msg = "Hello ".concat(_b.something);\nexports.msg = msg;',
+  },
+  './src/b.js': {
+    deps: {},
+    code: '"use strict";\n\nObject.defineProperty(exports, "__esModule", {\n  value: true\n});\nexports.something = void 0;\nvar something = \'World\';\nexports.something = something;',
+  },
+})
 ```
 
 最后，我们执行一下，看看能不能打印出`Hello World`。
@@ -2731,5 +2743,3 @@ bundle() {
 ```shell
 node ./dist/index.js
 ```
-
-

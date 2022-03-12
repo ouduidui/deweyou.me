@@ -1,14 +1,14 @@
 ---
 lang: zh-CN
-title:  手写Promise
-description:  手撕一个符合Promise/A+规范的Promise
+title: 手写Promise
+description: 手撕一个符合Promise/A+规范的Promise
 ---
 
-# 手写Promise，通过Promise/A+的872个测试
+# 手写 Promise，通过 Promise/A+的 872 个测试
 
-> [github](https://github.com/ouduidui/fe-study/tree/master/package/javascript/wheels/src/promise/api)
+> [github](https://github.com/ouduidui/javascript-wheels/tree/master/src/promise/api)
 
-## 什么是Promise
+## 什么是 Promise
 
 > 首先先带大家过一遍`Promise`，这不是基础教学，如果没用`Promise`的朋友可以先去学一学。
 
@@ -18,20 +18,20 @@ description:  手撕一个符合Promise/A+规范的Promise
 
 ```javascript
 setTimeout(() => {
-  doSomething();
-}, 1000);
+  doSomething()
+}, 1000)
 ```
 
-上面的例子，实现了一个定时器，在1秒后触发执行回到函数，进而执行`doSomething()`函数。
+上面的例子，实现了一个定时器，在 1 秒后触发执行回到函数，进而执行`doSomething()`函数。
 
-但如果，我们想在1秒后，再设置一个定时器的话：
+但如果，我们想在 1 秒后，再设置一个定时器的话：
 
 ```javascript
 setTimeout(() => {
   setTimeout(() => {
-    doSomething();
-  }, 1000);
-}, 1000);
+    doSomething()
+  }, 1000)
+}, 1000)
 ```
 
 甚至说再来几个的话：
@@ -41,18 +41,16 @@ setTimeout(() => {
   setTimeout(() => {
     setTimeout(() => {
       setTimeout(() => {
-        doSomething();
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+        doSomething()
+      }, 1000)
+    }, 1000)
+  }, 1000)
+}, 1000)
 ```
 
 这就是很典型的**回调地狱**了。而回调地狱，最明显的缺点，就是嵌套太多，大大影响了代码的可读性和逻辑。
 
 而这种案例在现实项目中其实并不少见，有时候我们一个页面需要请求多个接口，而一些接口的请求数据需要依赖上一个接口的响应数据，这时候就不得不得等待上一个接口的响应。
-
-
 
 而`Promise`的诞生，很好的解决了`回调地狱`这个问题。
 
@@ -61,14 +59,12 @@ setTimeout(() => {
 ```javascript
 new Promise((resolve, reject) => {
   // doSomething
-});
+})
 ```
 
 先来说说`resolve`函数。它实质上是用来改变`Promise`的状态，就是告诉`Promise`说异步函数执行成功了。因此，我们在异步操作执行结束的时候，需要调用一下`resolve`函数。
 
 同时，`resolve`函数可以接收一个参数`value`，它是作为异步操作成功的返回值，传递给下一步操作。
-
-
 
 相反的，`reject`函数就是代表异步操作执行失败了，同时它也可以接收一个参数`reason`，作为异步操作失败的原因。
 
@@ -77,11 +73,11 @@ new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
       // 执行成功
-      resolve('success');
-    }, 1000);
+      resolve('success')
+    }, 1000)
   } catch (e) {
     // 执行失败
-    reject('fail');
+    reject('fail')
   }
 })
 ```
@@ -99,22 +95,22 @@ new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
       // 执行成功
-      resolve('success');
-    }, 1000);
+      resolve('success')
+    }, 1000)
   } catch (e) {
     // 执行失败
-    reject('fail');
+    reject('fail')
   }
 }).then(
   // onFulfilled处理函数
   (value) => {
-    console.log(value); // 'success'
+    console.log(value) // 'success'
   },
   // onRejected处理函数
   (reason) => {
-    console.log(reason); // 'fail'
+    console.log(reason) // 'fail'
   }
-);
+)
 ```
 
 `Promse`还提供了`catch`实例方法，可以单独处理错误情况。
@@ -124,25 +120,25 @@ new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
       // 执行成功
-      resolve('success');
-    }, 1000);
+      resolve('success')
+    }, 1000)
   } catch (e) {
     // 执行失败
-    reject('fail');
+    reject('fail')
   }
 })
   .then(
     // onFulfilled处理函数
     (value) => {
-      console.log(value); // 'success'
+      console.log(value) // 'success'
     }
   )
   .catch(
     // onRejected处理函数
     (reason) => {
-      console.log(reason); // 'fail'
+      console.log(reason) // 'fail'
     }
-  );
+  )
 ```
 
 接下来，我们就用使用`Promise`来改造前面的回调地狱。
@@ -161,46 +157,44 @@ new Promise().then().then().then().then()
 new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
-      resolve('success 1');
-    }, 1000);
+      resolve('success 1')
+    }, 1000)
   } catch (e) {
-    reject('fail');
+    reject('fail')
   }
 })
   .then((value) => {
-    console.log(value);  // success 1
-   return new Promise((resolve, reject) => {
-     try {
-       setTimeout(() => {
-         resolve('success 2');
-       }, 1000);
-     } catch (e) {
-       reject('fail');
-     }
-   })
+    console.log(value) // success 1
+    return new Promise((resolve, reject) => {
+      try {
+        setTimeout(() => {
+          resolve('success 2')
+        }, 1000)
+      } catch (e) {
+        reject('fail')
+      }
+    })
   })
   .then((value) => {
-    console.log(value);   // success 2
-  });
+    console.log(value) // success 2
+  })
 ```
 
 到这里我们了解了`Promise`的基本使用。
 
 > 关于`Promise`还有很多需要学习的地方，比如实例方法`finally`，静态方法`all`、`allSellled`、`resolve`、`reject`、`any`、`race`。这些在后面的实现上会简单讲一下。
 >
-> 其次就关于`Promise`的执行时序，实际上就是关于JavaScript的事件循环EvenLoop，大家可以自己去学习，也可以参考一下我的文章[《做一些动图，学习一下EventLoop》](https://ouduidui.cn/front-end/javascript/event-loop.html#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-event-loop)。
+> 其次就关于`Promise`的执行时序，实际上就是关于 JavaScript 的事件循环 EvenLoop，大家可以自己去学习，也可以参考一下我的文章[《做一些动图，学习一下 EventLoop》](https://ouduidui.cn/front-end/javascript/event-loop.html#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF-event-loop)。
 >
 > 其次还有关于`async/await`，其实就是将`Promise`操作变成一个同步操作的语法糖。
 
-
-
 最后，我们需要简单学习一下`Promise`的状态。`Promise`实质上有三种状态：
 
-- *待定（pending）*: 初始状态，既没有被兑现，也没有被拒绝。
+- _待定（pending）_: 初始状态，既没有被兑现，也没有被拒绝。
 
-- *已兑现（fulfilled）*: 意味着操作成功完成。
+- _已兑现（fulfilled）_: 意味着操作成功完成。
 
-- *已拒绝（rejected）*: 意味着操作失败。
+- _已拒绝（rejected）_: 意味着操作失败。
 
 每当我们初始化`Promise`实例后，它默认状态为`pending`，然后当我们调用`resolve`函数时，它的状态就会变成`fulfilled`，如果我们调用的是`reject`函数时，它的状态就会变成`rejected`。
 
@@ -214,8 +208,6 @@ new Promise((resolve, reject) => {
 
 - 一直处于`pending`，也就是在异步操作中没有执行`resolve`和`reject`函数，这种情况也不会触发`then`、`catch`和`finnlly`实例方法。
 
-
-
 这时可能大家会有一个疑问，就是前面的用`Promise`改造回调地狱的实现中，好像存在两次`pending` -> `fulfilled`的情况。
 
 其实上面的代码等同于下面的代码：
@@ -225,42 +217,39 @@ new Promise((resolve, reject) => {
   try {
     setTimeout(() => {
       // 执行成功
-      resolve('success 1');
-    }, 1000);
+      resolve('success 1')
+    }, 1000)
   } catch (e) {
     // 执行失败
-    reject('fail');
+    reject('fail')
   }
-})
-  .then((value) => {
-    console.log(value);
-    new Promise((resolve, reject) => {
-      try {
-        setTimeout(() => {
-          resolve('success 2');
-        }, 1000);
-      } catch (e) {
-        reject('fail');
-      }
-    }).then((value) => {
-      console.log(value);
-    });
+}).then((value) => {
+  console.log(value)
+  new Promise((resolve, reject) => {
+    try {
+      setTimeout(() => {
+        resolve('success 2')
+      }, 1000)
+    } catch (e) {
+      reject('fail')
+    }
+  }).then((value) => {
+    console.log(value)
   })
+})
 ```
 
 因此实质上它里面是存在两个`Promise`实例的，因此也会存在两个状态变化。
 
 而之所以可以写成之前的写法，是因为`Promise`中会去识别`onFulfilled`函数和`onRejected`函数的返回值，如果是一个`Promise`实例的话，它会将它的`then`绑定到自身的下一个`then`操作上。
 
-
-
-## 实现Promise
+## 实现 Promise
 
 > [代码 Github](https://github.com/ouduidui/fe-study/blob/master/package/javascript/wheels/src/promise/api/index.js)
 
 ### 初始化
 
-在前面我们提到过，`Promise`是一个对象。然后在实践上，我们会通过`new`关键字去构造`Promise`实例。因此`Promise`是一个构造函数，或者说，`Promise`是一个类。（JavaScript本身是没有类这一说的，`class` 只是实现构造函数的语法糖）
+在前面我们提到过，`Promise`是一个对象。然后在实践上，我们会通过`new`关键字去构造`Promise`实例。因此`Promise`是一个构造函数，或者说，`Promise`是一个类。（JavaScript 本身是没有类这一说的，`class` 只是实现构造函数的语法糖）
 
 因此我们可以初始化一下`Promise`。
 
@@ -276,13 +265,13 @@ class Promise {
 const PROMISE_STATE = {
   PENDING: 'pending', // 待定（pending）: 初始状态，既没有被兑现，也没有被拒绝
   FULFILLED: 'fulfilled', // 已兑现（fulfilled）: 意味着操作成功完成
-  REJECTED: 'rejected' // 已拒绝（rejected）: 意味着操作失败
-};
+  REJECTED: 'rejected', // 已拒绝（rejected）: 意味着操作失败
+}
 
 class Promise {
   constructor(executor) {
     // 初始化状态
-    this.promiseState = PROMISE_STATE.PENDING;
+    this.promiseState = PROMISE_STATE.PENDING
   }
 }
 ```
@@ -295,18 +284,18 @@ class Promise {
 class Promise {
   constructor(executor) {
     // 初始化状态
-    this.promiseState = PROMISE_STATE.PENDING;
+    this.promiseState = PROMISE_STATE.PENDING
 
     // 初始化resolve函数和reject函数
-    const resolve = (value) => {};
-    const reject = (reason) => {};
+    const resolve = (value) => {}
+    const reject = (reason) => {}
 
     try {
       // 执行 executor 函数
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (e) {
       // 如果executor执行报错，则调用reject
-      reject(e);
+      reject(e)
     }
   }
 }
@@ -336,31 +325,31 @@ class Promise {
     // ...
 
     // 成功的值
-    this.value = undefined;
+    this.value = undefined
     // 存储 onFulfilled 的数组
-    this.onResolvedCallbacks = [];
+    this.onResolvedCallbacks = []
 
     const resolve = (value) => {
       // 只能在状态为pending的时候执行
       if (this.promiseState === PROMISE_STATE.PENDING) {
-        this.promiseState = PROMISE_STATE.FULFILLED; // 修改状态
-        this.value = value; // 保存值
-        this.onResolvedCallbacks.forEach((fn) => fn()); // 调用所有 onFulfilled 回调
+        this.promiseState = PROMISE_STATE.FULFILLED // 修改状态
+        this.value = value // 保存值
+        this.onResolvedCallbacks.forEach((fn) => fn()) // 调用所有 onFulfilled 回调
       }
-    };
+    }
 
     // 失败的原因
-    this.reason = undefined;
+    this.reason = undefined
     // 存储onRejected的数组
-    this.onRejectedCallbacks = [];
+    this.onRejectedCallbacks = []
 
     const reject = (reason) => {
       if (this.promiseState === PROMISE_STATE.PENDING) {
-        this.promiseState = PROMISE_STATE.REJECTED; // 修改状态
-        this.reason = reason; // 保存失败原因
-        this.onRejectedCallbacks.forEach((fn) => fn()); // 调用所有 onRejectedCallbacks 回调
+        this.promiseState = PROMISE_STATE.REJECTED // 修改状态
+        this.reason = reason // 保存失败原因
+        this.onRejectedCallbacks.forEach((fn) => fn()) // 调用所有 onRejectedCallbacks 回调
       }
-    };
+    }
 
     // ...
   }
@@ -390,18 +379,18 @@ class Promise {
 这里比较难的是第二点——异步执行，我们可以先来看看下面的代码：
 
 ```javascript
-new Promise(resolve => {
-  console.log(1);
-  resolve(2);
+new Promise((resolve) => {
+  console.log(1)
+  resolve(2)
 }).then((res) => {
-  console.log(res);
+  console.log(res)
 })
-console.log(3);
+console.log(3)
 ```
 
-如果用过`Promise`的或者刷过`Promise`面试题的或者了解EvenLoop的朋友都会知道，最终的执行结果是`1->3->2`，尽管`executor`操作不是异步操作。
+如果用过`Promise`的或者刷过`Promise`面试题的或者了解 EvenLoop 的朋友都会知道，最终的执行结果是`1->3->2`，尽管`executor`操作不是异步操作。
 
-我们可以从EvenLoop的角度简单讲一下。
+我们可以从 EvenLoop 的角度简单讲一下。
 
 - 按照从上往下的执行顺序，首先会执行`executor`函数，即首先输出`1`。
 
@@ -415,8 +404,6 @@ console.log(3);
 
 而在我们实现上，我们会使用`setTimeout`来模拟异步实现。
 
-
-
 讲完原理，我们一步步来实现。
 
 首先我们简单处理一下传入`onFulfilled`函数和`onRejected`函数，因为这两个都是可选参数。
@@ -426,15 +413,15 @@ class Promise {
   // ...
 
   then(onFulfilled, onRejected) {
-      // 处理 onFulfilled 回调
-      onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value;
-      // 处理 onRejected 回调
-      onRejected =
-        typeof onRejected === 'function'
-          ? onRejected
-          : (err) => {
-            throw err;
-          };
+    // 处理 onFulfilled 回调
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value
+    // 处理 onRejected 回调
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : (err) => {
+            throw err
+          }
   }
 }
 ```
@@ -448,9 +435,9 @@ class Promise {
   then(onFulfilled, onRejected) {
     // ...
 
-    const newPromise = new Promise((resolve, reject) => {});
+    const newPromise = new Promise((resolve, reject) => {})
 
-    return newPromise;
+    return newPromise
   }
 }
 ```
@@ -465,22 +452,21 @@ class Promise {
     // ...
 
     const newPromise = new Promise((resolve, reject) => {
-
       const asyncHandler = (fn) => {
         // 使用setTimeout来模拟异步操作
         setTimeout(() => {
           try {
             // 得到返回值
-            const res = fn();
+            const res = fn()
             // TODO 处理结果值
           } catch (e) {
-            reject(e);
+            reject(e)
           }
-        });
-      };
-    });
+        })
+      }
+    })
 
-    return newPromise;
+    return newPromise
   }
 }
 ```
@@ -498,11 +484,11 @@ class Promise {
       // ...
 
       // 使用异步处理函数包裹onFulfilled和onRejected
-      const fulfilledHandler = () => asyncHandler(() => onFulfilled(this.value));
-      const rejectedHandler = () => asyncHandler(() => onRejected(this.reason));
-    });
+      const fulfilledHandler = () => asyncHandler(() => onFulfilled(this.value))
+      const rejectedHandler = () => asyncHandler(() => onRejected(this.reason))
+    })
 
-    return newPromise;
+    return newPromise
   }
 }
 ```
@@ -521,20 +507,20 @@ class Promise {
 
       // 状态为fulfilled的时候，异步执行onFulfilled，并传入this.value
       if (this.promiseState === PROMISE_STATE.FULFILLED) {
-        fulfilledHandler();
+        fulfilledHandler()
       }
       // 状态为rejected的时候，onRejected，并传入this.reason
       else if (this.promiseState === PROMISE_STATE.REJECTED) {
-        rejectedHandler();
+        rejectedHandler()
       }
       // 状态为pending的时候，将onFulfilled、onRejected存入数组
       else if (this.promiseState === PROMISE_STATE.PENDING) {
-        this.onResolvedCallbacks.push(fulfilledHandler);
-        this.onRejectedCallbacks.push(rejectedHandler);
+        this.onResolvedCallbacks.push(fulfilledHandler)
+        this.onRejectedCallbacks.push(rejectedHandler)
       }
-    });
+    })
 
-    return newPromise;
+    return newPromise
   }
 }
 ```
@@ -558,26 +544,26 @@ class Promise {
       const asyncHandler = (fn) => {
         setTimeout(() => {
           try {
-            const res = fn();
+            const res = fn()
             // 处理返回值
-            resolvePromise(newPromise, res, resolve, reject);
+            resolvePromise(newPromise, res, resolve, reject)
           } catch (e) {
-            reject(e);
+            reject(e)
           }
-        });
-      };
-      
-      // ...
-    });
+        })
+      }
 
-    return newPromise;
+      // ...
+    })
+
+    return newPromise
   }
 }
 
 function resolvePromise(newPromise, res, resolve, reject) {}
 ```
 
-#### 实现resolvePromise函数
+#### 实现 resolvePromise 函数
 
 首先，我们需要做一层边缘检测，就是避免循环引用。
 
@@ -585,7 +571,7 @@ function resolvePromise(newPromise, res, resolve, reject) {}
 function resolvePromise(newPromise, res, resolve, reject) {
   // 避免循环引用使用
   if (res === newPromise) {
-    return reject(new TypeError('Chaining cycle detected for promise'));
+    return reject(new TypeError('Chaining cycle detected for promise'))
   }
 }
 ```
@@ -599,7 +585,7 @@ function resolvePromise(newPromise, res, resolve, reject) {
   if (res != null && (typeof res === 'object' || typeof res === 'function')) {
     // TODO
   } else {
-    resolve(res);
+    resolve(res)
   }
 }
 ```
@@ -609,22 +595,22 @@ function resolvePromise(newPromise, res, resolve, reject) {
 这里可能大家会有个疑问，为什么不直接用`res instanceof Promise`来判断`res`是否为`Promise`。这是因为，这里不仅仅只有`Promise`这种情况，我们可以先运行一下下面的代码：
 
 ```javascript
-new Promise(resolve => {
+new Promise((resolve) => {
   resolve({
     then(resolve) {
-      resolve(1);
-    }
+      resolve(1)
+    },
   })
-}).then(res => {
-  return res;
-}).then(res => {
-  console.log(res)
 })
+  .then((res) => {
+    return res
+  })
+  .then((res) => {
+    console.log(res)
+  })
 ```
 
 上面的代码执行后，最终是会输出`1`。也就是说，但`onFulfilled`函数返回一个含有`then`函数的对象或函数，`Promise`也会去调用这个`then`函数。
-
-
 
 我们继续完善代码：
 
@@ -635,29 +621,29 @@ function resolvePromise(newPromise, res, resolve, reject) {
   // 如果返回值为一个对象或者函数
   if (res != null && (typeof res === 'object' || typeof res === 'function')) {
     try {
-      const then = res.then;
+      const then = res.then
       // 如果返回值是一个promise或者一个带有then函数的对象
       if (typeof then === 'function') {
         then.call(
           res,
           // onFulfilled 回调
           (r) => {
-            resolvePromise(newPromise, r, resolve, reject);
+            resolvePromise(newPromise, r, resolve, reject)
           },
           // onRejected 回调
           (err) => {
-            reject(err);
+            reject(err)
           }
-        );
+        )
       } else {
-        resolve(res);
+        resolve(res)
       }
     } catch (e) {
-      reject(e);
+      reject(e)
     }
   } else {
     // res 为普通的值，直接返回
-    resolve(res);
+    resolve(res)
   }
 }
 ```
@@ -671,37 +657,37 @@ function resolvePromise(newPromise, res, resolve, reject) {
   // ...
 
   // 防止多次调用
-  let called = false;
+  let called = false
   if (res != null && (typeof res === 'object' || typeof res === 'function')) {
     try {
-      const then = res.then;
+      const then = res.then
       if (typeof then === 'function') {
         then.call(
           res,
           (r) => {
             // 成功和失败只能调用一个
-            if (called) return;
-            called = true;
-            resolvePromise(newPromise, r, resolve, reject);
+            if (called) return
+            called = true
+            resolvePromise(newPromise, r, resolve, reject)
           },
           (err) => {
             // 成功和失败只能调用一个
-            if (called) return;
-            called = true;
-            reject(err);
+            if (called) return
+            called = true
+            reject(err)
           }
-        );
+        )
       } else {
-        resolve(res);
+        resolve(res)
       }
     } catch (e) {
       // 成功和失败只能调用一个
-      if (called) return;
-      called = true;
-      reject(e);
+      if (called) return
+      called = true
+      reject(e)
     }
   } else {
-    resolve(res);
+    resolve(res)
   }
 }
 ```
@@ -715,9 +701,9 @@ function resolvePromise(newPromise, res, resolve, reject) {
 ```javascript
 class Promise {
   // ...
-  
+
   catch(onRejected) {
-    return this.then(null, onRejected);
+    return this.then(null, onRejected)
   }
 }
 ```
@@ -735,7 +721,7 @@ class Promise {
   // ...
 
   static resolve(value) {
-    return new Promise((resolve) => resolve(value));
+    return new Promise((resolve) => resolve(value))
   }
 }
 ```
@@ -751,7 +737,7 @@ class Promise {
   // ...
 
   static reject(reason) {
-    return new Promise((resolve, reject) => reject(reason));
+    return new Promise((resolve, reject) => reject(reason))
   }
 }
 ```
@@ -771,9 +757,9 @@ class Promise {
       (res) => Promise.resolve(onFinally()).then(() => res),
       (err) =>
         Promise.reject(onFinally()).then(() => {
-          throw err;
+          throw err
         })
-    );
+    )
   }
 }
 ```
@@ -787,20 +773,18 @@ class Promise {
 我们可以通过下面的代码来了解一下：
 
 ```javascript
-const promise1 = Promise.resolve(3);
-const promise2 = 42;
+const promise1 = Promise.resolve(3)
+const promise2 = 42
 const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'foo');
-});
+  setTimeout(resolve, 100, 'foo')
+})
 
 Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values);  // [3, 42, "foo"]
-});
+  console.log(values) // [3, 42, "foo"]
+})
 ```
 
 但如果在执行过程中，数组中但凡有一个`Promise`实例执行错误的话，`Promise.all`返回的`Promise`实例也会直接抛出错误，不会输出已完成的结果或者继续执行未完成的`Promise`实例。
-
-
 
 因此我们可以简单实现一下：
 
@@ -809,26 +793,26 @@ class Promise {
   // ...
 
   static all(promises) {
-    const results = [];
+    const results = []
 
     return new Promise((resolve, reject) => {
-      if (!promises.length) resolve(results);
+      if (!promises.length) resolve(results)
       // 遍历promises一一执行
       for (const promise of promises) {
         promise.then(
           (res) => {
             // 保存结果值
-            results.push(res);
+            results.push(res)
             // 当results和promises长度一致，则代表所有 promise 执行完成了
             if (results.length === promises.length) {
-              resolve(results);
+              resolve(results)
             }
           },
           // 但凡有一个promise执行报错，直接reject回去
           reject
-        );
+        )
       }
-    });
+    })
   }
 }
 ```
@@ -844,15 +828,17 @@ class Promise {
 我们同样通过一个代码案例来看一下：
 
 ```javascript
-const promise1 = Promise.resolve(3);
-const promise2 = new Promise((resolve, reject) => setTimeout(() => {
-  reject('foo')
-}, 100));
-const promises = [promise1, promise2];
+const promise1 = Promise.resolve(3)
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(() => {
+    reject('foo')
+  }, 100)
+)
+const promises = [promise1, promise2]
 
 Promise.allSettled(promises).then((results) => {
-  console.log(results)  // [{ status: "fulfilled", value: 3 },  { status: "rejected", reason: "foo" }]
-});
+  console.log(results) // [{ status: "fulfilled", value: 3 },  { status: "rejected", reason: "foo" }]
+})
 ```
 
 接下来我们来实现一下：
@@ -862,31 +848,31 @@ class Promise {
   // ...
 
   static allSettled(promises) {
-    const results = [];
+    const results = []
 
     return new Promise((resolve, reject) => {
       try {
-        if (!promises.length) resolve(results);
+        if (!promises.length) resolve(results)
 
         // 遍历promises一一执行
         for (const promise of promises) {
           promise.then(
             (res) => processData({ status: PROMISE_STATE.FULFILLED, value: res }),
             (err) => processData({ status: PROMISE_STATE.REJECTED, reason: err })
-          );
+          )
         }
 
         // 处理数据
         function processData(res) {
-          results.push(res);
+          results.push(res)
           if (results.length === promises.length) {
-            resolve(results);
+            resolve(results)
           }
         }
       } catch (e) {
-        reject(e);
+        reject(e)
       }
-    });
+    })
   }
 }
 ```
@@ -903,29 +889,28 @@ class Promise {
 
 ```javascript
 const promise1 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(1), 500);
-});
+  setTimeout(() => resolve(1), 500)
+})
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(2), 100);
-});
+  setTimeout(() => resolve(2), 100)
+})
 
 Promise.race([promise1, promise2]).then((value) => {
-  console.log(value);  // 2  因为promise2更快完成
-});
-
+  console.log(value) // 2  因为promise2更快完成
+})
 
 const promise3 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(3), 500);
-});
+  setTimeout(() => reject(3), 500)
+})
 
 const promise4 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(4), 100);
-});
+  setTimeout(() => reject(4), 100)
+})
 
 Promise.race([promise3, promise4]).catch((reason) => {
-  console.log(reason);  // 4  因为promise4更快完成
-});
+  console.log(reason) // 4  因为promise4更快完成
+})
 ```
 
 接下来我们就来实现一下：
@@ -937,9 +922,9 @@ class Promise {
   static race(promises) {
     return new Promise((resolve, reject) => {
       for (const promise of promises) {
-        promise.then(resolve, reject);
+        promise.then(resolve, reject)
       }
-    });
+    })
   }
 }
 ```
@@ -956,16 +941,16 @@ class Promise {
 
 ```javascript
 const promise1 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(1), 500);
-});
+  setTimeout(() => resolve(1), 500)
+})
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(2), 100);
-});
+  setTimeout(() => reject(2), 100)
+})
 
 Promise.any([promise1, promise2]).then((value) => {
-  console.log(value);  // 1  尽管promise2先执行好，但是它是执行失败，直接跳过
-});
+  console.log(value) // 1  尽管promise2先执行好，但是它是执行失败，直接跳过
+})
 ```
 
 ### 测试
@@ -976,9 +961,7 @@ Promise.any([promise1, promise2]).then((value) => {
 
 > 我现在重读红宝书也写 [测试用例](https://github.com/ouduidui/fe-study/blob/master/package/javascript/professional-javascript-4/__test__/3-grammar-basic/3-3.spec.js)来进行学习的，还是比较爽的哈哈哈
 
-
-
-而对于`Promise`的单元测试，那一定得是Promise/A+测试。
+而对于`Promise`的单元测试，那一定得是 Promise/A+测试。
 
 > [Promise/A+规范](https://github.com/promises-aplus/promises-spec)
 >
@@ -995,14 +978,14 @@ npm install promises-aplus-tests -D
 ```javascript
 // 测试
 Promise.defer = Promise.deferred = function () {
-  let dfd = {};
+  let dfd = {}
   dfd.promise = new Promise((resolve, reject) => {
-    dfd.resolve = resolve;
-    dfd.reject = reject;
-  });
-  return dfd;
-};
-module.exports = Promise;
+    dfd.resolve = resolve
+    dfd.reject = reject
+  })
+  return dfd
+}
+module.exports = Promise
 ```
 
 然后执行下面命令进行测试：
@@ -1011,14 +994,12 @@ module.exports = Promise;
 promises-aplus-tests Promise.js
 ```
 
-一共是872个测试用例，如果通过都会就会显示：
+一共是 872 个测试用例，如果通过都会就会显示：
 
 ```shell
  872 passing (17s)
 ```
 
-
-
 而对于`Promise/A+`规范，跟原生的`Promise`还是有一定的区别，如果你想更深入的学习`Promise`的话，可以阅读下面这篇文章。
 
-> [V8 Promise源码全面解读 - 掘金](https://juejin.cn/post/7055202073511460895)
+> [V8 Promise 源码全面解读 - 掘金](https://juejin.cn/post/7055202073511460895)

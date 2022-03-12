@@ -6,7 +6,7 @@ description: 简单实现Vuex
 
 # 简单实现Vuex
 
-> [github](https://github.com/OUDUIDUI/mini/tree/master/packages/mini-vuex3)
+> [github](https://github.com/ouduidui/mini-vuex3)
 
 ## Vuex
 

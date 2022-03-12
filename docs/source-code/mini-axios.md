@@ -4,9 +4,9 @@ title: 手把手教你实现axios
 description: 手把手教你实现axios
 ---
 
-# 手把手教你实现axios
+# 手把手教你实现 axios
 
-> github: https://github.com/OUDUIDUI/mini/tree/master/packages/mini-axios
+> github: https://github.com/ouduidui/mini-axios
 
 ## 初始化项目
 
@@ -30,9 +30,9 @@ module.exports = {
     filename: 'axios.min.js',
     library: 'axios',
     libraryTarget: 'umd',
-    globalObject: 'this'
-  }
-};
+    globalObject: 'this',
+  },
+}
 ```
 
 然后新建一个`index.js`文件，输入点测试代码，在命令行输入`webpack`进行打包。
@@ -45,7 +45,7 @@ module.exports = {
 
 ```javascript
 // index.js
-module.exports = require('./lib/axios');
+module.exports = require('./lib/axios')
 ```
 
 而在`axios.js`中，会实现`axios`函数。
@@ -55,19 +55,19 @@ module.exports = require('./lib/axios');
 
 ```javascript
 // lib/axios
-const Axios = require('./core/Axios');
-const defaults = require('./defaults');
+const Axios = require('./core/Axios')
+const defaults = require('./defaults')
 
 function createInstance(defaultConfig) {
   // 新建实例
-  const context = new Axios(defaultConfig);
-  return context;
+  const context = new Axios(defaultConfig)
+  return context
 }
 
 // 创建axios
-const axios = createInstance(defaults);
+const axios = createInstance(defaults)
 
-module.exports = axios;
+module.exports = axios
 ```
 
 ## 默认配置
@@ -78,8 +78,8 @@ module.exports = axios;
 
 ```javascript
 // lib/defaults.js
-const defaults = {};
-module.exports = defaults;
+const defaults = {}
+module.exports = defaults
 ```
 
 接下来我们先来实现适配器，而其他配置在后面需要用到的时候再回来实现。
@@ -96,22 +96,22 @@ module.exports = defaults;
  * 获取适配器
  */
 function getDefaultAdapter() {
-  let adapter;
+  let adapter
   if (typeof XMLHttpRequest !== 'undefined') {
     // 浏览器端使用XMLHttpRequest
-    adapter = require('./adapters/xhr');
+    adapter = require('./adapters/xhr')
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // node端使用http
-    adapter = require('./adapters/http');
+    adapter = require('./adapters/http')
   }
 
-  return adapter;
+  return adapter
 }
 
 const defaults = {
   // 适配器
-  adapter: getDefaultAdapter()
-};
+  adapter: getDefaultAdapter(),
+}
 ```
 
 同时，我们不会直接把`XMLHttpRequest`或者`http`模块直接复制给适配器`adapter`，而是会将它们封装起来，形成一个工厂模式。
@@ -123,15 +123,15 @@ const defaults = {
 module.exports = function xhrAdapter(config) {
   return new Promise((resolve, reject) => {
     // TODO
-  });
-};
+  })
+}
 
 // http.js
 module.exports = function httpAdapter(config) {
   return new Promise((resolve, reject) => {
     // TODO
-  });
-};
+  })
+}
 ```
 
 我们后面再来实现它们，现在先回头去看看`Axios`。
@@ -147,10 +147,10 @@ module.exports = function httpAdapter(config) {
 
 function Axios(instanceConfig) {
   // 保存默认配置
-  this.defaults = instanceConfig;
+  this.defaults = instanceConfig
 }
 
-module.exports = Axios;
+module.exports = Axios
 ```
 
 > 有人可能会问为什么不直接使用 ES6 的 Class 去实现。其实也不是不可以，但是我会偏向于模仿源码的实现，这样子找问题也会方便
@@ -166,14 +166,14 @@ module.exports = Axios;
 Axios.prototype.request = function (configOrUrl, config) {
   // 支持 request(url, options) 和 request(options) 两种写法
   if (typeof configOrUrl === 'string') {
-    config = config || {};
-    config.url = configOrUrl;
+    config = config || {}
+    config.url = configOrUrl
   } else {
-    config = configOrUrl || {};
+    config = configOrUrl || {}
   }
 
   // TODO
-};
+}
 ```
 
 ### 重构`createInstance`
@@ -195,20 +195,20 @@ Axios.prototype.request = function (configOrUrl, config) {
 // lib/axios.js
 function createInstance(defaultConfig) {
   // 新建实例
-  const context = new Axios(defaultConfig);
+  const context = new Axios(defaultConfig)
   // 实现axios方法
-  const instance = Axios.prototype.request.bind(context);
+  const instance = Axios.prototype.request.bind(context)
 
   // 绑定Axios的实例属性和实例方法
   Object.keys(context).forEach((key) => {
     if (typeof context[key] === 'function') {
-      instance[key] = context[key].bind(context);
+      instance[key] = context[key].bind(context)
     } else {
-      instance[key] = context[key];
+      instance[key] = context[key]
     }
-  });
+  })
 
-  return instance;
+  return instance
 }
 ```
 
@@ -223,16 +223,16 @@ function createInstance(defaultConfig) {
 
 ```javascript
 // lib/core/Axios.js
-const mergeConfig = require('./mergeConfig');
+const mergeConfig = require('./mergeConfig')
 
 Axios.prototype.request = function (configOrUrl, config) {
   // ...
 
   // 合并选项
-  config = mergeConfig(this.defaults, config);
+  config = mergeConfig(this.defaults, config)
 
   // TODO
-};
+}
 ```
 
 这里会用到`mergeConfig`方法，因此我们在`lib/core`新建一个`mergeConfig.js`，来实现`mergeConfig`方法。
@@ -246,7 +246,7 @@ Axios.prototype.request = function (configOrUrl, config) {
  * @param config2
  */
 module.exports = function mergeConfig(config1, config2) {
-  config2 = config2 || {};
+  config2 = config2 || {}
 
   const mergeMap = {
     url: config2.url || config1.url, // 接口
@@ -257,19 +257,19 @@ module.exports = function mergeConfig(config1, config2) {
     transformRequest: config2.transformRequest || config1.transformRequest, // 请求数据转换
     transformResponse: config2.transformResponse || config1.transformResponse, // 响应数据转换
     cancelToken: config2.cancelToken || config1.cancelToken, // 取消请求
-    validateStatus: config2.validateStatus || config1.validateStatus // 有效状态码
-  };
+    validateStatus: config2.validateStatus || config1.validateStatus, // 有效状态码
+  }
 
-  const config = {};
+  const config = {}
   // 去除无值选项
   Object.keys(mergeMap).forEach((key) => {
     if (mergeMap[key] !== undefined) {
-      config[key] = mergeMap[key];
+      config[key] = mergeMap[key]
     }
-  });
+  })
 
-  return config;
-};
+  return config
+}
 ```
 
 ### 派发请求
@@ -280,16 +280,16 @@ module.exports = function mergeConfig(config1, config2) {
 
 ```javascript
 // lib/core/Axios.js
-const dispatchRequest = require('./dispatchRequest');
+const dispatchRequest = require('./dispatchRequest')
 
 Axios.prototype.request = function (configOrUrl, config) {
   // ...
 
   // 派发请求
-  let promise = Promise.resolve(config).then(dispatchRequest);
+  let promise = Promise.resolve(config).then(dispatchRequest)
 
-  return promise;
-};
+  return promise
+}
 ```
 
 现在`request`方法基本上就完成了。
@@ -309,7 +309,7 @@ Axios.prototype.request = function (configOrUrl, config) {
  */
 module.exports = function dispatchRequest(config) {
   // TODO
-};
+}
 ```
 
 首先我们先初始化`headers`，因为后续的请求数据转换用使用`headers`。
@@ -317,10 +317,10 @@ module.exports = function dispatchRequest(config) {
 ```javascript
 // lib/core/dispatchRequest.js
 module.exports = function dispatchRequest(config) {
-  config.headers = config.headers || {};
+  config.headers = config.headers || {}
 
   // TODO
-};
+}
 ```
 
 接下来就是我们说的请求数据转换，说白了就是对请求数据进行统一处理，而这个默认处理函数是在`defaults.js`实现。
@@ -337,21 +337,21 @@ const defaults = {
   transformRequest: [
     function transformRequest(data, headers) {
       // 默认header参数
-      headers['Accept'] = 'application/json, text/plain, */*';
+      headers['Accept'] = 'application/json, text/plain, */*'
 
       if (!data) {
-        return data;
+        return data
       }
 
       // 根据header类型配置Content-type
       if (typeof data === 'object') {
-        headers['Content-Type'] = 'application/json';
-        return JSON.stringify(data);
+        headers['Content-Type'] = 'application/json'
+        return JSON.stringify(data)
       }
-      return data;
-    }
-  ]
-};
+      return data
+    },
+  ],
+}
 ```
 
 接下来，我们需要用到另一个函数`transformData`，帮我们去遍历`transformRequest`数组，一一调用去转换数据。
@@ -360,7 +360,7 @@ const defaults = {
 
 ```javascript
 // lib/core/transformData.js
-const defaults = require('../defaults');
+const defaults = require('../defaults')
 
 /**
  * 数据转换
@@ -370,14 +370,14 @@ const defaults = require('../defaults');
  * @return {*}
  */
 module.exports = function transformData(data, headers, fns) {
-  const context = this || defaults;
+  const context = this || defaults
 
   fns.forEach((fn) => {
-    data = fn.call(context, data, headers);
-  });
+    data = fn.call(context, data, headers)
+  })
 
-  return data;
-};
+  return data
+}
 ```
 
 最后我们在`dispatchRequest`调用：
@@ -385,13 +385,13 @@ module.exports = function transformData(data, headers, fns) {
 ```javascript
 // lib/core/dispatchRequest.js
 module.exports = function dispatchRequest(config) {
-  config.headers = config.headers || {};
+  config.headers = config.headers || {}
 
   // 调用转换函数处理数据
-  config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
+  config.data = transformData.call(config, config.data, config.headers, config.transformRequest)
 
   // TODO
-};
+}
 ```
 
 处理完请求数据后，我们就需要调用适配器，进行调用请求。
@@ -404,19 +404,19 @@ module.exports = function dispatchRequest(config) {
   // ...
 
   // 获取适配器
-  const adapter = config.adapter || defaults.adapter;
+  const adapter = config.adapter || defaults.adapter
 
   return adapter(config).then(
     // 成功处理
     function (response) {
-      return response;
+      return response
     },
     // 错误处理
     function (reason) {
-      return Promise.reject(reason);
+      return Promise.reject(reason)
     }
-  );
-};
+  )
+}
 ```
 
 接下来我们来实现适配器。
@@ -447,83 +447,79 @@ module.exports = function dispatchRequest(config) {
  */
 module.exports = function xhrAdapter(config) {
   return new Promise((resolve, reject) => {
-    const requestData = config.data;
-    const requestHeaders = config.headers;
+    const requestData = config.data
+    const requestHeaders = config.headers
 
-    let request = new XMLHttpRequest();
+    let request = new XMLHttpRequest()
 
     // 启动请求
-    request.open(
-      config.method.toUpperCase(),
-      config.params ? config.url + '?' + qs.stringify(config.params) : config.url,
-      true
-    );
+    request.open(config.method.toUpperCase(), config.params ? config.url + '?' + qs.stringify(config.params) : config.url, true)
 
     // 监听请求状态
     request.onreadystatechange = function () {
       // 只有当请求完成时（readyState === 4）才会往下处理
       if (!request || request.readyState !== 4) {
-        return;
+        return
       }
 
       // 需要注意的是，如果 XMLHttpRequest 请求出错，大部分的情况下我们可以通过监听 onerror 进行处理，
       // 但是也有一个例外，当请求使用文件协议（file://）时，尽管请求成功了但是大部分浏览器也会返回 0 的状态码
       if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
+        return
       }
 
       // 异步处理
       setTimeout(function onloadend() {
-        if (!request) return;
+        if (!request) return
         // 响应头
-        const responseHeaders = request.getAllResponseHeaders();
+        const responseHeaders = request.getAllResponseHeaders()
         // 响应数据
-        const responseData = request.response;
+        const responseData = request.response
         const response = {
           data: responseData,
           status: request.status,
           statusText: request.statusText,
           headers: responseHeaders,
           config: config,
-          request: request
-        };
+          request: request,
+        }
 
         // TODO 响应数据处理
-      });
-    };
+      })
+    }
 
     // 监听终止请求
     request.onabort = function () {
-      if (!request) return;
+      if (!request) return
 
-      const error = new Error('Request aborted');
-      error.code = 'ECONNABORTED';
-      reject(error);
+      const error = new Error('Request aborted')
+      error.code = 'ECONNABORTED'
+      reject(error)
 
-      request = null;
-    };
+      request = null
+    }
 
     // 监听接口报错
     request.onerror = function () {
-      reject(new Error('Network Error'));
-      request = null;
-    };
+      reject(new Error('Network Error'))
+      request = null
+    }
 
     // 设置请求头
     if ('setRequestHeader' in request) {
       Object.keys(requestHeaders).forEach((key) => {
         if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          delete requestHeaders[key];
+          delete requestHeaders[key]
         } else {
-          request.setRequestHeader(key, requestHeaders[key]);
+          request.setRequestHeader(key, requestHeaders[key])
         }
-      });
+      })
     }
 
     // 发送请求
-    request.send(requestData);
-  });
-};
+    request.send(requestData)
+  })
+}
 ```
 
 上面把基本功能都实现了，剩下请求成功后响应数据处理，也就是在`request.onreadystatechange`监听中。
@@ -542,9 +538,9 @@ const defaults = {
 
   // 有效状态码，不符合最后会reject回去
   validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
+    return status >= 200 && status < 300
+  },
+}
 ```
 
 接下来我们来实现`settle`函数，在`lib/core`路径下新建一个`settle.js`。
@@ -558,30 +554,30 @@ const defaults = {
  * @param response
  */
 module.exports = function settle(resolve, reject, response) {
-  const validateStatus = response.config.validateStatus;
+  const validateStatus = response.config.validateStatus
   // 校验有效状态码方法
   if (!response.status || !validateStatus || validateStatus(response.status)) {
-    resolve(response);
+    resolve(response)
   } else {
     // 错误处理
-    const error = new Error('Request failed with status code ' + response.status);
-    error.response = response;
+    const error = new Error('Request failed with status code ' + response.status)
+    error.response = response
     error.toJSON = function () {
       return {
         message: this.message,
-        status: this.response && this.response.status ? this.response.status : null
-      };
-    };
-    reject(error);
+        status: this.response && this.response.status ? this.response.status : null,
+      }
+    }
+    reject(error)
   }
-};
+}
 ```
 
 紧接着我们在`xhr.js`适配器继续完善代码：
 
 ```javascript
 // lib/adapters/xhr.js
-const settle = require('../core/settle');
+const settle = require('../core/settle')
 
 /**
  * 封装 XMLHttpRequest
@@ -599,13 +595,13 @@ module.exports = function xhrAdapter(config) {
         // ...
 
         // 响应数据处理
-        settle(resolve, reject, response);
-      });
-    };
+        settle(resolve, reject, response)
+      })
+    }
 
     // ...
-  });
-};
+  })
+}
 ```
 
 这时候我们网页端请求功能基本实现。
@@ -619,13 +615,13 @@ module.exports = function xhrAdapter(config) {
 
 ```javascript
 // lib/adapters/http.js
-const url = require('url');
-const http = require('http');
-const https = require('https');
-const settle = require('../core/settle');
-const qs = require('qs');
+const url = require('url')
+const http = require('http')
+const https = require('https')
+const settle = require('../core/settle')
+const qs = require('qs')
 
-const isHttps = /https:?/;
+const isHttps = /https:?/
 
 /**
  * 封装 http 模块
@@ -634,84 +630,84 @@ const isHttps = /https:?/;
  */
 module.exports = function httpAdapter(config) {
   return new Promise((resolve, reject) => {
-    const data = config.data;
-    const headers = config.headers;
-    const headerNames = {}; // header name 映射表
+    const data = config.data
+    const headers = config.headers
+    const headerNames = {} // header name 映射表
 
     Object.keys(headers).forEach((name) => {
-      headerNames[name.toLowerCase()] = name;
-    });
+      headerNames[name.toLowerCase()] = name
+    })
 
     // 解析链接
-    const parsed = url.parse(config.url);
-    const protocol = parsed.protocol || 'http:';
+    const parsed = url.parse(config.url)
+    const protocol = parsed.protocol || 'http:'
 
     // 判断是否为https请求
-    const isHttpsRequest = isHttps.test(protocol);
+    const isHttpsRequest = isHttps.test(protocol)
 
     const options = {
       hostname: parsed.hostname,
       port: parsed.port,
       path: config.params ? parsed.path + '?' + qs.stringify(config.params) : parsed.path,
       method: config.method.toUpperCase(),
-      headers: headers
-    };
+      headers: headers,
+    }
 
     // 获取请求适配器
-    const transport = isHttpsRequest ? https : http;
+    const transport = isHttpsRequest ? https : http
 
     // 创建请求
     const req = transport.request(options, function handleResponse(res) {
-      if (req.aborted) return;
+      if (req.aborted) return
 
-      const stream = res;
+      const stream = res
 
       const response = {
         status: res.statusCode,
         statusText: res.statusText,
         headers: res.headers,
-        config: config
-      };
+        config: config,
+      }
 
-      const responseBuffer = [];
-      let totalResponseBytes = 0;
+      const responseBuffer = []
+      let totalResponseBytes = 0
       // 响应监听
       stream.on('data', (chunk) => {
-        responseBuffer.push(chunk);
-        totalResponseBytes += chunk.length;
-      });
+        responseBuffer.push(chunk)
+        totalResponseBytes += chunk.length
+      })
 
       // 监听取消请求
       stream.on('aborted', () => {
         // 销毁流
-        stream.destroy();
+        stream.destroy()
 
-        const error = new Error('Request aborted');
-        error.code = 'ECONNABORTED';
-        reject(error);
-      });
+        const error = new Error('Request aborted')
+        error.code = 'ECONNABORTED'
+        reject(error)
+      })
 
       // 错误监听
       stream.on('error', (err) => {
-        reject(err);
-      });
+        reject(err)
+      })
 
       // 响应结束监听
       stream.on('end', () => {
         // 合并数据
-        response.data = responseBuffer.length === 1 ? responseBuffer[0] : Buffer.concat(responseBuffer);
-        settle(resolve, reject, response);
-      });
-    });
+        response.data = responseBuffer.length === 1 ? responseBuffer[0] : Buffer.concat(responseBuffer)
+        settle(resolve, reject, response)
+      })
+    })
 
     req.on('error', (err) => {
-      reject(err);
-    });
+      reject(err)
+    })
 
     // 发送请求
-    req.end(data);
-  });
-};
+    req.end(data)
+  })
+}
 ```
 
 ## 响应数据转换
@@ -736,15 +732,15 @@ module.exports = function httpAdapter(config) {
         url: 'https://jsonplaceholder.typicode.com/posts',
         method: 'GET',
         params: {
-          userId: 1
-        }
+          userId: 1,
+        },
       })
         .then((res) => {
-          console.log('get success：', res.data, res.status);
+          console.log('get success：', res.data, res.status)
         })
         .catch((err) => {
-          console.log('get err', err);
-        });
+          console.log('get err', err)
+        })
 
       axios({
         url: 'https://jsonplaceholder.typicode.com/posts',
@@ -752,18 +748,18 @@ module.exports = function httpAdapter(config) {
         data: {
           title: 'foo',
           body: 'bar',
-          userId: 1
+          userId: 1,
         },
         headers: {
-          'Content-type': 'application/json'
-        }
+          'Content-type': 'application/json',
+        },
       })
         .then((res) => {
-          console.log('post success：', res.data, res.status);
+          console.log('post success：', res.data, res.status)
         })
         .catch((err) => {
-          console.log('post err', err);
-        });
+          console.log('post err', err)
+        })
     </script>
   </body>
 </html>
@@ -774,21 +770,21 @@ module.exports = function httpAdapter(config) {
 接着我们在测试一下`node`端：
 
 ```javascript
-const axios = require('../index');
+const axios = require('../index')
 
 axios({
   url: 'https://jsonplaceholder.typicode.com/posts',
   method: 'GET',
   params: {
-    userId: 1
-  }
+    userId: 1,
+  },
 })
   .then((res) => {
-    console.log('get success：', res.data, res.status);
+    console.log('get success：', res.data, res.status)
   })
   .catch((err) => {
-    console.log('get err', err);
-  });
+    console.log('get err', err)
+  })
 
 axios({
   url: 'https://jsonplaceholder.typicode.com/posts',
@@ -796,18 +792,18 @@ axios({
   data: {
     title: 'foo',
     body: 'bar',
-    userId: 1
+    userId: 1,
   },
   headers: {
-    'Content-type': 'application/json'
-  }
+    'Content-type': 'application/json',
+  },
 })
   .then((res) => {
-    console.log('post success：', res.data, res.status);
+    console.log('post success：', res.data, res.status)
   })
   .catch((err) => {
-    console.log('post err', err);
-  });
+    console.log('post err', err)
+  })
 ```
 
 ![](/images/docs/mini-axios/demo2.png)
@@ -828,13 +824,13 @@ const defaults = {
   transformResponse: [
     function transformResponse(data) {
       try {
-        return JSON.parse(data);
+        return JSON.parse(data)
       } catch (e) {
-        throw e;
+        throw e
       }
-    }
-  ]
-};
+    },
+  ],
+}
 ```
 
 根据前面的代码实现，我们可以知道`dispatchRequest`是最后一个地方接触响应数据的，因此我们可以在`dispatchRequest`这里来转换
@@ -845,38 +841,33 @@ const defaults = {
 ```javascript
 // lib/core/dispatchRequest.js
 module.exports = function dispatchRequest(config) {
-  config.headers = config.headers || {};
+  config.headers = config.headers || {}
 
   // 调用转换函数处理数据
-  config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
+  config.data = transformData.call(config, config.data, config.headers, config.transformRequest)
 
   // 获取适配器
-  const adapter = config.adapter || defaults.adapter;
+  const adapter = config.adapter || defaults.adapter
 
   return adapter(config).then(
     // 成功处理
     function (response) {
       // 处理response数据，核心是将字符串解析成对象
-      response.data = transformData.call(config, response.data, response.headers, config.transformResponse);
+      response.data = transformData.call(config, response.data, response.headers, config.transformResponse)
 
-      return response;
+      return response
     },
     // 错误处理
     function (reason) {
       if (reason && reason.response) {
         // 处理response数据，核心是将字符串解析成对象
-        reason.response.data = transformData.call(
-          config,
-          reason.response.data,
-          reason.response.headers,
-          config.transformResponse
-        );
+        reason.response.data = transformData.call(config, reason.response.data, reason.response.headers, config.transformResponse)
       }
 
-      return Promise.reject(reason);
+      return Promise.reject(reason)
     }
-  );
-};
+  )
+}
 ```
 
 接下来我们再来看一下测试：
@@ -900,27 +891,27 @@ module.exports = function dispatchRequest(config) {
 > axios.interceptors.request.use(
 >   function (config) {
 >     // 在发送请求之前做些什么
->     return config;
+>     return config
 >   },
 >   function (error) {
 >     // 对请求错误做些什么
->     return Promise.reject(error);
+>     return Promise.reject(error)
 >   }
-> );
-> 
+> )
+>
 > // 添加响应拦截器
 > axios.interceptors.response.use(
 >   function (response) {
 >     // 2xx 范围内的状态码都会触发该函数。
 >     // 对响应数据做点什么
->     return response;
+>     return response
 >   },
 >   function (error) {
 >     // 超出 2xx 范围的状态码都会触发该函数。
 >     // 对响应错误做点什么
->     return Promise.reject(error);
+>     return Promise.reject(error)
 >   }
-> );
+> )
 > ```
 
 其实这个功能很简单理解。而实现上，我们得捋一捋。
@@ -936,16 +927,16 @@ module.exports = function dispatchRequest(config) {
 首先我们可以在`Axios`类来创建`interceptors`实例属性，毕竟后面全都会挂载到`axios`上。
 
 ```javascript
-const InterceptorManager = require('./InterceptorManager');
+const InterceptorManager = require('./InterceptorManager')
 
 // lib/core/Axios.js
 function Axios(instanceConfig) {
-  this.defaults = instanceConfig;
+  this.defaults = instanceConfig
   // 拦截器
   this.interceptors = {
     request: new InterceptorManager(),
-    response: new InterceptorManager()
-  };
+    response: new InterceptorManager(),
+  }
 }
 ```
 
@@ -956,10 +947,10 @@ function Axios(instanceConfig) {
 // 拦截器
 function InterceptorManager() {
   // 存储拦截器容器
-  this.handlers = [];
+  this.handlers = []
 }
 
-module.exports = InterceptorManager;
+module.exports = InterceptorManager
 ```
 
 紧接着我们来实现`use`实例方法，它其实就一个功能，就是把传入的拦截处理函数保存到`handlers`。
@@ -975,12 +966,12 @@ module.exports = InterceptorManager;
 InterceptorManager.prototype.use = function (fulfilled, rejected) {
   this.handlers.push({
     fulfilled: fulfilled,
-    rejected: rejected
-  });
+    rejected: rejected,
+  })
 
   // 使用下标作为 id
-  return this.handlers.length - 1;
-};
+  return this.handlers.length - 1
+}
 ```
 
 同时我们可以再实现一个示例方法`forEach`，即遍历`this.handler`且调用传入的回调函数。
@@ -996,10 +987,10 @@ InterceptorManager.prototype.use = function (fulfilled, rejected) {
 InterceptorManager.prototype.forEach = function (fn) {
   this.handlers.forEach((h) => {
     if (h !== null) {
-      fn(h);
+      fn(h)
     }
-  });
-};
+  })
+}
 ```
 
 最后，我们回到`Axios.prototype.request`方法中，我们想要在派发请求之前，需要先触发请求拦截器，请求完但返回结果之前，我们
@@ -1025,34 +1016,34 @@ Axios.prototype.request = function (configOrUrl, config) {
   // ...
 
   // 请求的拦截器队列
-  const requestInterceptorChain = [];
+  const requestInterceptorChain = []
   this.interceptors.request.forEach(function (interceptor) {
     // 将请求拦截回调倒序放入 requestInterceptorChain
-    requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
-  });
+    requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected)
+  })
 
-  const responseInterceptorChain = [];
+  const responseInterceptorChain = []
   this.interceptors.response.forEach(function (interceptor) {
     // 将响应拦截回调顺序放入 responseInterceptorChain
-    responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
-  });
+    responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected)
+  })
 
   // chain 队列用来存储和管理实际请求和拦截器
   // undefined 是为了保存队列长度为偶数
-  let chain = [dispatchRequest, undefined];
+  let chain = [dispatchRequest, undefined]
   // 将请求拦截器放入 chain 队头
-  Array.prototype.unshift.apply(chain, requestInterceptorChain);
+  Array.prototype.unshift.apply(chain, requestInterceptorChain)
   // 将响应拦截器放入 chain 队尾
-  chain = chain.concat(responseInterceptorChain);
+  chain = chain.concat(responseInterceptorChain)
 
   // 初始化Promise
-  let promise = Promise.resolve(config);
+  let promise = Promise.resolve(config)
   while (chain.length) {
-    promise = promise.then(chain.shift(), chain.shift());
+    promise = promise.then(chain.shift(), chain.shift())
   }
 
-  return promise;
-};
+  return promise
+}
 ```
 
 这时候拦截器基本实现了，我们可以来测试一下代码：
@@ -1069,37 +1060,37 @@ Axios.prototype.request = function (configOrUrl, config) {
     <script>
       axios.interceptors.request.use(
         function (config) {
-          console.log('interceptors request', config);
-          return config;
+          console.log('interceptors request', config)
+          return config
         },
         function (error) {
-          return Promise.reject(error);
+          return Promise.reject(error)
         }
-      );
+      )
 
       axios.interceptors.response.use(
         function (response) {
-          console.log('interceptors response', response);
-          return response;
+          console.log('interceptors response', response)
+          return response
         },
         function (error) {
-          return Promise.reject(error);
+          return Promise.reject(error)
         }
-      );
+      )
 
       axios({
         url: 'https://jsonplaceholder.typicode.com/posts',
         method: 'GET',
         params: {
-          userId: 1
-        }
+          userId: 1,
+        },
       })
         .then((res) => {
-          console.log('get success：', res.data, res.status);
+          console.log('get success：', res.data, res.status)
         })
         .catch((err) => {
-          console.log('get err', err);
-        });
+          console.log('get err', err)
+        })
     </script>
   </body>
 </html>
@@ -1108,41 +1099,41 @@ Axios.prototype.request = function (configOrUrl, config) {
 ![](/images/docs/mini-axios/demo5.png)
 
 ```javascript
-const axios = require('../index');
+const axios = require('../index')
 
 axios.interceptors.request.use(
   function (config) {
-    console.log('interceptors request', config);
-    return config;
+    console.log('interceptors request', config)
+    return config
   },
   function (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
 axios.interceptors.response.use(
   function (response) {
-    console.log('interceptors response', response);
-    return response;
+    console.log('interceptors response', response)
+    return response
   },
   function (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
 axios({
   url: 'https://jsonplaceholder.typicode.com/posts',
   method: 'GET',
   params: {
-    userId: 1
-  }
+    userId: 1,
+  },
 })
   .then((res) => {
-    console.log('get success：', res.data, res.status);
+    console.log('get success：', res.data, res.status)
   })
   .catch((err) => {
-    console.log('get err', err);
-  });
+    console.log('get err', err)
+  })
 ```
 
 ![](/images/docs/mini-axios/demo6.png)
@@ -1153,31 +1144,31 @@ axios({
 
 ```javascript
 // 方法一
-const CancelToken = axios.CancelToken;
-let cancel;
+const CancelToken = axios.CancelToken
+let cancel
 
 axios.get('/user/12345', {
   cancelToken: new CancelToken(function executor(c) {
     // executor 函数接收一个 cancel 函数作为参数
-    cancel = c;
-  })
-});
+    cancel = c
+  }),
+})
 
 // 取消请求
-cancel();
+cancel()
 ```
 
 ```javascript
 // 方法二
-const CancelToken = axios.CancelToken;
-const source = CancelToken.source();
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
 
 axios.get('/user/12345', {
-  cancelToken: source.token
-});
+  cancelToken: source.token,
+})
 
 // 取消请求（message 参数是可选的）
-source.cancel('Operation canceled by the user.');
+source.cancel('Operation canceled by the user.')
 ```
 
 其实这两个方法的核心就是使用`CancelToken`类，然后创建一个示例绑定到`options`选项中的`cancelToken`选项，然后获取取消函
@@ -1199,16 +1190,16 @@ function CancelToken(executor) {
   // TODO
 }
 
-module.exports = CancelToken;
+module.exports = CancelToken
 ```
 
 然后我们可以回头将其挂载到`axios`的属性上。
 
 ```javascript
 // lib/axios.js
-const CancelToken = require('./cancel/CancelToken');
+const CancelToken = require('./cancel/CancelToken')
 
-axios.CancelToken = CancelToken;
+axios.CancelToken = CancelToken
 ```
 
 初始化工作做好了，我们继续来完成`CancelToken`功能。
@@ -1223,7 +1214,7 @@ axios.CancelToken = CancelToken;
 function CancelToken(executor) {
   executor(function cancel(message) {
     // TODO
-  });
+  })
 }
 ```
 
@@ -1238,10 +1229,10 @@ function CancelToken(executor) {
 ```javascript
 // lib/cancel/Cancel.js
 function Cancel(message) {
-  this.message = message;
+  this.message = message
 }
 
-module.exports = Cancel;
+module.exports = Cancel
 ```
 
 可以看到，`Cancel`类其实简单，但为什么要多此一举来新建一个类呢？
@@ -1257,14 +1248,14 @@ module.exports = Cancel;
 ```javascript
 // lib/cancel/CancelToken.js
 function CancelToken(executor) {
-  const token = this;
+  const token = this
   executor(function cancel(message) {
     // 如果有实例上已经有reason，代表已经取消了，无需再次取消
-    if (token.reason) return;
+    if (token.reason) return
 
-    token.reason = new Cancel(message);
+    token.reason = new Cancel(message)
     // TODO
-  });
+  })
 }
 ```
 
@@ -1282,35 +1273,35 @@ function CancelToken(executor) {
 ```javascript
 // lib/cancel/CancelToken.js
 function CancelToken(executor) {
-  let resolvePromise;
+  let resolvePromise
 
   // 实例化时会在实例上挂载一个 promise
   // 这个 promise 的 resolve 回调暴露给了外部方法 executor
   this.promise = new Promise((resolve) => {
-    resolvePromise = resolve;
-  });
+    resolvePromise = resolve
+  })
 
-  const token = this;
+  const token = this
 
   this.promise.then((cancel) => {
-    if (!token._listeners) return;
+    if (!token._listeners) return
 
     for (let i = 0; i < token._listeners.length; i++) {
-      token._listeners[i](cancel);
+      token._listeners[i](cancel)
     }
-    token._listeners = null;
-  });
+    token._listeners = null
+  })
 
   executor(function cancel(message) {
     // 如果有实例上已经有reason，代表已经取消了，无需再次取消
     if (token.reason) {
-      return;
+      return
     }
 
-    token.reason = new Cancel(message);
+    token.reason = new Cancel(message)
     // 执行resolvePromise会直接调用this.promise.then方法
-    resolvePromise(token.reason);
-  });
+    resolvePromise(token.reason)
+  })
 }
 ```
 
@@ -1328,30 +1319,30 @@ CancelToken.prototype.subscribe = function (listener) {
   // 如果有this.reason，证明此时已经开始取消请求了
   // 因此立即执行取消动作
   if (this.reason) {
-    listener(this.reason);
-    return;
+    listener(this.reason)
+    return
   }
 
   // 存储到 this._listeners 中
   if (this._listeners) {
-    this._listeners.push(listener);
+    this._listeners.push(listener)
   } else {
-    this._listeners = [listener];
+    this._listeners = [listener]
   }
-};
+}
 
 /**
  * 取消订阅，删除取消请求函数
  * @param listener
  */
 CancelToken.prototype.unsubscribe = function (listener) {
-  if (!this._listeners) return;
+  if (!this._listeners) return
 
-  const index = this._listeners.indexOf(listener);
+  const index = this._listeners.indexOf(listener)
   if (index !== -1) {
   }
-  this._listeners.splice(index, 1);
-};
+  this._listeners.splice(index, 1)
+}
 ```
 
 接下来，我们先去`xhr`适配器实现取消请求函数。对于`XMLHttpRequest`，想要取消请求只需要调用`abort()`方法即可。
@@ -1361,8 +1352,8 @@ CancelToken.prototype.unsubscribe = function (listener) {
 
 ```javascript
 // lib/adapters/xhr.js
-const settle = require('../core/settle');
-const Cancel = require('../cancel/Cancel');
+const settle = require('../core/settle')
+const Cancel = require('../cancel/Cancel')
 
 /**
  * 封装 XMLHttpRequest
@@ -1374,12 +1365,12 @@ module.exports = function xhrAdapter(config) {
     // ...
 
     // 取消请求
-    let onCanceled;
+    let onCanceled
 
     // 请求结束处理函数
     function done() {
       if (config.cancelToken) {
-        config.cancelToken.unsubscribe(onCanceled);
+        config.cancelToken.unsubscribe(onCanceled)
       }
     }
 
@@ -1389,44 +1380,44 @@ module.exports = function xhrAdapter(config) {
     request.onreadystatechange = function () {
       // ...
 
-        // 处理响应
-        settle(
-          (value) => {
-            resolve(value);
-            done();
-          },
-          (err) => {
-            reject(err);
-            done();
-          },
-          response
-        );
-    };
+      // 处理响应
+      settle(
+        (value) => {
+          resolve(value)
+          done()
+        },
+        (err) => {
+          reject(err)
+          done()
+        },
+        response
+      )
+    }
 
     // ...
 
     // 处理取消请求
     if (config.cancelToken) {
       onCanceled = function (cancel) {
-        reject(cancel || new Cancel('canceled'));
-        request.abort();
-        request = null;
-      };
+        reject(cancel || new Cancel('canceled'))
+        request.abort()
+        request = null
+      }
 
-      config.cancelToken.subscribe(onCanceled);
+      config.cancelToken.subscribe(onCanceled)
     }
 
     // ...
-  });
-};
+  })
+}
 ```
 
 对于`http`适配器也是相同道理，这里就不多说了。
 
 ```javascript
 // lib/adpters/http.js
-const settle = require('../core/settle');
-const Cancel = require('../cancel/Cancel');
+const settle = require('../core/settle')
+const Cancel = require('../cancel/Cancel')
 
 /**
  * 封装 http 模块
@@ -1435,26 +1426,26 @@ const Cancel = require('../cancel/Cancel');
  */
 module.exports = function httpAdapter(config) {
   return new Promise((resolvePromise, rejectPromise) => {
-    let onCanceled;
+    let onCanceled
 
     // 请求结束处理函数
     function done() {
       if (config.cancelToken) {
-        config.cancelToken.unsubscribe(onCanceled);
+        config.cancelToken.unsubscribe(onCanceled)
       }
     }
 
     // 包装resolve函数
     const resolve = function (value) {
-      done();
-      resolvePromise(value);
-    };
+      done()
+      resolvePromise(value)
+    }
 
     // 包装reject函数
     const reject = function (value) {
-      done();
-      rejectPromise(value);
-    };
+      done()
+      rejectPromise(value)
+    }
 
     // ...
 
@@ -1466,9 +1457,9 @@ module.exports = function httpAdapter(config) {
       stream.on('end', () => {
         // ...
 
-        settle(resolve, reject, response);
-      });
-    });
+        settle(resolve, reject, response)
+      })
+    })
 
     // ...
 
@@ -1476,20 +1467,20 @@ module.exports = function httpAdapter(config) {
     if (config.cancelToken) {
       onCanceled = function (cancel) {
         // 如果请求已经取消了，就不必再调用
-        if (req.aborted) return;
+        if (req.aborted) return
 
         // 调用取消请求
-        req.abort();
-        reject(cancel || new Cancel('canceled'));
-      };
+        req.abort()
+        reject(cancel || new Cancel('canceled'))
+      }
 
       // 订阅取消函数
-      config.cancelToken.subscribe(onCanceled);
+      config.cancelToken.subscribe(onCanceled)
     }
 
     // ...
-  });
-};
+  })
+}
 ```
 
 那现在取消请求的基本功能已经实现了。
@@ -1505,7 +1496,7 @@ module.exports = function httpAdapter(config) {
 
 function throwIfCancellationRequested(config) {
   if (config.cancelToken) {
-    config.cancelToken.throwIfRequest();
+    config.cancelToken.throwIfRequest()
   }
 }
 
@@ -1515,7 +1506,7 @@ function throwIfCancellationRequested(config) {
  */
 module.exports = function dispatchRequest(config) {
   // 检测是否已经触发取消请求动作
-  throwIfCancellationRequested(config);
+  throwIfCancellationRequested(config)
 
   // ...
 
@@ -1523,19 +1514,19 @@ module.exports = function dispatchRequest(config) {
     // 成功处理
     function (response) {
       // 检测是否已经触发取消请求动作
-      throwIfCancellationRequested(config);
+      throwIfCancellationRequested(config)
 
       // ...
     },
     // 错误处理
     function (reason) {
       // 检测是否已经触发取消请求动作
-      throwIfCancellationRequested(config);
+      throwIfCancellationRequested(config)
 
       // ...
     }
-  );
-};
+  )
+}
 ```
 
 ```javascript
@@ -1545,9 +1536,9 @@ module.exports = function dispatchRequest(config) {
  */
 CancelToken.prototype.throwIfRequest = function () {
   if (this.reason) {
-    throw this.reason;
+    throw this.reason
   }
-};
+}
 ```
 
 最后，我们来实现`CancelToken.source`。也就是第二个取消方法的实现，其实就是把方法一的代码搬过来就行，然后将实例和取消函数
@@ -1556,15 +1547,15 @@ CancelToken.prototype.throwIfRequest = function () {
 ```javascript
 // lib/cancel/CancelToken.js
 CancelToken.source = function () {
-  let cancel;
+  let cancel
   const token = new CancelToken(function (c) {
-    cancel = c;
-  });
+    cancel = c
+  })
   return {
     token: token, // CancelToken实例
-    cancel: cancel // 取消函数
-  };
-};
+    cancel: cancel, // 取消函数
+  }
+}
 ```
 
 最后的最后，我们测试一下叭。
@@ -1579,25 +1570,25 @@ CancelToken.source = function () {
   <body>
     <script src="../dist/axios.min.js"></script>
     <script>
-      let cancel;
+      let cancel
       axios({
         url: 'https://jsonplaceholder.typicode.com/todos/1',
         method: 'GET',
         cancelToken: new axios.CancelToken(function executor(c) {
           // executor 函数接收一个 cancel 函数作为参数
-          cancel = c;
-        })
+          cancel = c
+        }),
       })
         .then((res) => {
-          console.log('get success：', res.data, res.status);
+          console.log('get success：', res.data, res.status)
         })
         .catch((err) => {
-          console.log('get err', err);
-        });
+          console.log('get err', err)
+        })
 
       setTimeout(() => {
-        cancel('取消请求');
-      });
+        cancel('取消请求')
+      })
     </script>
   </body>
 </html>
@@ -1608,28 +1599,28 @@ CancelToken.source = function () {
 ![](/images/docs/mini-axios/demo8.png)
 
 ```javascript
-const axios = require('../index');
+const axios = require('../index')
 
-let cancel;
+let cancel
 
 axios({
   url: 'https://jsonplaceholder.typicode.com/todos/1',
   method: 'GET',
   cancelToken: new axios.CancelToken(function executor(c) {
     // executor 函数接收一个 cancel 函数作为参数
-    cancel = c;
-  })
+    cancel = c
+  }),
 })
   .then((res) => {
-    console.log('get success：', res.data, res.status);
+    console.log('get success：', res.data, res.status)
   })
   .catch((err) => {
-    console.log('get err', err);
-  });
+    console.log('get err', err)
+  })
 
 setTimeout(() => {
-  cancel('取消请求');
-});
+  cancel('取消请求')
+})
 ```
 
 ![](/images/docs/mini-axios/demo9.png)

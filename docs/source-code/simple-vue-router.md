@@ -3,67 +3,79 @@ lang: zh-CN
 title: 简单实现 Vue Router
 description: 简单实现 Vue Router
 ---
+
 # 简单实现 Vue Router
 
-> [github](https://github.com/OUDUIDUI/mini/tree/master/packages/mini-vue-router3)
+> [github](https://github.com/ouduidui/mini-vue-router3)
 
-## vue-router 
+## vue-router
+
 `Vue-router`是`Vue.js`官方的路由管理器。
 
 它和`Vue.js`的核心深度集成，让构建单页面应用变得易如反掌。
 
 ### 安装
+
 ```shell script
 vue add router
 ```
 
 ### 核心步骤
--  步骤一：使用`vue-router`插件
+
+- 步骤一：使用`vue-router`插件
+
 ```javascript
 //router.js
-import Router from 'vue-router';
+import Router from 'vue-router'
 
 /*
-* VueRouter是一个插件
-*   1）实现并声明两个组件router-view router-link
-*   2）install: this.$router.push()
-* */
-Vue.use(Router);  // 引入插件
+ * VueRouter是一个插件
+ *   1）实现并声明两个组件router-view router-link
+ *   2）install: this.$router.push()
+ * */
+Vue.use(Router) // 引入插件
 ```
 
-- 步骤二：创建Router实例
+- 步骤二：创建 Router 实例
+
 ```javascript
 // router.js
 export default new Router({...})   // 导出Router实例
 ```
 
 - 步骤三：在根组件添加该实例
+
 ```javascript
 // main.js
-import router from './router';
+import router from './router'
 new Vue({
-  router   // 添加到配置项
-}).$mount("#app")
+  router, // 添加到配置项
+}).$mount('#app')
 ```
 
 - 步骤四：添加路由视图
+
 ```vue
 <!--  App.vue  -->
 <router-view></router-view>
 ```
 
 - 步骤五：导航
+
 ```vue
 <router-link to="/">Home</router-link>
 <router-link to="/about">About</router-link>
 ```
+
 ```javascript
-this.$router.push('/');
+this.$router.push('/')
 this.$router.push('/about')
 ```
 
-## vue-router简单实现
+## vue-router 简单实现
+
 ### 需求分析
+
 - 单页面应用程序中，`url`发生变化时候，不能刷新，显示对应视图
   - hash：`#/about`
   - History api：`/about`
@@ -100,27 +112,27 @@ import VueRouter from './ou-vue-router'
 import router from './ou-router'
 ```
 
-#### 创建Vue插件
+#### 创建 Vue 插件
 
-关于Vue插件的创建：
+关于 Vue 插件的创建：
 
 - 可以使用`function`实现，也可以使用`object`或`class`实现；
 - 要求必须有一个`install`方法，将来会被`Vue.use()`使用
 
 ```javascript
-let Vue;   // 保存Vue的构造函数，插件中需要用到
+let Vue // 保存Vue的构造函数，插件中需要用到
 
 class VueRouter {}
 
 /*
-* 插件：实现install方法，注册$router
-*   参数1是Vue.use()一定会传入
-* */
+ * 插件：实现install方法，注册$router
+ *   参数1是Vue.use()一定会传入
+ * */
 VueRouter.install = function (_Vue) {
-  Vue = _Vue;  // 引用构造函数，VueRouter中要使用
+  Vue = _Vue // 引用构造函数，VueRouter中要使用
 }
 
-export default VueRouter;
+export default VueRouter
 ```
 
 #### 挂载`$router`
@@ -130,33 +142,35 @@ export default VueRouter;
 也就是说，当调用`vue-router`的`install`方法的时候，项目还没有创建`Vue`的根组件实例。因此我们需要在`vue-router`的`install`方法使用全局混入，延迟到`router`创建完毕才执行挂载`$router`。
 
 ```javascript
-let Vue;   // 保存Vue的构造函数，插件中需要用到
+let Vue // 保存Vue的构造函数，插件中需要用到
 
 class VueRouter {}
 
 /*
-* 插件：实现install方法，注册$router
-*   参数1是Vue.use()一定会传入
-* */
+ * 插件：实现install方法，注册$router
+ *   参数1是Vue.use()一定会传入
+ * */
 VueRouter.install = function (_Vue) {
-  Vue = _Vue;  // 引用构造函数，VueRouter中要使用
+  Vue = _Vue // 引用构造函数，VueRouter中要使用
 
   /* 挂载$router */
   /*
-  * 全局混入
-  *   全局混入的目的是为了延迟下面逻辑到router创建完毕并且附加到选项上时才执行
-  * */
+   * 全局混入
+   *   全局混入的目的是为了延迟下面逻辑到router创建完毕并且附加到选项上时才执行
+   * */
   Vue.mixin({
-    beforeCreate() {    // 此钩子在每个组件创建实例时都会调用
+    beforeCreate() {
+      // 此钩子在每个组件创建实例时都会调用
       /* this.$options即创建Vue实例的第一个参数 */
-      if (this.$options.router) {   // 只在根组件拥有router选项
-        Vue.prototype.$router = this.$options.router;  // vm.$router
+      if (this.$options.router) {
+        // 只在根组件拥有router选项
+        Vue.prototype.$router = this.$options.router // vm.$router
       }
-    }
+    },
   })
 }
 
-export default VueRouter;
+export default VueRouter
 ```
 
 #### 注册全局组件`router-link`和`router-view`
@@ -167,8 +181,8 @@ export default VueRouter;
 // ou-router-link.js 和 ou-router-view.js
 export default {
   render(createElement) {
-    return createElement('div', 'router-view');   // 返回虚拟Dom
-  }
+    return createElement('div', 'router-view') // 返回虚拟Dom
+  },
 }
 ```
 
@@ -178,7 +192,7 @@ export default {
 import ouRouterLink from "./ou-router-link";
 import ouRouterView from "./ou-router-view";
 
-let Vue; 
+let Vue;
 
 class VueRouter {}
 
@@ -208,18 +222,20 @@ export default {
   props: {
     to: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
-  render(createElement) {      // 返回虚拟Dom
-    return createElement('a',
+  render(createElement) {
+    // 返回虚拟Dom
+    return createElement(
+      'a',
       {
-        attrs: {href: '#' + this.to}    // 设置a标签的href属性
+        attrs: { href: '#' + this.to }, // 设置a标签的href属性
       },
-      this.$slots.default    // 获取标签插槽内容
-    );
-  }
+      this.$slots.default // 获取标签插槽内容
+    )
+  },
 }
 ```
 
@@ -232,9 +248,9 @@ export default {
 ```javascript
 export default {
   render(createElement) {
-    let component = null;
-    return createElement(component);   // 返回虚拟Dom
-  }
+    let component = null
+    return createElement(component) // 返回虚拟Dom
+  },
 }
 ```
 
@@ -247,21 +263,21 @@ export default {
 ```javascript
 class VueRouter {
   /*
-  * options:
-  *   mode: 'hash'
-  *   base: process.env.BASE_URL
-  *   routes
-  * */
+   * options:
+   *   mode: 'hash'
+   *   base: process.env.BASE_URL
+   *   routes
+   * */
   constructor(options) {
-    this.$options = options;
+    this.$options = options
 
     // 将current设置为响应式数据，即current变化时router-view的render函数能够再次执行
-    const initial = window.location.hash.slice(1) || '/';
-    Vue.util.defineReactive(this, 'current', initial);
+    const initial = window.location.hash.slice(1) || '/'
+    Vue.util.defineReactive(this, 'current', initial)
 
     // 监听hash变化
     window.addEventListener('hashchange', () => {
-      this.current = window.location.hash.slice(1);
+      this.current = window.location.hash.slice(1)
     })
   }
 }
@@ -292,11 +308,11 @@ class VueRouter {
 export default {
   render(createElement) {
     //获取path对应的component
-    const {routeMap, current} = this.$router;
+    const { routeMap, current } = this.$router
 
-    const component = routeMap[current].component || null;
+    const component = routeMap[current].component || null
     return createElement(component)
-  }
+  },
 }
 ```
 
@@ -309,24 +325,24 @@ export default {
 ```javascript
 class VueRouter {
   /*
-  * options:
-  *   mode: 'hash'
-  *   base: process.env.BASE_URL
-  *   routes
-  * */
+   * options:
+   *   mode: 'hash'
+   *   base: process.env.BASE_URL
+   *   routes
+   * */
   constructor(options) {
-    this.$options = options;
+    this.$options = options
 
     switch (options.mode) {
       case 'hash':
-        this.hashModeHandle();
-        break;
+        this.hashModeHandle()
+        break
       case 'history':
-        this.historyModeHandle();
+        this.historyModeHandle()
     }
 
     this.routeMap = {}
-    options.routes.forEach(route => {
+    options.routes.forEach((route) => {
       this.routeMap[route.path] = route
     })
   }
@@ -334,19 +350,19 @@ class VueRouter {
   // Hash模式处理
   hashModeHandle() {
     // 将current设置为响应式数据，即current变化时router-view的render函数能够再次执行
-    const initial = window.location.hash.slice(1) || '/';
-    Vue.util.defineReactive(this, 'current', initial);
+    const initial = window.location.hash.slice(1) || '/'
+    Vue.util.defineReactive(this, 'current', initial)
 
     // 监听hash变化
     window.addEventListener('hashchange', () => {
-      this.current = window.location.hash.slice(1);
+      this.current = window.location.hash.slice(1)
     })
   }
 
   // History模式处理
   historyModeHandle() {
-    const initial = window.location.pathname || '/';
-    Vue.util.defineReactive(this, 'current', initial);
+    const initial = window.location.pathname || '/'
+    Vue.util.defineReactive(this, 'current', initial)
   }
 }
 ```
@@ -357,24 +373,25 @@ class VueRouter {
 
 ```javascript
 export default {
-  render(createElement) {      // 返回虚拟Dom
-    const self = this;
-    const route = this.$router.$options.routes
-      .find(route => route.path === this.to);
-    return createElement('a',
+  render(createElement) {
+    // 返回虚拟Dom
+    const self = this
+    const route = this.$router.$options.routes.find((route) => route.path === this.to)
+    return createElement(
+      'a',
       {
-        attrs: {href: this.to},    // 设置a标签的href属性
+        attrs: { href: this.to }, // 设置a标签的href属性
         on: {
           click(e) {
-            e.preventDefault();   // 取消a标签的默认事件，即刷新页面
-            history.pushState({}, route.name, self.to);   // 通过history.pushState来改变url
-            self.$router.current = self.to;
-          }
-        }
+            e.preventDefault() // 取消a标签的默认事件，即刷新页面
+            history.pushState({}, route.name, self.to) // 通过history.pushState来改变url
+            self.$router.current = self.to
+          },
+        },
       },
-      this.$slots.default    // 获取标签插槽内容
-    );
-  }
+      this.$slots.default // 获取标签插槽内容
+    )
+  },
 }
 ```
 
@@ -385,36 +402,38 @@ export default {
   props: {
     to: {
       type: String,
-      required: true
+      required: true,
     },
   },
-  render(createElement) {      // 返回虚拟Dom
+  render(createElement) {
+    // 返回虚拟Dom
     if (this.$router.$options.mode === 'hash') {
-      return createElement('a',
+      return createElement(
+        'a',
         {
-          attrs: {href: '#' + this.to}    // 设置a标签的href属性
+          attrs: { href: '#' + this.to }, // 设置a标签的href属性
         },
-        this.$slots.default    // 获取标签插槽内容
-      );
+        this.$slots.default // 获取标签插槽内容
+      )
     } else {
-      const self = this;
-      const route = this.$router.$options.routes
-        .find(route => route.path === this.to);
-      return createElement('a',
+      const self = this
+      const route = this.$router.$options.routes.find((route) => route.path === this.to)
+      return createElement(
+        'a',
         {
-          attrs: {href: this.to},    // 设置a标签的href属性
+          attrs: { href: this.to }, // 设置a标签的href属性
           on: {
             click(e) {
-              e.preventDefault();   // 取消a标签的默认事件，即刷新页面
-              history.pushState({}, route.name, self.to);   // 通过history.pushState来改变url
-              self.$router.current = self.to;
-            }
-          }
+              e.preventDefault() // 取消a标签的默认事件，即刷新页面
+              history.pushState({}, route.name, self.to) // 通过history.pushState来改变url
+              self.$router.current = self.to
+            },
+          },
         },
-        this.$slots.default    // 获取标签插槽内容
-      );
+        this.$slots.default // 获取标签插槽内容
+      )
     }
-  }
+  },
 }
 ```
 
@@ -429,14 +448,13 @@ import Vue from 'vue'
 import VueRouter from './ou-vue-router'
 import Home from '../views/Home.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
@@ -449,21 +467,20 @@ const routes = [
         component: {
           render(h) {
             return h('div', 'info page')
-          }
-        }
-      }
-    ]
-  }
+          },
+        },
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router
-
 ```
 
 然后在`About.vue`中插入`router-view`组件。
@@ -475,28 +492,23 @@ export default router
     <router-view></router-view>
   </div>
 </template>
-
 ```
 
 这时候运行的话，来到`About`页面的时候，后台就会报错，而来到`Info`页面，则不会显示内容。
 
-这是因为在`About`页面中，存在一个`router-view`组件，而这个`router-view`会一直返回`About`页面的虚拟Dom，而虚拟Dom中又有一个`router-view`组件，因此形成一个死循环。
+这是因为在`About`页面中，存在一个`router-view`组件，而这个`router-view`会一直返回`About`页面的虚拟 Dom，而虚拟 Dom 中又有一个`router-view`组件，因此形成一个死循环。
 
-因此我们需要在`router-view`组件中，设置一个变量来保存页面的深度值，即判定是否返回对应页面的虚拟Dom。
+因此我们需要在`router-view`组件中，设置一个变量来保存页面的深度值，即判定是否返回对应页面的虚拟 Dom。
 
 其次，我们还需要处理路由里的`children`属性，获取里面的嵌套路由信息，否则的话`/about/info`是无法渲染出来的。
 
 因此我们重构一下前面`url`监听的代码，使用一个`matched`响应式数组存放当前路径下的所有路由信息，可通过页面深度去获取到对应的路由信息。
 
-
-
 因此，我们就需要完成这两个任务：
 
 - `router-view`深度标记；
 
-- 路由匹配时获取代表深度层级的matched数组
-
-  
+- 路由匹配时获取代表深度层级的 matched 数组
 
 首先，我们不再用`routeMap`存路由映射表了，也不用`current`作为响应式属性了，使用一个`matched`数组来作为响应式属性。
 
@@ -509,39 +521,39 @@ export default router
 ```javascript
 class VueRouter {
   constructor(options) {
-    this.$options = options;
+    this.$options = options
 
     switch (options.mode) {
       case 'hash':
-        this.hashModeHandle();
-        break;
+        this.hashModeHandle()
+        break
       case 'history':
-        this.historyModeHandle();
-        break;
+        this.historyModeHandle()
+        break
     }
   }
 
   // Hash模式处理
   hashModeHandle() {
     // 将current设置为响应式数据，即current变化时router-view的render函数能够再次执行
-    this.current = window.location.hash.slice(1) || '/';
-    Vue.util.defineReactive(this, 'matched', []);
+    this.current = window.location.hash.slice(1) || '/'
+    Vue.util.defineReactive(this, 'matched', [])
     // match方法可以递归遍历路由表，获得匹配关系的数组
-    this.match();
+    this.match()
 
     // 监听hash变化
     window.addEventListener('hashchange', () => {
-      this.current = window.location.hash.slice(1);
-      this.matched = [];
-      this.match();
+      this.current = window.location.hash.slice(1)
+      this.matched = []
+      this.match()
     })
   }
 
   // History模式处理
   historyModeHandle() {
-    this.current = window.location.pathname || '/';
-    Vue.util.defineReactive(this, 'matched', []);
-    this.match();
+    this.current = window.location.pathname || '/'
+    Vue.util.defineReactive(this, 'matched', [])
+    this.match()
   }
 
   match(routes) {
@@ -557,38 +569,39 @@ export default {
   props: {
     to: {
       type: String,
-      required: true
+      required: true,
     },
   },
   render(createElement) {
     if (this.$router.$options.mode === 'hash') {
-      return createElement('a',
+      return createElement(
+        'a',
         {
-          attrs: {href: '#' + this.to}
+          attrs: { href: '#' + this.to },
         },
         this.$slots.default
-      );
+      )
     } else {
-      const self = this;
-      const route = this.$router.$options.routes
-        .find(route => route.path === this.to);
-      return createElement('a',
+      const self = this
+      const route = this.$router.$options.routes.find((route) => route.path === this.to)
+      return createElement(
+        'a',
         {
-          attrs: {href: this.to}, 
+          attrs: { href: this.to },
           on: {
             click(e) {
-              e.preventDefault();
-              history.pushState({}, route.name, self.to);
-              self.$router.current = self.to;
-              self.$router.matched = [];   // 清空matched数组
-              self.$router.match();   // 调用match方法
-            }
-          }
+              e.preventDefault()
+              history.pushState({}, route.name, self.to)
+              self.$router.current = self.to
+              self.$router.matched = [] // 清空matched数组
+              self.$router.match() // 调用match方法
+            },
+          },
         },
         this.$slots.default
-      );
+      )
     }
-  }
+  },
 }
 ```
 
@@ -626,9 +639,9 @@ match(routes) {
 
 最后，我们来完善一下`router-view`。
 
-首先我们需要一个对当前虚拟Dom贴个标签，即在它的data中新建一个`routerView`的变量，设置为`true`。
+首先我们需要一个对当前虚拟 Dom 贴个标签，即在它的 data 中新建一个`routerView`的变量，设置为`true`。
 
-其次，我们设置一个深度变量`depth`，初始值为0；然后获取该虚拟Dom的父级组件。如果父级组件存在的话，我们判断该父级组件的`data`中是否存在`routerView`的变量并且为`true`，如果存在的话，`depth`加一。
+其次，我们设置一个深度变量`depth`，初始值为 0；然后获取该虚拟 Dom 的父级组件。如果父级组件存在的话，我们判断该父级组件的`data`中是否存在`routerView`的变量并且为`true`，如果存在的话，`depth`加一。
 
 接着就继续检测该父组件的父组件，直至找不到为止。
 
@@ -638,28 +651,28 @@ match(routes) {
 export default {
   render(createElement) {
     // 标记当前router-view的深度
-    this.$vnode.data.routerView = true;  // 当前虚拟DOM的data，添加一个routerView属性
+    this.$vnode.data.routerView = true // 当前虚拟DOM的data，添加一个routerView属性
 
-    let depth = 0;
-    let parent = this.$parent;
+    let depth = 0
+    let parent = this.$parent
 
     while (parent) {
       if (parent.$vnode && parent.$vnode.data && parent.$vnode.data.routerView) {
         // 说明当前parent是一个router-view
-        depth++;
+        depth++
       }
-      parent = parent.$parent;
+      parent = parent.$parent
     }
 
     //获取path对应的component
-    let component = null;
-    const route = this.$router.matched[depth];
+    let component = null
+    const route = this.$router.matched[depth]
     if (route) {
-      component = route.component;
+      component = route.component
     }
 
-    console.log(component);
+    console.log(component)
     return createElement(component)
-  }
+  },
 }
 ```
