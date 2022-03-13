@@ -1,8 +1,9 @@
 ---
 lang: zh-CN
-title: Require和Import的区别
-description: Require和Import的区别
-date: 2022-03-13
+title: Require和Import有什么不一样
+description: Require和Import有什么不一样
+date: 2021-01-07
+sidebar: auto
 ---
 
 # Require和Import的区别

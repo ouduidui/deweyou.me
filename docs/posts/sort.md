@@ -2,6 +2,8 @@
 lang: zh-CN
 title: 十大经典排序算法
 description: 十大经典排序算法
+date: 2022-02-13
+sidebar: auto
 ---
 
 # 十大经典排序算法

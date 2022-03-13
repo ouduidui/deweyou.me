@@ -2,7 +2,8 @@
 lang: zh-CN
 title: CSS - 水平居中和垂直居中
 description: CSS - 水平居中和垂直居中
-date: 2022-03-13
+date: 2022-01-10
+sidebar: auto
 ---
 
 # CSS - 水平居中和垂直居中

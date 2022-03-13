@@ -2,7 +2,8 @@
 lang: zh-CN
 title: 简单实现 Vue Router
 description: 简单实现 Vue Router
-date: 2022-03-13
+date: 2021-04-09
+sidebar: auto
 ---
 
 # 简单实现 Vue Router

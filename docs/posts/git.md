@@ -2,7 +2,8 @@
 lang: zh-CN
 title: Git工作原理及常用命令
 description: Git工作原理及常用命令
-date: 2022-03-13
+date: 2020-12-25
+sidebar: auto
 ---
 
 # Git工作原理及常用命令

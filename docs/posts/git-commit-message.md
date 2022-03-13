@@ -2,7 +2,8 @@
 lang: zh-CN
 title: Git Commit Message 应该怎么写
 description: Git Commit Message 应该怎么写
-date: 2022-03-13
+date: 2021-05-10
+sidebar: auto
 ---
 
 # Git Commit Message 应该怎么写

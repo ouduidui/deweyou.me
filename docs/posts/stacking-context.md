@@ -2,7 +2,8 @@
 lang: zh-CN
 title: CSS中的层叠上下文
 description: 深入学习CSS中的层叠上下文
-date: 2022-03-13
+date: 2022-01-10
+sidebar: auto
 ---
 
 # CSS中的层叠上下文

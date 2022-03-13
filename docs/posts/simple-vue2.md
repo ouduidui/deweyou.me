@@ -2,7 +2,8 @@
 lang: zh-CN
 title: 简单手写实现Vue2
 description: 简单手写实现Vue2
-date: 2022-03-13
+date: 2021-05-17
+sidebar: auto
 ---
 
 # 简单手写实现Vue2.x

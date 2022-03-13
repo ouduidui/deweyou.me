@@ -2,7 +2,8 @@
 lang: zh-CN
 title: 实习第一天，上司让我学习一下Git Flow
 description: 实习第一天，上司让我学习一下Git Flow
-date: 2022-03-13
+date: 2021-01-05
+sidebar: auto
 ---
 
 # 实习第一天，上司让我学习一下Git Flow

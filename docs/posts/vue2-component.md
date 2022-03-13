@@ -2,7 +2,8 @@
 lang: zh-CN 
 title: 关于Vue2组件通讯那点事 
 description: 关于Vue2组件通讯那点事
-date: 2022-03-13
+date: 2020-12-28
+sidebar: auto
 ---
 
 # 关于Vue2组件通讯那点事

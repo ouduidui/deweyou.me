@@ -2,7 +2,8 @@
 lang: zh-CN
 title: 万字长文，带你从零学习Webpack
 description: 万字长文，带你从零学习Webpack
-date: 2022-03-13
+date: 2021-08-09
+sidebar: auto
 ---
 
 # 万字长文，带你从零学习 Webpack

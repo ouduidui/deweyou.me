@@ -25,7 +25,10 @@ module.exports = {
   lang: 'zh-CN',
   title: 'Dewey Ou',
   description: "Dewey Ou's Blogs website",
+  keywords: ['blog'],
   head: [
+    ['meta', { name: 'keywords', content: '欧怼怼,博客,ouduidui,blogs,dewey,前端,front-end,掘金'}],
+    ['meta', { name: 'author', content: 'Dewey Ou'}],
     ['link', { rel: 'manifest', href: generatePath('/manifest.webmanifest') }],
     ['link', {rel: 'icon', href: generatePath('/images/logo/favicon.ico')}]
   ],
@@ -35,14 +38,10 @@ module.exports = {
     logoDark: '/images/logo/logo-dark.svg',
     navbar,
     sidebar,
-    repo: 'OUDUIDUI/ouduidui.github.io',
-    editLinkText: '在 GitHub 上编辑此页',
-    docsRepo: 'https://github.com/OUDUIDUI/ouduidui.github.io',
-    docsBranch: 'master',
-    docsDir: 'docs',
-    editLinkPattern: ':repo/edit/:branch/:path',
-    lastUpdatedText: '上次更新',
-    contributorsText: '贡献者'
+    repo: 'ouduidui',
+    editLink: false,
+    lastUpdated: false,
+    contributors: false
   },
   bundler: '@vuepress/vite',
   plugins: [

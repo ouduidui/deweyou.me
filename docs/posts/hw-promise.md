@@ -1,8 +1,9 @@
 ---
 lang: zh-CN
-title: 手写Promise
+title: 手撕一个符合Promise/A+规范的Promise
 description: 手撕一个符合Promise/A+规范的Promise
-date: 2022-03-13
+date: 2022-02-09
+sidebar: auto
 ---
 
 # 手写 Promise，通过 Promise/A+的 872 个测试

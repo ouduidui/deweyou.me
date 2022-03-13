@@ -2,7 +2,8 @@
 lang: zh-CN 
 title: 画一些动画，学习一下EventLoop 
 description: 画一些动画，学习一下EventLoop
-date: 2022-03-13
+date: 2021-06-02
+sidebar: auto
 ---
 
 # 画一些动画，学习一下EventLoop

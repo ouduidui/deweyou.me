@@ -3,7 +3,8 @@ name: test
 lang: zh-CN
 title: 聊一聊Vue2中的Diff算法
 description: 聊一聊Vue2中的Diff算法
-date: 2022-03-13
+date: 2021-06-09
+sidebar: auto
 ---
 
 # 聊一聊Vue中的Diff算法

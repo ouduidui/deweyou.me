@@ -2,7 +2,8 @@
 lang: zh-CN
 title: CSS中的剪切和遮罩
 description: CSS中的剪切和遮罩
-date: 2022-03-13
+date: 2020-12-13
+sidebar: auto
 ---
 
 # CSS中的剪切和遮罩

@@ -13,6 +13,8 @@
       <a href="https://github.com/OUDUIDUI" target="_blank" class="link">Github</a>
       \
       <a href="https://juejin.cn/user/4309700183594366" target="_blank" class="link">掘金</a>
+      \
+      <a href="https://twitter.com/ouduidui" target="_blank" class="link">Twitter</a>
     </p>
   </div>
 </template>

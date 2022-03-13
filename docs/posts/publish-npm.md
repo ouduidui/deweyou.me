@@ -2,7 +2,7 @@
 lang: zh-CN
 title: 利用github Actions发布npm和release
 description: 利用github Actions发布npm和release
-date: 2022-03-13
+date: 2021-07-30
 ---
 
 # 利用github Actions发布npm和release

@@ -1,7 +1,9 @@
 ---
 lang: zh-CN
-title: 推荐网站
+title: 分享一些有趣的编程网站
 description: 分享一些有趣的编程网站
+date: 2022-01-07
+sidebar: auto
 ---
 
 ## [Flexbox Froggy](https://flexboxfroggy.com/)

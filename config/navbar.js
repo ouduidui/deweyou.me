@@ -7,8 +7,8 @@
    link: '/posts/README.md'
   },
   {
-    text: 'Websites',
-    link: '/website/README.md'
+    text: 'Projects',
+    link: '/projects.md'
   },
 ];
 

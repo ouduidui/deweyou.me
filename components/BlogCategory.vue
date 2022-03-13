@@ -15,6 +15,7 @@ const clickHandler = (post) => {
 
 <template>
   <div class="list">
+    <h1 class="header">{{postList.length}}  Posts</h1>
     <div v-for="post in postList" :key="post.name" class="list-item" @click="clickHandler(post)">
       <h4 class="title">{{post.title}}</h4>
       <p class="date">{{post.date}}</p>
@@ -28,6 +29,17 @@ const clickHandler = (post) => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.header {
+  font-weight: 200;
+  padding-bottom:10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.list {
+  padding: 30px 0;
 }
 
 .list-item {
@@ -62,9 +74,5 @@ const clickHandler = (post) => {
   transform-origin: 0 0;
 }
 
-
-.list {
-  padding: 30px 0;
-}
 
 </style>

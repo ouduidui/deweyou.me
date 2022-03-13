@@ -2,7 +2,7 @@
 lang: zh-CN 
 title: 简单实现Vuex 
 description: 简单实现Vuex
-date: 2022-03-13
+date: 2021-04-27
 ---
 
 # 简单实现Vuex
