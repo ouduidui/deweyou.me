@@ -1,3 +1,1 @@
-# OUDUIDUI's Blog
-## Framework
-> https://v2.vuepress.vuejs.org/zh/
+my blog website by [vuepress](https://v2.vuepress.vuejs.org/).
