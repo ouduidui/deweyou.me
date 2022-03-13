@@ -11,18 +11,28 @@ const generatePath = (path) => {
 
 
 module.exports = {
+    onPrepared: async(app) => {
+      const data = app.pages.map((page => ({
+        key: page.key,
+        path: page.path,
+        title: page.title,
+        date: page.date,
+        frontmatter: page.frontmatter
+      })))
+      await app.writeTemp('data.js', `export const posts = ${JSON.stringify(data)}`)
+   },
   base: BASE_PATH,
   lang: 'zh-CN',
-  title: 'OUDUIDUI',
-  description: "OUDUIDUI's Blog | 分享我的编程学习笔记",
+  title: 'Dewey Ou',
+  description: "Dewey Ou's Blogs website",
   head: [
     ['link', { rel: 'manifest', href: generatePath('/manifest.webmanifest') }],
     ['link', {rel: 'icon', href: generatePath('/images/logo/favicon.ico')}]
   ],
 
-  themeConfig: {
-    logo: '/images/logo/logo.png',
-    logoDark: '/images/logo/logo_dark.png',
+  themeConfig: { 
+    logo: '/images/logo/logo.svg',
+    logoDark: '/images/logo/logo-dark.svg',
     navbar,
     sidebar,
     repo: 'OUDUIDUI/ouduidui.github.io',

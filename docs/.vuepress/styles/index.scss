@@ -1,7 +1,7 @@
 :root {
   // brand colors
-  --c-brand: #185adb;
-  --c-brand-light: #42a5f5;
+  --c-brand: #000;
+  --c-brand-light: #000;
 
   // background colors
   --c-bg: #ffffff;
@@ -73,13 +73,13 @@
 
 html.dark {
   // brand colors
-  --c-brand: #2196f3;
-  --c-brand-light: #42a5f5;
+  --c-brand: #ffffff;
+  --c-brand-light: #ffffff;
 
   // background colors
-  --c-bg: #22272e;
-  --c-bg-light: #2b313a;
-  --c-bg-lighter: #262c34;
+  --c-bg: #000;
+  --c-bg-light: #111;
+  --c-bg-lighter: #121212;
 
   // text colors
   --c-text: #adbac7;
@@ -184,4 +184,8 @@ html.dark .DocSearch {
   font-size: 12px;
   opacity: .5;
   color: inherit;
+}
+
+.site-name {
+  display: none;
 }
