@@ -2,15 +2,15 @@
   "name": "blogs",
   "version": "0.0.1",
   "description": "OUDUIDUI's blogs",
+  "license": "MIT",
+  "repository": "git@github.com:OUDUIDUI/blogs.git",
+  "author": "oushihao <oushihao97@163.com>",
+  "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs && yarn create-cname",
     "create-cname": "cd docs/.vuepress/dist && echo 'ouduidui.cn' > CNAME"
   },
-  "main": "index.js",
-  "repository": "git@github.com:OUDUIDUI/blogs.git",
-  "author": "oushihao <oushihao97@163.com>",
-  "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^2.0.0-beta.27",
     "@vuepress/plugin-google-analytics": "^2.0.0-beta.27",
