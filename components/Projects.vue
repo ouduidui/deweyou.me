@@ -15,7 +15,7 @@ const projects: Project[] = [
   {
     id: 'ou',
     title: 'ou',
-    description: 'A cli for creating an app template of initialized.',
+    description: 'Used for creating a out-of-the-box template without additional configuration.',
     url: 'https://github.com/ouduidui/ou',
   },
   {
