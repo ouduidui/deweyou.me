@@ -17,6 +17,7 @@ specifiers:
   typescript: 4.7.3
 
 dependencies:
+  highlight.js: 11.5.1
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
@@ -30,7 +31,6 @@ devDependencies:
   eslint: 8.17.0
   fast-glob: 3.2.11
   gray-matter: 4.0.3
-  highlight.js: 11.5.1
   markdown-it: 13.0.1
   typescript: 4.7.3
 
@@ -1400,7 +1400,7 @@ packages:
   /highlight.js/11.5.1:
     resolution: {integrity: sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==}
     engines: {node: '>=12.0.0'}
-    dev: true
+    dev: false
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
