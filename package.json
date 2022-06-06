@@ -15,12 +15,14 @@
   },
   "devDependencies": {
     "@ouduidui/eslint-config-react": "^0.1.1",
+    "@types/markdown-it": "^12.2.3",
     "@types/node": "17.0.39",
     "@types/react": "18.0.11",
     "@types/react-dom": "18.0.5",
     "eslint": "8.17.0",
     "fast-glob": "^3.2.11",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.5.1",
     "markdown-it": "^13.0.1",
     "typescript": "4.7.3"
   }

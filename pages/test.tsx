@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { genPost } from '../utils/posts'
+import 'highlight.js/styles/atom-one-dark.css'
 
 const Test: NextPage = (props: any) => {
   const { post } = props
