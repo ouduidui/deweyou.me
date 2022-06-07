@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import 'uno.css'
+import '../styles/reset.css'
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {

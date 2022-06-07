@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import useDark from '../hooks/useDark'
 
 const Home: NextPage = () => {
+  const { isDark, toggleDark } = useDark()
   return (
     <div className="container">
       <Head>
@@ -11,6 +13,12 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="font-mono text-3xl">HelloWorld</div>
+      <div
+        className="icon-btn !outline-none"
+        onClick={() => toggleDark()}
+      >
+        <div className={isDark ? 'i-carbon-moon' : 'i-carbon-sun'} />
+      </div>
       <div className="icon-btn i-carbon-logo-github"></div>
     </div>
   )

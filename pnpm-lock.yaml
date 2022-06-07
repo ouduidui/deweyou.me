@@ -7,6 +7,7 @@ specifiers:
   '@types/node': 17.0.39
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
+  '@unocss/preset-uno': ^0.38.0
   '@unocss/webpack': ^0.37.4
   eslint: 8.17.0
   fast-glob: ^3.2.11
@@ -18,12 +19,14 @@ specifiers:
   react-dom: 18.1.0
   typescript: 4.7.3
   unocss: ^0.37.4
+  usehooks-ts: ^2.5.4
 
 dependencies:
   highlight.js: 11.5.1
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
+  usehooks-ts: 2.5.4_react@18.1.0
 
 devDependencies:
   '@iconify-json/carbon': 1.1.5
@@ -32,6 +35,7 @@ devDependencies:
   '@types/node': 17.0.39
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
+  '@unocss/preset-uno': 0.38.0
   '@unocss/webpack': 0.37.4
   eslint: 8.17.0
   fast-glob: 3.2.11
@@ -544,6 +548,10 @@ packages:
     resolution: {integrity: sha512-bPOzzGBLDlWEp2vF6TcuI39Z6hj/s06OZDOKG345wysksB18r3YNYVXbYMmHepJEfVP8IhqPyswq/l4z4F9tAQ==}
     dev: true
 
+  /@unocss/core/0.38.0:
+    resolution: {integrity: sha512-r2BkloYh6ywWb+pkxTCYJQmQGZ2npDNNMZKz1KFMlcYK9+ELjTO9qeUYlolf9EwekWXy85+1yLXvgdiG4LSLlA==}
+    dev: true
+
   /@unocss/inspector/0.37.4:
     resolution: {integrity: sha512-fqBjKGUXbmJYTpRMucvl1q5lolT41D7/UjGOygCUuW8YD1VtWP4yn2R35GYckHIqXAbmtxqcKxWE3ksJ5ZZg7g==}
     dependencies:
@@ -573,6 +581,12 @@ packages:
       '@unocss/core': 0.37.4
     dev: true
 
+  /@unocss/preset-mini/0.38.0:
+    resolution: {integrity: sha512-aIPQ7YuVGcvlaDwu2z+PBl/vd6X+VYsl5zqfgbzFMhRyYbILa64jjNGrPb6wjzO3JyDrk+9LH7F084+HUu2dVw==}
+    dependencies:
+      '@unocss/core': 0.38.0
+    dev: true
+
   /@unocss/preset-tagify/0.37.4:
     resolution: {integrity: sha512-6BRT5njrvtnBwZKn8lHw8CxhcwQeCAra0zwZ7XxPJQRSv24DVNlQKtirMhsd9ySJrymKZNQmuIsRMqzJzwHuuA==}
     dependencies:
@@ -593,6 +607,14 @@ packages:
       '@unocss/preset-wind': 0.37.4
     dev: true
 
+  /@unocss/preset-uno/0.38.0:
+    resolution: {integrity: sha512-MM/XK+J6qNMC9WI7RNBLlFnf8TZyyEBsm6gAjD6Ka1KS95Dles5ugFwQCgqDOlpCTF5jvkFB24+dezQ9NKDhBw==}
+    dependencies:
+      '@unocss/core': 0.38.0
+      '@unocss/preset-mini': 0.38.0
+      '@unocss/preset-wind': 0.38.0
+    dev: true
+
   /@unocss/preset-web-fonts/0.37.4:
     resolution: {integrity: sha512-yCf9MyBR8PVPnmNCLrbClxKCwKsq5+8DJAXCJAXYEdhSgIct46LLnb7LcC/bS6TV7K/IQrHelABdkbUs/oRt2A==}
     dependencies:
@@ -605,6 +627,13 @@ packages:
     dependencies:
       '@unocss/core': 0.37.4
       '@unocss/preset-mini': 0.37.4
+    dev: true
+
+  /@unocss/preset-wind/0.38.0:
+    resolution: {integrity: sha512-07kMNiUlGuMd8JTH9Rvwure9t0nscpuKz4KaxO+Ia++LYKI0oY6Oqcf7PUDezDstWl5pQEj/nedkSLh/JvC6iQ==}
+    dependencies:
+      '@unocss/core': 0.38.0
+      '@unocss/preset-mini': 0.38.0
     dev: true
 
   /@unocss/reset/0.37.4:
@@ -2962,6 +2991,14 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
+
+  /usehooks-ts/2.5.4_react@18.1.0:
+    resolution: {integrity: sha512-NG4XKLh7csTFFtUgtUuR72zlJ1Bpt4+nDAnKQqcQcpxYnwAZZv3RpksKvxBIusPCHUL3NuC0xLwwJCpPxIuknQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+    dependencies:
+      react: 18.1.0
+    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
