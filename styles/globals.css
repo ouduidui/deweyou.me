@@ -14,3 +14,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+body {
+  background: var(--bg-color);
+  /* --windi-hover-bg: #f6f6f6; */
+  color: var(--text-color)
+  /* --windi-bc: #e5e7eb; */
+}
+
+.dark body {
+  background: #181818;
+  /* --windi-hover-bg: #2d2d2d; */
+  color: #f3f4f6;
+  /* --windi-bc: #2d2d2d; */
+}
