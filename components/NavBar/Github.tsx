@@ -1,12 +1,19 @@
 import type { NextPage } from 'next'
+import Tooltip from './Tooltip'
 
-const Github: NextPage = () => {
+interface PropsType {
+  isDark: boolean
+}
+
+const Github: NextPage<PropsType> = (props: PropsType) => {
   return (
-    <a
-      className="icon-btn !outline-none i-carbon-logo-github"
-      href="https://github.com/ouduidui/ouduidui.github.io"
-      target="_blank" rel="noreferrer"
-    />
+    <Tooltip label="Github" isDark={props.isDark}>
+      <a
+        className="icon-btn !outline-none i-iconoir-github"
+        href="https://github.com/ouduidui/ouduidui.github.io"
+        target="_blank" rel="noreferrer"
+      />
+    </Tooltip>
   )
 }
 

@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^6",
     "highlight.js": "^11.5.1",
     "next": "12.1.6",
     "react": "18.1.0",
@@ -17,6 +21,7 @@
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.5",
+    "@iconify-json/iconoir": "^1.1.6",
     "@ouduidui/eslint-config-react": "^0.1.1",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "17.0.39",
