@@ -1,3 +1,15 @@
+:root {
+  --bg-color: #fcfcfc;
+  --text-color: #1f2937; 
+  --ti-cursor-color: var(var(--text-color))
+}
+
+.dark {
+  --bg-color: #181818;
+  --text-color: #f3f4f6;
+  --ti-cursor-color: var(var(--text-color))
+}
+
 html,
 body {
   padding: 0;
@@ -13,14 +25,12 @@ a {
 
 * {
   box-sizing: border-box;
+  background: var(--bg-color);
+  color:  var(--text-color);
 }
 
-body {
-  background: #fcfcfc;
-  color:  #1f2937; 
-}
-
-.dark body {
-  background: #181818;
-  color: #f3f4f6;
+@media screen and (max-width: 765px) {
+  html {
+    font-size: 14px;
+  }
 }
