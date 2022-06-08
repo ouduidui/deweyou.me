@@ -13,6 +13,7 @@ specifiers:
   '@types/react-dom': 18.0.5
   '@unocss/preset-uno': ^0.38.0
   '@unocss/webpack': ^0.37.4
+  dayjs: ^1.11.3
   eslint: 8.17.0
   fast-glob: ^3.2.11
   framer-motion: ^6
@@ -31,6 +32,7 @@ dependencies:
   '@chakra-ui/react': 2.2.1_2wbr7fnlv6zpucfhlryuwgrsze
   '@emotion/react': 11.9.0_xzblsqi5foayvoljr2geupzxea
   '@emotion/styled': 11.8.1_go2vspwukcwrlktcqggu7jzx7y
+  dayjs: 1.11.3
   framer-motion: 6.3.10_ef5jwxihqo6n7gxfmzogljlgcm
   highlight.js: 11.5.1
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -1987,6 +1989,10 @@ packages:
 
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
+
+  /dayjs/1.11.3:
+    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

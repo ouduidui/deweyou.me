@@ -1,9 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import Summary from '../components/Summary'
-
-const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
 
 const Home: NextPage = () => {
   return (
@@ -14,9 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NavBar />
       <Summary />
-
     </div>
   )
 }

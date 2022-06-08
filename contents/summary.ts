@@ -1,8 +1,7 @@
 export const SUMMARY = [
-  'Hello',
-  'I am Dewey Ou',
-  'A Frontend Engineer',
-  'Working at ByteDance',
+  'Hello, I am Dewey Ou',
+  'A FE & RD Engineer',
+  'And working at ByteDance',
 ]
 
 export const AVATAR = '/avatar.jpg'

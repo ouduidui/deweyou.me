@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import TypeIt from 'typeit-react'
 import Image from 'next/image'
-import { AVATAR, SUMMARY } from '../../contents/summary'
+import { AVATAR, SUMMARY } from '../contents/summary'
 
 const Summary: NextPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="w-18 h-18 rounded-1/2 overflow-hidden relative mb-5">
+    <div className="flex flex-col items-center justify-center mt-20">
+      <div className="w-20 h-20 rounded-1/2 overflow-hidden relative mb-5">
         <Image
           src={AVATAR}
           layout="fill"
@@ -15,7 +15,7 @@ const Summary: NextPage = () => {
         />
       </div>
 
-      <div className="font-mono text-xl text-center">
+      <div className="font-mono leading-loose text-xl text-center">
         <TypeIt
           options={{
             strings: SUMMARY,
