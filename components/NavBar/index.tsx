@@ -3,7 +3,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
-import '../../styles/NavBar.module.css'
 
 const NavBar: NextPage = () => {
   const { isDark, toggleDark } = useDark()

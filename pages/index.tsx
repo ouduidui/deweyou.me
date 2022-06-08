@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import TypeIt from 'typeit-react'
+import Summary from '../components/Summary'
 
 const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
 
@@ -15,21 +15,8 @@ const Home: NextPage = () => {
       </Head>
 
       <NavBar />
+      <Summary />
 
-      <div className="font-mono text-xl">
-        {/* ti-cursor */}
-        <TypeIt
-          options={{
-            strings: [
-              'Hello',
-              'I am Dewey Ou',
-              'A Frontend Engineer',
-              'Working at ByteDance',
-            ],
-            speed: 50,
-            waitUntilVisible: true,
-          }} />
-      </div>
     </div>
   )
 }
