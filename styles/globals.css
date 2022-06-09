@@ -1,13 +1,13 @@
 :root {
   --bg-color: #fcfcfc;
   --text-color: #1f2937; 
-  --ti-cursor-color: var(var(--text-color))
+  --ti-cursor-color: var(--text-color)
 }
 
 .dark {
   --bg-color: #181818;
   --text-color: #f3f4f6;
-  --ti-cursor-color: var(var(--text-color))
+  --ti-cursor-color: var(--text-color)
 }
 
 html,
