@@ -15,9 +15,9 @@ const ToggleTheme: NextPage<PropsType> = (props: PropsType) => {
         onClick={() => toggleDark()}
       >
         <div className={isDark ? 'i-carbon-moon' : 'i-carbon-sun'} />
-    </a>
+      </a>
     </Tooltip>
-    
+
   )
 }
 
