@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
-import { Tooltip as TT } from '@chakra-ui/react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
 interface PropsType {
   isDark: boolean
@@ -22,16 +21,42 @@ const Tooltip: NextPage<PropsType> = (props: PropsType) => {
     return COLORS[isDark ? 1 : 0]
   }, [isDark])
 
+  const [tooltipActive, setTooltipActive] = useState(false)
+
+  let timer: number | undefined | NodeJS.Timeout
+  const hoverHandler = (isHover: boolean) => {
+    if (isHover && !tooltipActive) {
+      timer && clearTimeout(timer)
+      setTooltipActive(true)
+    }
+    else if (!isHover && tooltipActive) {
+      timer = setTimeout(() => {
+        setTooltipActive(false)
+      })
+    }
+  }
+
   return (
-    <TT
-      label={label}
-      placement="bottom"
-      bg={theme.bg}
-      color={theme.color}
-      className="font-mono text-xs"
+    <div
+      className="relative"
+      onMouseOver={() => hoverHandler(true)}
+      onMouseLeave={() => hoverHandler(false)}
     >
       {children}
-    </TT>
+      {
+        tooltipActive
+          ? (
+            <div
+              style={{ background: theme.bg, color: theme.color }}
+              className="absolute bottom-0 left-1/2 translate-y-full -translate-x-1/2 font-mono text-xs shadow py-1 px-2 mt-1"
+            >
+              {label}
+            </div>
+          )
+          : null
+      }
+
+    </div>
 
   )
 }
