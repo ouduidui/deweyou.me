@@ -6,7 +6,7 @@ import { AVATAR, SUMMARY } from '../contents/summary'
 const Summary: NextPage = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-20">
-      <div className="w-20 h-20 rounded-1/2 overflow-hidden relative mb-5">
+      <div className="w-40 h-40 rounded-1/2 overflow-hidden relative mb-8">
         <Image
           src={AVATAR}
           layout="fill"
@@ -15,11 +15,11 @@ const Summary: NextPage = () => {
         />
       </div>
 
-      <div className="font-mono leading-loose text-xl text-center">
+      <div className="font-mono leading-loose text-xl text-center select-none">
         <TypeIt
           options={{
             strings: SUMMARY,
-            speed: 50,
+            speed: 100,
             waitUntilVisible: true,
           }} />
       </div>
