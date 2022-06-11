@@ -21,6 +21,7 @@ const Summary: NextPage = () => {
             strings: SUMMARY,
             speed: 100,
             waitUntilVisible: true,
+            startDelay: 1000,
           }} />
       </div>
     </div>
