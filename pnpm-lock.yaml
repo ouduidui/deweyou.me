@@ -16,8 +16,8 @@ specifiers:
   fast-glob: ^3.2.11
   framer-motion: ^6
   gray-matter: ^4.0.3
-  highlight.js: ^11.5.1
   markdown-it: ^13.0.1
+  markdown-it-prism: ^2.2.4
   next: 12.1.6
   prismjs: ^1.28.0
   react: 18.1.0
@@ -32,7 +32,6 @@ specifiers:
 dependencies:
   dayjs: 1.11.3
   framer-motion: 6.3.10_ef5jwxihqo6n7gxfmzogljlgcm
-  highlight.js: 11.5.1
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   prismjs: 1.28.0
   react: 18.1.0
@@ -55,6 +54,7 @@ devDependencies:
   fast-glob: 3.2.11
   gray-matter: 4.0.3
   markdown-it: 13.0.1
+  markdown-it-prism: 2.2.4
   typescript: 4.7.3
   unocss: 0.37.4_kiab2z2z2kis5bcuge2ha7tfbu
   vite: 2.9.10
@@ -2037,11 +2037,6 @@ packages:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
     dev: false
 
-  /highlight.js/11.5.1:
-    resolution: {integrity: sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==}
-    engines: {node: '>=12.0.0'}
-    dev: false
-
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: true
@@ -2394,6 +2389,13 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /markdown-it-prism/2.2.4:
+    resolution: {integrity: sha512-7oQVppKjiZqVQo7s7eLTIs3o/0hdvqAWDW8lvRel6eUCGD4iXjKbSZjvdHZFA2ZnCkQUF47kbvtWZDVQrv7zyQ==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      prismjs: 1.28.0
     dev: true
 
   /markdown-it/13.0.1:
@@ -2829,7 +2831,6 @@ packages:
   /prismjs/1.28.0:
     resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
     engines: {node: '>=6'}
-    dev: false
 
   /prop-types/15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
