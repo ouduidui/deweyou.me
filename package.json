@@ -1,7 +1,10 @@
 {
-  "name": "blogs",
-  "version": "0.1.0",
-  "private": true,
+  "name": "deweyou.me",
+  "license": "MIT",
+  "author": {
+    "name": "Dewey Ou",
+    "email": "oushihao97@gmail.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
