@@ -2,6 +2,8 @@
 import { describe, expect, it } from 'vitest'
 import MarkdownIt from 'markdown-it'
 import matter from 'gray-matter'
+import mila from 'markdown-it-link-attributes'
+import anchor from 'markdown-it-anchor'
 
 it('gray-matter', () => {
   expect(matter(`---
@@ -39,28 +41,35 @@ describe('MarkdownIt', () => {
   })
 
   it('header', () => {
+    mi.use(anchor, {
+    // slugify,
+      permalink: anchor.permalink.linkInsideHeader({
+        symbol: '#',
+        renderAttrs: () => ({ 'aria-hidden': 'true' }),
+      }),
+    })
     expect(mi.render('# h1')).toMatchInlineSnapshot(`
-      "<h1>h1</h1>
+      "<h1 id=\\"h1\\" tabindex=\\"-1\\">h1 <a class=\\"header-anchor\\" href=\\"#h1\\" aria-hidden=\\"true\\">#</a></h1>
       "
     `)
     expect(mi.render('## h2')).toMatchInlineSnapshot(`
-      "<h2>h2</h2>
+      "<h2 id=\\"h2\\" tabindex=\\"-1\\">h2 <a class=\\"header-anchor\\" href=\\"#h2\\" aria-hidden=\\"true\\">#</a></h2>
       "
     `)
     expect(mi.render('### h3')).toMatchInlineSnapshot(`
-      "<h3>h3</h3>
+      "<h3 id=\\"h3\\" tabindex=\\"-1\\">h3 <a class=\\"header-anchor\\" href=\\"#h3\\" aria-hidden=\\"true\\">#</a></h3>
       "
     `)
     expect(mi.render('#### h4')).toMatchInlineSnapshot(`
-      "<h4>h4</h4>
+      "<h4 id=\\"h4\\" tabindex=\\"-1\\">h4 <a class=\\"header-anchor\\" href=\\"#h4\\" aria-hidden=\\"true\\">#</a></h4>
       "
     `)
     expect(mi.render('##### h5')).toMatchInlineSnapshot(`
-      "<h5>h5</h5>
+      "<h5 id=\\"h5\\" tabindex=\\"-1\\">h5 <a class=\\"header-anchor\\" href=\\"#h5\\" aria-hidden=\\"true\\">#</a></h5>
       "
     `)
     expect(mi.render('###### h6')).toMatchInlineSnapshot(`
-      "<h6>h6</h6>
+      "<h6 id=\\"h6\\" tabindex=\\"-1\\">h6 <a class=\\"header-anchor\\" href=\\"#h6\\" aria-hidden=\\"true\\">#</a></h6>
       "
     `)
     expect(mi.render('text')).toMatchInlineSnapshot(`
@@ -184,11 +193,17 @@ describe('MarkdownIt', () => {
   })
 
   it('link', () => {
+    mi.use(mila, {
+      attrs: {
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+    })
     expect(mi.render('You may be using [Markdown Live Preview](https://markdownlivepreview.com/).'))
       .toMatchInlineSnapshot(`
-      "<p>You may be using <a href=\\"https://markdownlivepreview.com/\\">Markdown Live Preview</a>.</p>
-      "
-    `)
+        "<p>You may be using <a href=\\"https://markdownlivepreview.com/\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Markdown Live Preview</a>.</p>
+        "
+      `)
   })
 
   it('blockquotes', () => {

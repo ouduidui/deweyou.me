@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it'
 import Prism from 'markdown-it-prism'
 
 describe('parse markdown code', () => {
-  it('highlight options', (done) => {
+  it('highlight options', () => {
     const mi = MarkdownIt({
       html: true,
       breaks: true,
@@ -16,7 +16,6 @@ describe('parse markdown code', () => {
           "
         `)
         expect(lang).toMatchInlineSnapshot('"js"')
-        done()
         return str
       },
     })

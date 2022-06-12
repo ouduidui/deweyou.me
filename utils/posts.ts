@@ -2,6 +2,8 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import Prism from 'markdown-it-prism'
+import LinkAttributes from 'markdown-it-link-attributes'
+import anchor from 'markdown-it-anchor'
 
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-scss'
@@ -16,7 +18,22 @@ const markdown: MarkdownIt = MarkdownIt({
   linkify: true,
 })
 
-markdown.use(Prism)
+markdown
+  .use(Prism)
+  .use(LinkAttributes, {
+    matcher: (link: string) => /^https?:\/\//.test(link),
+    attrs: {
+      target: '_blank',
+      rel: 'noopener',
+    },
+  })
+  .use(anchor, {
+    // slugify,
+    permalink: anchor.permalink.linkInsideHeader({
+      symbol: '#',
+      renderAttrs: () => ({ 'aria-hidden': 'true' }),
+    }),
+  })
 
 export const genPost = async() => {
   const raw = fs.readFileSync('contents/test.md', 'utf-8')

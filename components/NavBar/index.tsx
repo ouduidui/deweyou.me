@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
+import Posts from './Posts'
 
 const NavBar: NextPage = () => {
   const { isDark, toggleDark } = useDark()
@@ -12,6 +13,7 @@ const NavBar: NextPage = () => {
         <img src={isDark ? '/logo-dark.svg' : '/logo.svg'} className="w-10 h-10"></img>
       </a>
       <div className="grid grid-flow-col gap-1.2rem">
+        <Posts isDark={isDark} />
         <ToggleTheme
           isDark={isDark}
           toggleDark={toggleDark}

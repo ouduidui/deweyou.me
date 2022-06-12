@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import { genPost } from '../utils/posts'
-import 'prismjs/themes/prism.css'
 
 const Test: NextPage = (props: any) => {
   const { post } = props
