@@ -1,11 +1,17 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { genPost } from '../../utils/posts'
+import type { GetStaticProps, NextPage } from 'next'
+import type { ArticleReturnType } from '../../utils/article'
+import { generate } from '../../utils/article'
+import ArticleContent from '../../components/Article/Content'
 
-const Post: NextPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(props)
+interface PropsType {
+  post: ArticleReturnType
+}
+
+const Post: NextPage<PropsType> = (props: PropsType) => {
+  const { post } = props
   return (
     <div>
-      Hey
+      <ArticleContent post={post} />
     </div>
   )
 }
@@ -26,8 +32,7 @@ export const getStaticPaths = async() => {
 export const getStaticProps: GetStaticProps = async(context) => {
   return {
     props: {
-      pid: context.params!.pid,
-      post: await genPost(),
+      post: await generate(context.params!.pid as string),
     },
   }
 }

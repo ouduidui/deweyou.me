@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
-import anchor from 'markdown-it-anchor'
+// import anchor from 'markdown-it-anchor'
 
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-scss'
@@ -27,22 +27,36 @@ markdown
       rel: 'noopener',
     },
   })
-  .use(anchor, {
-    // slugify,
-    permalink: anchor.permalink.linkInsideHeader({
-      symbol: '#',
-      renderAttrs: () => ({ 'aria-hidden': 'true' }),
-    }),
-  })
+  // .use(anchor, {
+  //   // slugify,
+  //   permalink: anchor.permalink.linkInsideHeader({
+  //     symbol: '#',
+  //     renderAttrs: () => ({ 'aria-hidden': 'true' }),
+  //   }),
+  // })
 
-export const genPost = async() => {
-  const raw = fs.readFileSync('contents/test.md', 'utf-8')
+export interface ArticleReturnType {
+  id: string
+  title: string
+  describe: string
+  date: number
+  lang: string
+  html: string
+}
+
+type ArticleType = 'posts'
+export const generate = async(
+  id: string,
+  type: ArticleType = 'posts',
+): Promise<ArticleReturnType> => {
+  const raw = fs.readFileSync(`contents/${type}/${id}.md`, 'utf-8')
   const { data, content } = matter(raw)
   const html = markdown.render(content)
 
   return {
+    id,
     ...data,
     date: new Date(data.date).getTime(),
     html,
-  }
+  } as ArticleReturnType
 }

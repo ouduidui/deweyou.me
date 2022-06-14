@@ -2,7 +2,6 @@
 title: Test Post
 description: This is a test post.
 date: 2022-06-06T08:00:00.000+00:00
-lang: zh
 ---
 
 # Markdown syntax guide
@@ -34,16 +33,16 @@ _You **can** combine them_
 
 * Item 1
 * Item 2
-* Item 2a
-* Item 2b
+  * Item 2a
+  * Item 2b
 
 ### Ordered
 
 1. Item 1
 2. Item 2
 3. Item 3
-  1. Item 3a
-  2. Item 3b
+   1. Item 3a
+   2. Item 3b
 
 ## Links
 
