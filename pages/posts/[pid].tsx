@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import type { ArticleReturnType } from '../../utils/article'
-import { generate } from '../../utils/article'
+import { generate, getPostList } from '../../utils/article'
 import ArticleContent from '../../components/Article/Content'
 
 interface PropsType {
@@ -18,13 +18,7 @@ const Post: NextPage<PropsType> = (props: PropsType) => {
 
 export const getStaticPaths = async() => {
   return {
-    paths: [
-      {
-        params: {
-          pid: 'test',
-        },
-      },
-    ],
+    paths: getPostList().map(post => ({ params: { pid: post } })),
     fallback: false,
   }
 }

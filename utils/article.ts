@@ -60,3 +60,7 @@ export const generate = async(
     html,
   } as ArticleReturnType
 }
+
+export const getPostList = () => {
+  return fs.readdirSync('contents/posts/').map(item => item.replace('.md', ''))
+}
