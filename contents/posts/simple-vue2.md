@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 简单手写实现Vue2
 description: 简单手写实现Vue2
 date: 2021-05-17T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 简单手写实现Vue2.x
 
 ## Vue的设计思想
 

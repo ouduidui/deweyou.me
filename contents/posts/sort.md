@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 十大经典排序算法
 description: 十大经典排序算法
 date: 2022-02-13T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 十大经典排序算法
 
 > [github](https://github.com/ouduidui/fe-study/blob/master/package/javascript/wheels/src/others/sort-algorithm/index.js)
 

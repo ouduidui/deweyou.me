@@ -18,7 +18,7 @@ const Post: NextPage<PropsType> = (props: PropsType) => {
 
 export const getStaticPaths = async() => {
   return {
-    paths: getPostList().map(post => ({ params: { pid: post } })),
+    paths: getPostList().map(post => ({ params: { pid: post.id } })),
     fallback: false,
   }
 }

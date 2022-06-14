@@ -12,6 +12,8 @@ import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-python'
 
+const __DEV__ = process.env.NEXT_PUBLIC_DOMAIN_ENV !== 'production'
+
 const markdown: MarkdownIt = MarkdownIt({
   html: true,
   breaks: true,
@@ -61,6 +63,26 @@ export const generate = async(
   } as ArticleReturnType
 }
 
-export const getPostList = () => {
-  return fs.readdirSync('contents/posts/').map(item => item.replace('.md', ''))
+export interface ListItemType {
+  id: string
+  title?: string
+  date?: number
+}
+
+export const getPostList = (hasInfo = false): ListItemType[] => {
+  let list = fs.readdirSync('contents/posts/')
+  if (!__DEV__) list = list.filter(post => post === 'test.md')
+  if (!hasInfo) return list.map(item => ({ id: item.replace('.md', '') }))
+
+  const infoList = list.map((post) => {
+    const raw = fs.readFileSync(`contents/posts/${post}`, 'utf-8')
+    const { data } = matter(raw)
+    return {
+      id: post.replace('.md', ''),
+      title: data.title,
+      date: new Date(data.date).getTime(),
+    }
+  })
+
+  return infoList.sort((a, b) => b.date - a.date)
 }

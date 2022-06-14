@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: CSS中的层叠上下文
 description: 深入学习CSS中的层叠上下文
 date: 2022-01-10T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# CSS中的层叠上下文
 
 ## 什么是层叠上下文
 

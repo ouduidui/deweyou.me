@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 手把手教你实现axios
 description: 手把手教你实现axios
 date: 2022-01-19T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 手把手教你实现 axios
 
 > github: https://github.com/ouduidui/mini-axios
 

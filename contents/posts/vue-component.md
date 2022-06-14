@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: Vue2和Vue3的组件通信
 description: 对比一下Vue2和Vue3的组件通信实现
 date: 2021-07-15T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 对比一下Vue2和Vue3的组件通信实现
 
 `Vue`框架有一大特色，就是**组件化**。
 

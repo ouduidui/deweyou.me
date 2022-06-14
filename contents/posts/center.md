@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: CSS - 水平居中和垂直居中
 description: CSS - 水平居中和垂直居中
 date: 2022-01-10T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# CSS - 水平居中和垂直居中
 
 ## 水平居中
 

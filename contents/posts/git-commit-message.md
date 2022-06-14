@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: Git Commit Message 应该怎么写
 description: Git Commit Message 应该怎么写
 date: 2021-05-10T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# Git Commit Message 应该怎么写
 
 因为入职至今，公司也没有太规定一个代码提交规范，所以一直以来，我代码提交的`commit message`都是简单的一句话说明了本次代码改动内容，有时候会更加精简。
 
@@ -117,13 +114,13 @@ After:
 ```js
 angular.module('myApp', [])
   .component('myComponent', {
-    bindings: {value: '<'},
-    controller: function() {
+    bindings: { value: '<' },
+    controller() {
       this.$onInit = function() {
-        this.doubleValue = this.value * 2;
-      };
-    }
-});
+        this.doubleValue = this.value * 2
+      }
+    },
+  })
 ```
 
 Don't do this if you're writing a library, though, as you shouldn't change global configuration then.

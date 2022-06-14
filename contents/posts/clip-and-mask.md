@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: CSS中的剪切和遮罩
 description: CSS中的剪切和遮罩
 date: 2020-12-13T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# CSS中的剪切和遮罩
 
 > [Github](https://github.com/OUDUIDUI/fe-study/tree/master/package/css/clipping-and-masking)
 

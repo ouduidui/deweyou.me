@@ -5,6 +5,13 @@
   --fg: #555;
   --fg-deep: #222;
   --fg-deeper: #000;
+  --container-width: 650px;
+}
+
+@media screen and (max-width: 650px) {
+  :root {
+     --container-width: 100%;
+  }
 }
 
 .dark {

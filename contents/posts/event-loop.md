@@ -1,12 +1,9 @@
 ---
-lang: zh-CN 
 title: 画一些动画，学习一下EventLoop 
 description: 画一些动画，学习一下EventLoop
 date: 2021-06-02T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 画一些动画，学习一下EventLoop
 
 最近在学习`Vue`源码，刚好学到虚拟DOM的异步更新，这里就涉及到`JavaScript`中的事件循环`Event Loop`
 。之前对这个概念还是比较模糊，大概知道是什么，但一直没有深入学习。刚好借此机会，回过头来学习一下`Event Loop`。

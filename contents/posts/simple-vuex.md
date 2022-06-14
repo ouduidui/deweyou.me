@@ -1,7 +1,7 @@
 ---
-lang: zh-CN 
 title: 简单实现Vuex 
-description: 简单实现VuexT08:00:00.000+00:00
+description: 简单实现Vuex
+date: 2021-04-27T08:00:00.000+00:00
 author: Dewey Ou
 ---
 

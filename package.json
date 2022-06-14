@@ -6,8 +6,8 @@
     "email": "oushihao97@gmail.com"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "NEXT_PUBLIC_DOMAIN_ENV=development next dev",
+    "build": "NEXT_PUBLIC_DOMAIN_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest"

@@ -1,13 +1,9 @@
 ---
-name: test
-lang: zh-CN
 title: 聊一聊Vue2中的Diff算法
 description: 聊一聊Vue2中的Diff算法
 date: 2021-06-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 聊一聊Vue中的Diff算法
 
 ## Vue2是如何更新节点
 

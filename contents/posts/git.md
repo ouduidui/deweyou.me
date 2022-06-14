@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: Git工作原理及常用命令
 description: Git工作原理及常用命令
 date: 2020-12-25T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# Git工作原理及常用命令
 
 ## git介绍
 

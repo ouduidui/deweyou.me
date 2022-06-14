@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 简单实现 Vue Router
 description: 简单实现 Vue Router
 date: 2021-04-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 简单实现 Vue Router
 
 > [github](https://github.com/ouduidui/mini-vue-router3)
 

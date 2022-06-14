@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: Require和Import有什么不一样
 description: Require和Import有什么不一样
 date: 2021-01-07T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# Require和Import的区别
 
 ## 历史背景
 

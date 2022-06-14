@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 万字长文，带你从零学习Webpack
 description: 万字长文，带你从零学习Webpack
 date: 2021-08-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 万字长文，带你从零学习 Webpack
 
 一直以为，我的`Webpack`就是复制粘贴的水平，而对`Webpack`的知识真的很模糊，甚至是纯小白。所以前段时间开始对`Webpack`进行比较系统的学习。
 

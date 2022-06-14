@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: JavaScript手写题
 description: JavaScript手写题
 date: 2022-02-16T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# JavaScript 手写题
 
 为了更好的阅读，我将其他分为了六个部分：字符串、数组、对象、函数、Promise 和其他类型的。
 

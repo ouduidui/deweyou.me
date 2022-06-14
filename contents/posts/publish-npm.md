@@ -1,11 +1,9 @@
 ---
-lang: zh-CN
 title: 利用github Actions发布npm和release
-description: 利用github Actions发布npm和releaseT08:00:00.000+00:00
+description: 利用github Actions发布npm和release
+date: 2021-07-30T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 利用github Actions发布npm和release
 
 最近自己造了个轮子——[ga-tracker](https://github.com/OUDUIDUI/ga-tracker)，即适用于UniApp和微信小程序的谷歌统计 (Google Analytics) SDK，喜欢的朋友可以点个Star！
 然而当每次更新或修复bugs的时候，都需要手动去更新`npm`包以及`release`包，因此就想尝试一下利用**`github Actions`**来实现自动发布`npm`和`release`。
@@ -19,35 +17,35 @@ author: Dewey Ou
 
 来到[`npmjs`](https://www.npmjs.com/)下，登录你的账号，然后点击`Access Tokens`。
 
-![WeChatdb6470d685993f4bb43d203021519421.png](/posts/publish-npm-by-github-actions/1.png)
+![WeChatdb6470d685993f4bb43d203021519421.png](/images/docs/publish-npm-by-github-actions/1.png)
 
 然后点击`Generate New Token`创建一个新的`Token`。
-![WeChat3da491aff53c856dad95c4cf5a2b0d65.png](/posts/publish-npm-by-github-actions/2.png)
+![WeChat3da491aff53c856dad95c4cf5a2b0d65.png](/images/docs/publish-npm-by-github-actions/2.png)
 
 然后选择`Automation`，确定创建`Token`。
 
-![WeChat565126ef4c337c96594badfcfe868857.png](/posts/publish-npm-by-github-actions/3.png)
+![WeChat565126ef4c337c96594badfcfe868857.png](/images/docs/publish-npm-by-github-actions/3.png)
 
 然后来到你的`Github`，选择你的项目，点击`Settings`，然后选择`Secrets`，点击`New repository secret`。
 
-![WeChat5a182589fc211e0089597980455670b8.png](/posts/publish-npm-by-github-actions/4.png)
+![WeChat5a182589fc211e0089597980455670b8.png](/images/docs/publish-npm-by-github-actions/4.png)
 
 输入名称和`Tokens`，然后点击保存。
 
-![截屏2021-07-27 17.07.18.png](/posts/publish-npm-by-github-actions/5.png)
+![截屏2021-07-27 17.07.18.png](/images/docs/publish-npm-by-github-actions/5.png)
 
 ## 编辑`github actions`配置文件
 在你的项目下，新建`.github`目录，然后再新建一个`workflows`目录，接着在里面新建一个`yml`文件。
 
 github会自动检测`.github/workflows`下的所有配置文件，并在每一次链接到远程仓库的时候执行它们。
 
-![截屏2021-07-27 17.39.24.png](/posts/publish-npm-by-github-actions/6.png)
+![截屏2021-07-27 17.39.24.png](/images/docs/publish-npm-by-github-actions/6.png)
 
 在编辑之前，我先简单说明一下我的项目结构。
 
 我的项目打包文件都放在`dist`路径下，在里面除了打包文件之外，还包含`package.json`和`README.md`，这两个文件是上传到`npm`必需的。
 
-![截屏2021-07-27 17.49.41.png](/posts/publish-npm-by-github-actions/7.png)
+![截屏2021-07-27 17.49.41.png](/images/docs/publish-npm-by-github-actions/7.png)
 
 接下来我们开始编辑配置文件。
 ```yaml
@@ -154,11 +152,11 @@ jobs:
 
 你也可以在项目主页，点击`actions`选项查看。
 
-![截屏2021-07-27 18.13.04.png](/posts/publish-npm-by-github-actions/8.png)
+![截屏2021-07-27 18.13.04.png](/images/docs/publish-npm-by-github-actions/8.png)
 
 同时你可以点进去，进一步查看执行情况，如果报错了你也能准确定位到哪里出问题了。
 
-![截屏2021-07-27 18.14.53.png](/posts/publish-npm-by-github-actions/9.png)
+![截屏2021-07-27 18.14.53.png](/images/docs/publish-npm-by-github-actions/9.png)
 
 此时看看npm包和release，也都都更新到最新版本了。
 

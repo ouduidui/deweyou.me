@@ -1,12 +1,11 @@
 .content {
-  width: 650px;
+  width: var(--container-width);
   margin: auto;
-   color: var(--fg);
+  color: var(--fg);
 }
 
 @media screen and (max-width: 650px) {
   .content {
-    width: 100%;
     padding: 0 15px;
   }
 }

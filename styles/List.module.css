@@ -1,0 +1,10 @@
+.list {
+  width: var(--container-width);
+  margin: auto;
+}
+
+@media screen and (max-width: 650px) {
+  .list {
+    padding: 0 15px;
+  }
+}

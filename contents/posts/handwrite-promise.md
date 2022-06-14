@@ -1,12 +1,9 @@
 ---
-lang: zh-CN
 title: 手撕一个符合Promise/A+规范的Promise
 description: 手撕一个符合Promise/A+规范的Promise
 date: 2022-02-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
-
-# 手写 Promise，通过 Promise/A+的 872 个测试
 
 > [github](https://github.com/ouduidui/javascript-wheels/tree/master/src/promise/api)
 
