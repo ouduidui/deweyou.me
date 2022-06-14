@@ -10,7 +10,7 @@ const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="font-sans flex flex-col min-h-screen">
       <NavBar />
       <div className="flex-1">
         <Component {...pageProps} />

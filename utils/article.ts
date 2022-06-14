@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
-// import anchor from 'markdown-it-anchor'
+import anchor from 'markdown-it-anchor'
 
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-scss'
@@ -27,13 +27,12 @@ markdown
       rel: 'noopener',
     },
   })
-  // .use(anchor, {
-  //   // slugify,
-  //   permalink: anchor.permalink.linkInsideHeader({
-  //     symbol: '#',
-  //     renderAttrs: () => ({ 'aria-hidden': 'true' }),
-  //   }),
-  // })
+  .use(anchor, {
+    permalink: anchor.permalink.linkInsideHeader({
+      symbol: '#',
+      renderAttrs: () => ({ 'aria-hidden': 'true' }),
+    }),
+  })
 
 export interface ArticleReturnType {
   id: string
@@ -42,6 +41,7 @@ export interface ArticleReturnType {
   date: number
   lang: string
   html: string
+  author: string
 }
 
 type ArticleType = 'posts'

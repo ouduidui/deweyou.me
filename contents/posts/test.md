@@ -1,23 +1,22 @@
 ---
-title: Test Post
+title: Markdown syntax guide 你好，世界
 description: This is a test post.
+author: Dewey Ou
 date: 2022-06-06T08:00:00.000+00:00
 ---
 
-# Markdown syntax guide
-
-## Headers
+# Headers
 
 # This is a Heading h1
 ## This is a Heading h2 
 ### This is a Heading h3
 #### This is a Heading h4
-##### This is a Heading h5
-###### This is a Heading h6
 
 This is a paragraph.
 
-## Emphasis
+你好，世界。
+
+# Emphasis
 
 *This text will be italic*  
 _This will also be italic_
@@ -27,16 +26,16 @@ __This will also be bold__
 
 _You **can** combine them_
 
-## Lists
+# Lists
 
-### Unordered
+## Unordered
 
 * Item 1
 * Item 2
   * Item 2a
   * Item 2b
 
-### Ordered
+## Ordered
 
 1. Item 1
 2. Item 2
@@ -44,17 +43,17 @@ _You **can** combine them_
    1. Item 3a
    2. Item 3b
 
-## Links
+# Links
 
 You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
 
-## Blockquotes
+# Blockquotes
 
 > Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
 >
 >> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
 
-## Tables
+# Tables
 
 | Left columns  | Right columns |
 | ------------- |:-------------:|
@@ -62,7 +61,7 @@ You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
 | left bar      | right bar     |
 | left baz      | right baz     |
 
-## Blocks of code
+# Blocks of code
 
 ```bash
 #!/bin/bash
@@ -105,12 +104,12 @@ print(message)
 </style>
 ```
 
-## Inline code
+# Inline code
 
 This web site is using `markedjs/marked`.
 
 
-## Images
+# Images
 
 ![蜡笔小新](https://p1.itc.cn/images01/20200611/b355f238a324427d956161b3a0d02d44.jpeg)
 
