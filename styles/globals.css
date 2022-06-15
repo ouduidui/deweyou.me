@@ -46,7 +46,7 @@ a {
 }
 
 * {
-  scrollbar-color: var(--c-scrollbar) var(--bg-color);
+  scrollbar-color: var(--scrollbar) var(--bg-color);
 }
 
 ::-webkit-scrollbar {
@@ -56,15 +56,15 @@ a {
   height: 6px;
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: var(--c-bg);
+  background: var(--bg-color);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--c-scrollbar);
+  background: var(--scrollbar);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--c-scrollbar-hover);
+  background: var(--scrollbar-hover);
 }
 
 
