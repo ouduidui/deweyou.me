@@ -6,7 +6,7 @@
     "email": "oushihao97@gmail.com"
   },
   "scripts": {
-    "dev": "NEXT_PUBLIC_DOMAIN_ENV=development next dev",
+    "dev": "rimraf .next && NEXT_PUBLIC_DOMAIN_ENV=development next dev",
     "build": "NEXT_PUBLIC_DOMAIN_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
@@ -42,6 +42,7 @@
     "markdown-it-anchor": "^8.6.4",
     "markdown-it-link-attributes": "^4.0.0",
     "markdown-it-prism": "^2.2.4",
+    "rimraf": "^3.0.2",
     "typescript": "4.7.3",
     "unocss": "^0.37.4",
     "vite": "^2.9.10",

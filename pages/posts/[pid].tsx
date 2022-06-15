@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from 'next'
 import type { ArticleReturnType } from '../../utils/article'
 import { generate, getPostList } from '../../utils/article'
 import ArticleContent from '../../components/Article/Content'
+import Head from '../../components/Head'
 
 interface PropsType {
   post: ArticleReturnType
@@ -10,9 +11,10 @@ interface PropsType {
 const Post: NextPage<PropsType> = (props: PropsType) => {
   const { post } = props
   return (
-    <div>
+    <>
+      <Head title={post.title} description={post.describe} />
       <ArticleContent post={post} />
-    </div>
+    </>
   )
 }
 
