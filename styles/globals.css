@@ -6,6 +6,8 @@
   --fg-deep: #222;
   --fg-deeper: #000;
   --container-width: 650px;
+  --scrollbar: #eee;
+  --scrollbar-hover: #bbb;
 }
 
 @media screen and (max-width: 650px) {
@@ -21,6 +23,8 @@
   --fg: #bbb;
   --fg-deep: #ddd;
   --fg-deeper: #fff;
+  --scrollbar: #111;
+  --scrollbar-hover: #222;
 }
 
 html,
@@ -40,6 +44,29 @@ a {
   box-sizing: border-box;
   color: var(--text-color);
 }
+
+* {
+  scrollbar-color: var(--c-scrollbar) var(--bg-color);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+  background: var(--c-bg);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-scrollbar);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-scrollbar-hover);
+}
+
 
 @media screen and (max-width: 765px) {
   html {
