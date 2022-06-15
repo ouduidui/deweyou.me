@@ -5,6 +5,8 @@ date: 2021-04-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 > [github](https://github.com/ouduidui/mini-vue-router3)
 
 ## vue-router

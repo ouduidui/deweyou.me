@@ -5,6 +5,8 @@ date: 2021-01-07T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 ## 历史背景
 
 - **require/exports**

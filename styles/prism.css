@@ -100,18 +100,16 @@ h6:focus .header-anchor {
   top: 80px;
   padding-top: 70px;
   font-size: 0.8em;
-  right: 10px;
+  left: 10px;
   width: 200px;
-  bottom: 0;
+  bottom: 80px;
   overflow-y: auto;
   overflow-x: hidden;
   text-overflow: ellipsis;
-  opacity: 0;
   transition: all .4s ease-out;
-}
-
-.table-of-contents:hover {
   opacity: 0.5;
+  direction:rtl;
+  text-align: left;
 }
 
 .table-of-contents ul > li::before {
@@ -120,4 +118,10 @@ h6:focus .header-anchor {
 
 .table-of-contents ul > li {
   padding-left: 0.8rem;
+}
+
+@media (max-width: 1200px) {
+  .table-of-contents {
+    display: none;
+  }
 }

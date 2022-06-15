@@ -5,6 +5,8 @@ date: 2022-01-07T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 ## [Flexbox Froggy](https://flexboxfroggy.com/)
 
 这个网站是一个学习`flex`布局的小游戏，它会通过让你敲代码让视图里的小青蛙能够成功到达荷叶上，利用闯关的方式让你由浅到深学习`flex`弹性布局。

@@ -5,6 +5,8 @@ date: 2022-02-09T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 > [github](https://github.com/ouduidui/javascript-wheels/tree/master/src/promise/api)
 
 ## 什么是 Promise
