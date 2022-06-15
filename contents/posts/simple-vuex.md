@@ -5,6 +5,8 @@ date: 2021-04-27T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 # 简单实现Vuex
 
 > [github](https://github.com/ouduidui/mini-vuex3)

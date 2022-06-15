@@ -5,6 +5,8 @@ date: 2020-12-13T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 > [Github](https://github.com/OUDUIDUI/fe-study/tree/master/package/css/clipping-and-masking)
 
 ## 剪切和遮罩的区别

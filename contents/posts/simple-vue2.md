@@ -5,6 +5,8 @@ date: 2021-05-17T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 ## Vue的设计思想
 
 `Vue`设计思想参考了`MVVM`模型，即将视图`View`和行为`Model`抽象化，即将视图UI和业务逻辑分开来，然后通过`ViewModel`层来实现双向数据绑定。

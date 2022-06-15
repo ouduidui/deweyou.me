@@ -67,15 +67,6 @@
   content: none;
 }
 
-@media (max-width: 1200px) {
-  .table-of-contents {
-    display: none;
-  }
-}
-
-
-
-
 .content {
   color: var(--fg);
   max-width: 65ch;

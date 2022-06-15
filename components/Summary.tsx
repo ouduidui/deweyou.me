@@ -12,6 +12,7 @@ const Summary: NextPage = () => {
           layout="fill"
           className="relative"
           objectFit="cover"
+          priority={true}
         />
       </div>
 

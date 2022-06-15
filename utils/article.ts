@@ -4,6 +4,8 @@ import MarkdownIt from 'markdown-it'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
 import anchor from 'markdown-it-anchor'
+// @ts-expect-error missing types
+import TOC from 'markdown-it-table-of-contents'
 
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-scss'
@@ -35,6 +37,9 @@ markdown
       renderAttrs: () => ({ 'aria-hidden': 'true' }),
     }),
   })
+  .use(TOC, {
+    includeLevel: [1, 2, 3],
+  })
 
 export interface ArticleReturnType {
   id: string
@@ -54,6 +59,7 @@ export const generate = async(
   const raw = fs.readFileSync(`contents/${type}/${id}.md`, 'utf-8')
   const { data, content } = matter(raw)
   const html = markdown.render(content)
+  console.log(html.includes('toc'))
 
   return {
     id,

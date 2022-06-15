@@ -5,6 +5,8 @@ date: 2021-07-30T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 最近自己造了个轮子——[ga-tracker](https://github.com/OUDUIDUI/ga-tracker)，即适用于UniApp和微信小程序的谷歌统计 (Google Analytics) SDK，喜欢的朋友可以点个Star！
 然而当每次更新或修复bugs的时候，都需要手动去更新`npm`包以及`release`包，因此就想尝试一下利用**`github Actions`**来实现自动发布`npm`和`release`。
 

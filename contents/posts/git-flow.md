@@ -5,6 +5,8 @@ date: 2021-01-05T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 ## 简述Git Flow
 
 首先，`Git Flow`并不是`Git`的替代品，`Git Flow`只是把标准的`Git`命令用脚本组合了起来，形成比较有效而简单的命令。

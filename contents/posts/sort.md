@@ -5,6 +5,8 @@ date: 2022-02-13T08:00:00.000+00:00
 author: Dewey Ou
 ---
 
+[[toc]]
+
 > [github](https://github.com/ouduidui/fe-study/blob/master/package/javascript/wheels/src/others/sort-algorithm/index.js)
 
 | 排序算法 | 时间复杂度（平均） | 时间复杂度（最好） | 时间复杂度（最坏） | 空间复杂度 | 稳定性 | 排序方式  |  排序类型  |

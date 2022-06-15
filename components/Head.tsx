@@ -8,12 +8,18 @@ interface PropsType {
   keywords?: string[]
 }
 
+const defaultKeywords = [
+  'Dewey Ou', 'Dewey', 'Ou', 'Software Engineer', 'Blogs', 'Front-End', 'Web', '欧怼怼', 'OUDUIDUI',
+]
+
 const AdvancedHead: NextPage<PropsType> = ({
-  title = 'Dewey Ou',
+  title = '',
   description = 'Dewey Ou is a software engineer and a writer.',
   icon = '/favicon.ico',
-  keywords = ['Dewey Ou', 'Dewey', 'Ou', 'Software Engineer', 'Writer'],
+  keywords = [],
 }: PropsType) => {
+  title = title ? `${title} · Dewey Ou` : 'Dewey Ou'
+  keywords.push(...defaultKeywords)
   return (
     <Head>
       <title>{title}</title>
