@@ -58,7 +58,6 @@ html.dark {
   --prism-selection-background: #444444;
 }
 
-
 a.header-anchor {
   float: left;
   margin-top: 0.125em;
@@ -88,6 +87,12 @@ h5:focus .header-anchor,
 h6:hover .header-anchor,
 h6:focus .header-anchor {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 700px) {
+  .header-anchor {
+    display: none;
+  }
 }
 
 .table-of-contents {
