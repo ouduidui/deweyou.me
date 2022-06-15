@@ -71,7 +71,7 @@ export interface ListItemType {
 
 export const getPostList = (hasInfo = false): ListItemType[] => {
   let list = fs.readdirSync('contents/posts/')
-  if (!__DEV__) list = list.filter(post => post === 'test.md')
+  if (!__DEV__) list = list.filter(post => post !== 'test.md')
   if (!hasInfo) return list.map(item => ({ id: item.replace('.md', '') }))
 
   const infoList = list.map((post) => {
