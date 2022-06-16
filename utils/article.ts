@@ -59,7 +59,6 @@ export const generate = async(
   const raw = fs.readFileSync(`contents/${type}/${id}.md`, 'utf-8')
   const { data, content } = matter(raw)
   const html = markdown.render(content)
-  console.log(html.includes('toc'))
 
   return {
     id,
