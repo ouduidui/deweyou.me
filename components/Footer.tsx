@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { COPYRIGHT } from '../contents/footer'
+import { COPYRIGHT } from '../contents/summary'
 
 const Footer: NextPage = () => {
   return (
