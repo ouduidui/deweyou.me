@@ -1,8 +1,11 @@
 import type { NextPage } from 'next'
+import cssModule from '../styles/404.module.css'
 
 const Custom404: NextPage = () => {
   return (
-    <div>404</div>
+    <div className={cssModule.container}>
+      <img className="w-full h-full" src="/404.svg" />
+    </div>
   )
 }
 
