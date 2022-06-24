@@ -11,8 +11,14 @@ const NavBar: NextPage = () => {
 
   return (
     <header className="p-8 flex flex-row justify-between items-center">
-      <div className="cursor-pointer" onClick={() => router.push('/')}>
-        <img src={isDark ? '/logo-dark.svg' : '/logo.svg'} className="w-10 h-10"></img>
+      <div
+        className="cursor-pointer"
+        onClick={() => router.push('/')}
+      >
+        <img
+          src={isDark ? '/logo-dark.svg' : '/logo.svg'}
+          className="w-10 h-10"
+        />
       </div>
       <div className="grid grid-flow-col gap-1.2rem">
         <Posts isDark={isDark} />
