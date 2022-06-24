@@ -3,7 +3,36 @@ import { useRouter } from 'next/router'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
-import Posts from './Posts'
+import Common from './Common'
+import type { PropsType as CommonCompPropsType } from './Common'
+
+const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
+  {
+    icon: 'i-carbon-align-box-top-left',
+    tooltipLabel: 'Posts',
+    routePath: '/posts',
+  },
+  {
+    icon: 'i-carbon-rocket',
+    tooltipLabel: 'Projects',
+    routePath: '/projects',
+  },
+  {
+    icon: 'i-iconoir-terminal-simple',
+    tooltipLabel: 'Notes',
+    routePath: '/notes',
+  },
+  {
+    icon: 'i-carbon-content-delivery-network',
+    tooltipLabel: 'Websites',
+    routePath: '/websites',
+  },
+  {
+    icon: 'i-iconoir-chat-bubble-empty',
+    tooltipLabel: 'Contact',
+    routePath: '/contact',
+  },
+]
 
 const NavBar: NextPage = () => {
   const { isDark, toggleDark } = useDark()
@@ -21,7 +50,15 @@ const NavBar: NextPage = () => {
         />
       </div>
       <div className="grid grid-flow-col gap-1.2rem">
-        <Posts isDark={isDark} />
+        {
+          BUTTONS.map(prop => (
+            <Common
+              key={prop.tooltipLabel}
+              isDark={isDark}
+              {...prop} />
+          ))
+        }
+
         <ToggleTheme
           isDark={isDark}
           toggleDark={toggleDark}

@@ -13,6 +13,7 @@ specifiers:
   '@types/react-dom': 18.0.5
   '@unocss/preset-uno': ^0.38.0
   '@unocss/webpack': ^0.37.4
+  classnames: ^2.3.1
   dayjs: ^1.11.3
   eslint: 8.17.0
   fast-glob: ^3.2.11
@@ -36,6 +37,7 @@ specifiers:
   usehooks-ts: ^2.5.4
 
 dependencies:
+  classnames: 2.3.1
   dayjs: 1.11.3
   framer-motion: 6.3.10_ef5jwxihqo6n7gxfmzogljlgcm
   markdown-it-table-of-contents: 0.6.0
@@ -952,6 +954,10 @@ packages:
   /ci-info/3.3.1:
     resolution: {integrity: sha512-SXgeMX9VwDe7iFFaEWkA5AstuER9YKqy4EhHqr4DVqkwmD9rpVimkMKWHdjn30Ja45txyjhSn63lVX69eVCckg==}
     dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /clean-regexp/1.0.0:
     resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
