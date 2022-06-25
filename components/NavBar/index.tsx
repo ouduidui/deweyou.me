@@ -19,8 +19,8 @@ const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
   },
   {
     icon: 'i-iconoir-terminal-simple',
-    tooltipLabel: 'Notes',
-    routePath: '/notes',
+    tooltipLabel: 'Note',
+    routePath: '/note',
   },
   {
     icon: 'i-carbon-content-delivery-network',
