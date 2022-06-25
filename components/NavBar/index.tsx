@@ -12,26 +12,26 @@ const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
     tooltipLabel: 'Posts',
     routePath: '/posts',
   },
-  {
-    icon: 'i-carbon-rocket',
-    tooltipLabel: 'Projects',
-    routePath: '/projects',
-  },
+  // {
+  //   icon: 'i-carbon-rocket',
+  //   tooltipLabel: 'Projects',
+  //   routePath: '/projects',
+  // },
   {
     icon: 'i-iconoir-terminal-simple',
     tooltipLabel: 'Note',
     routePath: '/note',
   },
-  {
-    icon: 'i-carbon-content-delivery-network',
-    tooltipLabel: 'Websites',
-    routePath: '/websites',
-  },
-  {
-    icon: 'i-iconoir-chat-bubble-empty',
-    tooltipLabel: 'Contact',
-    routePath: '/contact',
-  },
+  // {
+  //   icon: 'i-carbon-content-delivery-network',
+  //   tooltipLabel: 'Websites',
+  //   routePath: '/websites',
+  // },
+  // {
+  //   icon: 'i-iconoir-chat-bubble-empty',
+  //   tooltipLabel: 'Contact',
+  //   routePath: '/contact',
+  // },
 ]
 
 const NavBar: NextPage = () => {
