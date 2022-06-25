@@ -51,8 +51,8 @@ export interface ArticleReturnType {
   author: string
 }
 
-type ArticleType = 'posts'
-export const generate = async(
+type ArticleType = 'posts' | 'note'
+export const generate = async (
   id: string,
   type: ArticleType = 'posts',
 ): Promise<ArticleReturnType> => {
