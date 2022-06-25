@@ -27,11 +27,11 @@ const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
   //   tooltipLabel: 'Websites',
   //   routePath: '/websites',
   // },
-  // {
-  //   icon: 'i-iconoir-chat-bubble-empty',
-  //   tooltipLabel: 'Contact',
-  //   routePath: '/contact',
-  // },
+  {
+    icon: 'i-iconoir-chat-bubble-empty',
+    tooltipLabel: 'Contact',
+    routePath: '/contact',
+  },
 ]
 
 const NavBar: NextPage = () => {
@@ -41,14 +41,9 @@ const NavBar: NextPage = () => {
   return (
     <header className="p-8 flex flex-row justify-between items-center">
       <div
-        className="cursor-pointer"
+        className="cursor-pointer i-custom:logo w-10 h-10"
         onClick={() => router.push('/')}
-      >
-        <img
-          src={isDark ? '/logo-dark.svg' : '/logo.svg'}
-          className="w-10 h-10"
-        />
-      </div>
+      />
       <div className="grid grid-flow-col gap-1.2rem">
         {
           BUTTONS.map(prop => (

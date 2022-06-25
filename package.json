@@ -28,7 +28,9 @@
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.5",
+    "@iconify-json/icon-park-solid": "^1.1.2",
     "@iconify-json/iconoir": "^1.1.6",
+    "@iconify-json/mdi": "^1.1.23",
     "@ouduidui/eslint-config-react": "^0.1.1",
     "@types/inquirer": "^8.2.1",
     "@types/markdown-it": "^12.2.3",

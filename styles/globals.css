@@ -73,3 +73,14 @@ a {
     font-size: 14px;
   }
 }
+
+.content {
+  width: var(--container-width);
+  margin: auto;
+}
+
+@media screen and (max-width: 650px) {
+  .content {
+     padding: 0 2em;
+  }
+}
