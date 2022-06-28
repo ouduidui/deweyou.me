@@ -8,6 +8,12 @@ import Head from '../components/Head'
 
 const Contact: NextPage = () => {
   const [image, setImage] = useState('')
+
+  const clickHandle = (handler: () => void) => {
+    setImage('')
+    handler()
+  }
+
   const contacts = [
 
     {
@@ -35,29 +41,27 @@ const Contact: NextPage = () => {
       icon: 'i-icon-park-solid-weixin-top-stories',
       handler: () => setImage(WECHAT_PUBLIC_CODE),
     },
-
   ]
 
-  const clickHandle = (handler: () => void) => {
-    setImage('')
-    handler()
-  }
   return (
     <>
       <Head title="Contact Me" />
       <div className="content flex items-center justify-between mt-20">
         {contacts.map((contact, idx) => {
           const cls = classnames('w-7', 'h-7', 'cursor-pointer', 'opacity-50', 'hover:opacity-100', contact.icon)
-          return (<div
-            key={idx}
-            className={cls}
-            onClick={() => clickHandle(contact.handler)} />)
+          return (
+            <div
+              key={idx}
+              className={cls}
+              onClick={() => clickHandle(contact.handler)}
+            />
+          )
         })}
       </div>
       {
         image && (
           <div>
-            <img className="w-43 h-43 mt-20 m-auto" src={image} />
+            <img className="w-43 h-43 mt-20 m-auto opacity-80" src={image} />
           </div>
         )
       }
