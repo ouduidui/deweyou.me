@@ -3,6 +3,7 @@
 const UnoCSS = require('@unocss/webpack').default
 const presetUno = require('@unocss/preset-uno').default
 const presetIcons = require('@unocss/preset-icons').default
+const withPWA = require('next-pwa')
 
 const nextConfig = {
   reactStrictMode: true,
@@ -38,4 +39,10 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA({
+  // https://www.npmjs.com/package/next-pwa
+  pwa: {
+    dest: 'public',
+  },
+  ...nextConfig,
+})
