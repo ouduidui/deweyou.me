@@ -1,11 +1,21 @@
 ---
 title: Quick Notes / Tips
-description: CSS中的剪切和遮罩
+description: some quick notes or tips.
 date: 2022-06-25
 author: Dewey Ou
 ---
 
 [[toc]]
+
+## Brewhome install
+
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# wait...
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/[USERNAME]/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
 
 ## husky
 
