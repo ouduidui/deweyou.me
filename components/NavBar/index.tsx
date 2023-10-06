@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
+import Photo from './Photo'
 import Common from './Common'
 import type { PropsType as CommonCompPropsType } from './Common'
 
@@ -53,6 +54,7 @@ const NavBar: NextPage = () => {
               {...prop} />
           ))
         }
+        <Photo isDark={isDark}></Photo>
 
         <ToggleTheme
           isDark={isDark}

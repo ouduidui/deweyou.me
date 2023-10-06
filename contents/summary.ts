@@ -17,3 +17,4 @@ export const TWITTER = 'https://twitter.com/imdeweyou'
 export const EMAIL = 'oushihao97@gmail.com'
 export const GITHUB = 'https://github.com/ouduidui'
 export const GITHUB_REPO = `${GITHUB}/deweyou.me`
+export const PHOTO_URL = 'https://deweyou.tuchong.com/'
