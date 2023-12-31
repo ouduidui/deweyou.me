@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 import classnames from 'classnames'
 import {
-  EMAIL, GITHUB, JUEJIN, TWITTER, WECHAT_CODE, WECHAT_PUBLIC_CODE,
+  EMAIL, GITHUB, JUEJIN, WECHAT_PUBLIC_CODE,
 } from '../contents/summary'
 import Head from '../components/Head'
 
@@ -24,19 +24,18 @@ const Contact: NextPage = () => {
       icon: 'i-custom:juejin',
       handler: () => window.open(JUEJIN),
     },
-    {
-      icon: 'i-carbon-logo-wechat',
-      handler: () => setImage(WECHAT_CODE),
-    },
-    {
-      icon: 'i-icon-park-solid-twitter',
-      handler: () => window.open(TWITTER),
-    },
+    // {
+    //   icon: 'i-carbon-logo-wechat',
+    //   handler: () => setImage(WECHAT_CODE),
+    // },
+    // {
+    //   icon: 'i-icon-park-solid-twitter',
+    //   handler: () => window.open(TWITTER),
+    // },
     {
       icon: 'i-mdi-email',
       handler: () => window.open(`mailto:${EMAIL}`),
     },
-
     {
       icon: 'i-icon-park-solid-weixin-top-stories',
       handler: () => setImage(WECHAT_PUBLIC_CODE),

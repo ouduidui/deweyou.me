@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
@@ -8,6 +7,11 @@ import Common from './Common'
 import type { PropsType as CommonCompPropsType } from './Common'
 
 const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
+  {
+    icon: 'i-carbon-home',
+    tooltipLabel: 'Home',
+    routePath: '/',
+  },
   {
     icon: 'i-carbon-align-box-top-left',
     tooltipLabel: 'Posts',
@@ -37,14 +41,9 @@ const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
 
 const NavBar: NextPage = () => {
   const { isDark, toggleDark } = useDark()
-  const router = useRouter()
 
   return (
-    <header className="p-8 flex flex-row justify-between items-center">
-      <div
-        className="cursor-pointer i-custom:logo w-10 h-10"
-        onClick={() => router.push('/')}
-      />
+    <header className="p-8 flex flex-row justify-center items-center">
       <div className="grid grid-flow-col gap-1.2rem">
         {
           BUTTONS.map(prop => (

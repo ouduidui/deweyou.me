@@ -4,8 +4,8 @@ export const COPYRIGHT = `Copyright © 2020-${dayjs().year()} Dewey Ou`
 
 export const SUMMARY = [
   'Hello, I am Dewey Ou',
-  'A FE & RD Engineer',
-  'And working at ByteDance',
+  'I\'m glad you came to my blog',
+  'And I hope you can be a little happier every day',
 ]
 
 export const AVATAR = '/avatar.jpg'

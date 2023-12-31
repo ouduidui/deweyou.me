@@ -1,28 +1,31 @@
 import type { NextPage } from 'next'
+import Lottie from 'lottie-react'
 import TypeIt from 'typeit-react'
-import Image from 'next/image'
-import { AVATAR, SUMMARY } from '../contents/summary'
+import { useState } from 'react'
+import classNames from 'classnames'
+import LogoJSON from '../public/img/logo-lotties.json'
+import { SUMMARY } from '../contents/summary'
+import useWillMount from '../hooks/useWillMount'
+
+const TEXT_START_DELAY = 6000
 
 const Summary: NextPage = () => {
+  const [isLottieMounted, setIsLottieMounted] = useState(false)
+  useWillMount(() => {
+    setTimeout(() => { setIsLottieMounted(true) }, TEXT_START_DELAY)
+  })
   return (
     <div className="flex flex-col items-center justify-center mt-20">
-      <div className="w-40 h-40 rounded-1/2 overflow-hidden relative mb-8">
-        <Image
-          src={AVATAR}
-          layout="fill"
-          className="relative"
-          objectFit="cover"
-          priority={true}
-        />
-      </div>
-
-      <div className="font-mono leading-loose text-xl text-center select-none">
+      <Lottie className="max-w-xl m-auto mx-6" loop={false} animationData={LogoJSON} />
+      <div className={classNames('font-mono leading-loose text-xl text-center select-none', {
+        'opacity-0': !isLottieMounted,
+      })}>
         <TypeIt
           options={{
             strings: SUMMARY,
             speed: 100,
             waitUntilVisible: true,
-            startDelay: 1000,
+            startDelay: TEXT_START_DELAY,
           }} />
       </div>
     </div>
