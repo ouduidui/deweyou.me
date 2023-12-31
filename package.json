@@ -25,6 +25,7 @@
     "prismjs": "^1.28.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-photo-view": "^1.2.4",
     "typeit-react": "^2.4.6",
     "usehooks-ts": "^2.5.4"
   },

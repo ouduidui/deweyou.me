@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import useDark from '../../hooks/useDark'
 import Github from './Github'
 import ToggleTheme from './ToggleTheme'
-import Photo from './Photo'
 import Common from './Common'
 import type { PropsType as CommonCompPropsType } from './Common'
 
@@ -16,6 +15,11 @@ const BUTTONS: Omit<CommonCompPropsType, 'isDark'>[] = [
     icon: 'i-carbon-align-box-top-left',
     tooltipLabel: 'Posts',
     routePath: '/posts',
+  },
+  {
+    icon: 'i-iconoir-media-image',
+    tooltipLabel: 'Photo',
+    routePath: '/photos',
   },
   // {
   //   icon: 'i-carbon-rocket',
@@ -53,8 +57,6 @@ const NavBar: NextPage = () => {
               {...prop} />
           ))
         }
-        <Photo isDark={isDark}></Photo>
-
         <ToggleTheme
           isDark={isDark}
           toggleDark={toggleDark}
