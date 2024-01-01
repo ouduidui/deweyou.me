@@ -5,6 +5,8 @@ import { PHOTO_LIST } from '../contents/photos'
 import 'react-photo-view/dist/react-photo-view.css'
 import Head from '../components/Head'
 
+const SIZE = 140
+
 const Photos: NextPage = () => {
   return (
     <>
@@ -24,8 +26,8 @@ const Photos: NextPage = () => {
                         <PhotoView src={photo.url} >
                           <Image
                             className="cursor-pointer"
-                            width={'200px'}
-                            height={'200px'}
+                            width={SIZE}
+                            height={SIZE}
                             src={photo.url}
                             objectFit="cover"
                             priority={true}
