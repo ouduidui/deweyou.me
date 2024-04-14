@@ -1,0 +1,14 @@
+{
+  "lineOne": "Hello! I'm Dewey Ou.",
+  "lineTwo": "I'm working in {{ company }} now, responsible for the frontend development of {{ business }}, and based in Shenzhen Guangdong.",
+  "company": "Bytedance",
+  "companyHomeUrl": "https://www.bytedance.com/en/",
+  "business": "Lark",
+  "businessHomeUrl": "https://www.larksuite.com/",
+  "lineThree": "Currently the commonly used technology frameworks are React + Typescript, while I personally prefer Vue3. Anyway, these are just development tools. What's more important is how we can use these tools more efficiently to achieve our products.",
+  "lineFour": "Usually, I prefer to focus on product design and interactive experience. I believe that they are equally important as the functions provided by the product. Frontend work is the work most closely related to users, and serves as a bridge between users and products. This is one of the reasons why I chose to specialize in frontend work. Before I started on the frontend, I also studied graphic design and video editing, which is also closely related to user experience.",
+  "lineFive": "Besides work, I also enjoy taking photos, playing Rubik's Cube, practicing the piano, reading books, and so on. I am a curious person, so I will spend some time exploring things that interest me.",
+  "lineSix": "If you want to know more about me, you can click {{ detail }}.",
+  "detailText": "here",
+  "detailUrl": "https://www.wolai.com/deweyou/dTtUxFRxKX7sgXZYFrYHYg"
+}

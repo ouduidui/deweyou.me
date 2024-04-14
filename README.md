@@ -5,7 +5,7 @@
 </a>
 
 <p align="center">
-  <samp>My personal website by <a href="https://nextjs.org/">NextJs</a>.</samp>
+  <samp>My personal website by <a href="https://docs.solidjs.com/reference/basic-reactivity/create-effect">SolidJS</a>.</samp>
 </p>
 
 <p align="center">

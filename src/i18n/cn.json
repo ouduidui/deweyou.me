@@ -1,0 +1,14 @@
+{
+  "lineOne": "Hello！我是欧怼怼。",
+  "lineTwo": "我现在在{{ company }}工作，负责{{ business }}的前端开发，目前居住在广东深圳。",
+  "company": "字节跳动",
+  "companyHomeUrl": "https://www.bytedance.com/zh/",
+  "business": "飞书",
+  "businessHomeUrl": "https://www.feishu.cn/",
+  "lineThree": "目前常用的技术栈是 React + Typescript, 而我个人更喜欢 Vue3。但这些只是开发工具罢了，更重要的是我们如何运用这些工具更高效地去实现我们的产品。",
+  "lineFour": "我平日里比较喜欢关注一个产品的设计与交互体验，我认为它们的重要程度不亚于产品所提供的功能。而前端的工作，其实是最贴近用户的工作，承载着用户与产品之间的桥梁。这就是我选择前端的原因之一。在学前端之前，我还学过平面设计和视频剪辑，同样是与用户体验紧密相连。",
+  "lineFive": "除工作之外，我还喜欢去拍拍照、玩玩魔方、练练琴、看看书等等。我是一个充满好奇心的人，因此我会花点时间去探索我感兴趣的事物。",
+  "lineSix": "如果你想更了解我，可以{{ detail }}。",
+  "detailText": "点击这里",
+  "detailUrl": "https://www.wolai.com/deweyou/dTtUxFRxKX7sgXZYFrYHYg"
+}
