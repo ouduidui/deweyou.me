@@ -7,7 +7,7 @@ const App: Component = () => {
     <AppProvider>
       <I18nProvider>
         <div class="select-none w-screen bg-slate-100 dark:bg-zinc-950">
-          <div class="container h-screen mx-auto px-4 flex flex-col ">
+          <div class="relative container min-h-screen mx-auto px-4 flex flex-col ">
             <div class="flex-1 flex flex-col justify-center pt-20 pb-40">
               <Avatar></Avatar>
               <Summary></Summary>
