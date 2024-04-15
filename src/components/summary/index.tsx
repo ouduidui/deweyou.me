@@ -1,4 +1,4 @@
-import { type Component, createEffect, createMemo, useContext } from 'solid-js'
+import { type Component, createEffect, createMemo, createSignal, useContext } from 'solid-js'
 import TypeIt from 'typeit'
 import { AppContext, I18nContext } from '../../contexts'
 import './index.css'
@@ -11,8 +11,10 @@ export const Summary: Component = () => {
   let domRef: HTMLDivElement | undefined
   const [store] = useContext(AppContext)
   const { t } = useContext(I18nContext)!
+  const fontFamily = store.locale === 'cn' ? 'font-base' : 'font-mono'
+  let typeItInstance: TypeIt | undefined
   createEffect(() => {
-    if (!domRef)
+    if (!domRef || !store.locale)
       return
 
     const lineOne = lineWrapper(t('lineOne'))
@@ -27,8 +29,12 @@ export const Summary: Component = () => {
       detail: linkWrapper(t('detailText'), t('detailUrl')),
     }))
 
-    const typeIt = new TypeIt(domRef)
-    typeIt
+    if (!typeItInstance)
+      typeItInstance = new TypeIt(domRef)
+    else
+      typeItInstance.empty()
+
+    typeItInstance
       .options({ speed: 20, breakLines: true })
       .type(lineOne)
       .pause(200)
@@ -54,11 +60,7 @@ export const Summary: Component = () => {
       .go()
   })
 
-  const fontFamily = createMemo(() => {
-    return store.locale === 'cn' ? 'font-base' : 'font-mono'
-  })
-
   return (
-    <div class={`${fontFamily()} summary leading-loose text-xl text-gray-800 dark:text-gray-200`} ref={domRef}></div>
+    <div class={`${fontFamily} summary leading-loose text-xl text-gray-800 dark:text-gray-200`} ref={domRef}></div>
   )
 }

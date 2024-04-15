@@ -5,7 +5,6 @@ import Fontmin from 'fontmin'
 function gulpCallback() {
   gulp.watch(['./src/i18n/*.json'], { ignoreInitial: false }, (cb) => {
     const allText = getAllText()
-    console.log(allText)
     new Fontmin().use(Fontmin.glyph({
       text: allText,
       hinting: false,
