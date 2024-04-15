@@ -5,7 +5,7 @@ import './index.css'
 
 const lineWrapper = (text: string) => `<span>${text}</span>`
 
-const linkWrapper = (text: string, url: string) => `<a target="_blank" href="${url}" class="link">${text}</a>`
+const linkWrapper = (text: string, url: string) => `<a target="_blank" href="${url}" class="summary-link">${text}</a>`
 
 export const Summary: Component = () => {
   let domRef: HTMLDivElement | undefined

@@ -1,24 +1,22 @@
-.summary {
-  .link {
-    position: relative;
-    cursor: pointer;
-  }
+.summary-link {
+  position: relative;
+  cursor: pointer;
+}
 
-  .link::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    height: 4px;
-    background-image: url(../../assets/brush.png);
-    background-size: cover;
-    background-position: center;
-    opacity: .5;
-    transition: all 0.3s ease-in-out;
-  }
+.summary-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 4px;
+  background-image: url(../../assets/brush.png);
+  background-size: cover;
+  background-position: center;
+  opacity: .5;
+  transition: all 0.3s ease-in-out;
+}
 
-  .link:hover::before {
-    opacity: 0.8;
-  }
+.summary-link:hover::before {
+  opacity: 0.8;
 }
